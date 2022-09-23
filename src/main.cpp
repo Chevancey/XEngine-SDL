@@ -14,6 +14,9 @@
 #include "SDLTime.h"
 #include "Sprite.h"
 
+
+void Animation(Sprite* sprite, int animationIndex, float timer, int frameIndex, int frameCount);
+
 //Lesson 1
 int main(int argc, char** argv)
 {
@@ -58,11 +61,9 @@ int main(int argc, char** argv)
     while(isOpen)
     {
         Time.CountDeltaTime();
-        //Uint64 now = SDL_GetPerformanceCounter();
-        //float deltaTime = (float)(now - lastUpdate) / SDL_GetPerformanceFrequency();
-        //lastUpdate = now;
-
         timer += Time.getDeltaTime();
+
+        //Animation(&sprite, 0, timer, frameIndex, frameCount);
 
         if (timer > 0.1f)
         {
@@ -76,9 +77,9 @@ int main(int argc, char** argv)
 
             //std::cout << frameIndex << std::endl;
 
-            sprite.SetRect({frameIndex * 32, 0, 32, 32 });
+            sprite.SetRect({ frameIndex * 32, 0, 32, 32 });
         }
-        
+
         SDLEvent::GetInstance()->Listen();
 
         if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_A))
@@ -144,9 +145,22 @@ int main(int argc, char** argv)
     return 0;
 }
 
-void KeyPressed() 
+void Animation(Sprite* sprite, int animationIndex, float timer, int frameIndex, int frameCount)
 {
+    if (timer > 0.1f)
+    {
+        timer -= 0.1f;
+        frameIndex++;
 
+        if (frameIndex >= frameCount)
+        {
+            frameIndex = 0;
+        }
+
+        //std::cout << frameIndex << std::endl;
+
+        sprite->SetRect({ frameIndex * 32, 32 * animationIndex, 32, 32 });
+    }
 }
 
 //main
