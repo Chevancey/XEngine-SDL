@@ -1,0 +1,4 @@
+{
+    outdata = "__cpp__5DE8C785E43E4C508D092DCAADC61E80.c\
+"
+}
