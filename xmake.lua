@@ -1,13 +1,19 @@
 add_rules("mode.debug", "mode.release")
 
 add_requires("libsdl", "libsdl_ttf", "libsdl_image")
-
+	
 target("XEngine")
     set_kind("binary")
     add_files("src/*.cpp")
-    add_headerfiles("include/*.h")
+    add_headerfiles("include/*.h", "include/*.hpp")
     add_includedirs("include")
     add_packages("libsdl", "libsdl_ttf", "libsdl_image")
+	
+    set_rundir("bin")
+    set_targetdir("bin/$(plat)_$(arch)_$(mode)")
+	
+
+
 
 --
 -- If you want to known more usage about xmake, please see https://xmake.io

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="XEngineLibrary\lib_src">
+      <UniqueIdentifier>{547014DA-CB93-4C20-AC27-3FC653398391}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XEngineLibrary">
+      <UniqueIdentifier>{C8F354A8-209F-4C6F-9268-BFE524B1E22F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XEngineLibrary\lib_include">
+      <UniqueIdentifier>{BE72E982-A124-44E7-AA8D-1DA856443679}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLEvent.cpp">
+      <Filter>XEngineLibrary\lib_src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLpp.cpp">
+      <Filter>XEngineLibrary\lib_src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLRenderer.cpp">
+      <Filter>XEngineLibrary\lib_src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLSurface.cpp">
+      <Filter>XEngineLibrary\lib_src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLTexture.cpp">
+      <Filter>XEngineLibrary\lib_src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLTime.cpp">
+      <Filter>XEngineLibrary\lib_src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLUtility.cpp">
+      <Filter>XEngineLibrary\lib_src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLWindow.cpp">
+      <Filter>XEngineLibrary\lib_src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\XEngineLibrary\lib_include\SDLEvent.h">
+      <Filter>XEngineLibrary\lib_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\XEngineLibrary\lib_include\SDLpp.h">
+      <Filter>XEngineLibrary\lib_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\XEngineLibrary\lib_include\SDLRenderer.h">
+      <Filter>XEngineLibrary\lib_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\XEngineLibrary\lib_include\SDLSurface.h">
+      <Filter>XEngineLibrary\lib_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\XEngineLibrary\lib_include\SDLTexture.h">
+      <Filter>XEngineLibrary\lib_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\XEngineLibrary\lib_include\SDLTime.h">
+      <Filter>XEngineLibrary\lib_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\XEngineLibrary\lib_include\SDLUtility.h">
+      <Filter>XEngineLibrary\lib_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\XEngineLibrary\lib_include\SDLWindow.h">
+      <Filter>XEngineLibrary\lib_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\XEngineLibrary\lib_include\LibCompile.h">
+      <Filter>XEngineLibrary\lib_include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

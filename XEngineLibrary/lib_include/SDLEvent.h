@@ -1,5 +1,7 @@
+#pragma once
 #include <SDL.h>
 #include <iostream>
+#include <LibCompile.h>
 
 class SDLEvent
 {
@@ -9,7 +11,7 @@ public:
 	{
 		return s_Instance = (s_Instance != nullptr) ? s_Instance : new SDLEvent();
 	}
-
+	
 	void Listen();
 	bool GetKeyDown(SDL_Scancode key);
 private:

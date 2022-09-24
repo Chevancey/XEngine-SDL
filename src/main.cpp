@@ -30,7 +30,7 @@ int main(int argc, char** argv)
     }
 
     //SDLWindow window("XEngine", 1);
-    SDLWindow window("XEngine", 1200 * 1.25, 720 * 1.25);
+    SDLWindow window("XEngine", 1200, 720);
 
     SDLRenderer renderer(window);
 

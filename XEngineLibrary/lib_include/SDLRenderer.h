@@ -2,7 +2,6 @@
 #include <iostream>
 #include <SDL.h>
 
-
 class SDLWindow;
 class SDLRednering;
 class SDLTexture;
