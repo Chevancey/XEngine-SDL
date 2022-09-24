@@ -7,14 +7,20 @@ target("XEngineLibrary")
 	add_files("XEngineLibrary/lib_src/*.cpp")
 	add_headerfiles("XEngineLibrary/lib_include/*.h", "XEngineLibrary/lib_include/*.hpp")
 	add_includedirs("XEngineLibrary/lib_include")
+	add_packages("libsdl", "libsdl_ttf", "libsdl_image")
+	
+	set_rundir("lib")
+    set_targetdir("lib/$(plat)_$(arch)_$(mode)/$(kind)")
 
 target("XEngine")
 	add_deps("XEngineLibrary")
     set_kind("binary")
-    add_files("src/*.cpp")
-    add_headerfiles("include/*.h", "include/*.hpp")
-    add_includedirs("include")
+    add_files("XEngine/src/*.cpp")
+    add_headerfiles("XEngine/include/*.h", "XEngine/include/*.hpp")
+    add_includedirs("XEngine/include")
+	add_includedirs("XEngineLibrary/lib_include")
     add_packages("libsdl", "libsdl_ttf", "libsdl_image")
+	
 	
     set_rundir("bin")
     set_targetdir("bin/$(plat)_$(arch)_$(mode)")
