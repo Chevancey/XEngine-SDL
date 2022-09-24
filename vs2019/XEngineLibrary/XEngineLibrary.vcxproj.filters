@@ -38,6 +38,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\XEngineLibrary\lib_include\LIB_COMPILING.h">
+      <Filter>XEngineLibrary\lib_include</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\XEngineLibrary\lib_include\SDLEvent.h">
       <Filter>XEngineLibrary\lib_include</Filter>
     </ClInclude>

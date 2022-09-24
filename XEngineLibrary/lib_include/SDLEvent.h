@@ -1,8 +1,9 @@
 #pragma once
 #include <SDL.h>
 #include <iostream>
+#include <LIB_COMPILING.h>
 
-class SDLEvent
+class LIB_API SDLEvent
 {
 public:
 

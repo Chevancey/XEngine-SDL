@@ -3,14 +3,15 @@ add_rules("mode.debug", "mode.release")
 add_requires("libsdl", "libsdl_ttf", "libsdl_image")
 
 target("XEngineLibrary")
-	set_kind("static")
+	add_defines("LIB_COMPILING")
+	set_kind("shared")
 	add_files("XEngineLibrary/lib_src/*.cpp")
 	add_headerfiles("XEngineLibrary/lib_include/*.h", "XEngineLibrary/lib_include/*.hpp")
 	add_includedirs("XEngineLibrary/lib_include")
 	add_packages("libsdl", "libsdl_ttf", "libsdl_image")
 	
 	set_rundir("lib")
-    set_targetdir("lib/$(plat)_$(arch)_$(mode)/$(kind)")
+	set_targetdir("lib/$(plat)_$(arch)_$(mode)/dynamic")
 
 target("XEngine")
 	add_deps("XEngineLibrary")

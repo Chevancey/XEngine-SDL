@@ -1,12 +1,13 @@
 #pragma once
 #include <iostream>
 #include <SDL.h>
+#include <LIB_COMPILING.h>
 
-class SDLWindow;
-class SDLRednering;
-class SDLTexture;
+class LIB_API SDLWindow;
+class LIB_API SDLRednering;
+class LIB_API SDLTexture;
 
-class SDLRenderer
+class LIB_API SDLRenderer
 {
 public:
 	

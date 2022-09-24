@@ -2,8 +2,9 @@
 #include <iostream>
 #include <string>
 #include <SDL_image.h>
+#include <LIB_COMPILING.h>
 
-class SDLSurface
+class LIB_API SDLSurface
 {
 public:
 	SDLSurface(const SDLSurface&) = delete;

@@ -2,8 +2,9 @@
 #include <SDL.h>
 #include <string>
 #include <iostream>
+#include <LIB_COMPILING.h>
 
-class SDLWindow
+class LIB_API SDLWindow
 {
 public:
 	SDLWindow(const std::string& WindowName, int Width, int Height);

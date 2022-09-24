@@ -1,7 +1,8 @@
 #pragma once
 #include <SDL.h>
+#include <LIB_COMPILING.h>
 
-class SDLUtility
+class LIB_API SDLUtility
 {
 public:
 

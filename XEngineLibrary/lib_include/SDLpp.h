@@ -1,8 +1,9 @@
 #pragma once
 #include <iostream>
 #include <SDL.h>
+#include <LIB_COMPILING.h>
 
-class SDLpp
+class LIB_API SDLpp
 {
 public:
 	

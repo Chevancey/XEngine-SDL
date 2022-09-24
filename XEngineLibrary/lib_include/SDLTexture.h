@@ -1,12 +1,13 @@
 #pragma once
 #include <SDL.h>
 #include <string>
+#include <LIB_COMPILING.h>
 
-class SDLRenderer;
-class SDLSurface;
+class LIB_API SDLRenderer;
+class LIB_API SDLSurface;
 
 
-class SDLTexture
+class LIB_API SDLTexture
 {
 public:
 	SDLTexture(const SDLTexture&) = delete; // constructeur par copie

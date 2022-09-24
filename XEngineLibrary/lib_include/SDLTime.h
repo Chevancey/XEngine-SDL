@@ -1,7 +1,8 @@
 #pragma once
 #include<SDL.h>
+#include <LIB_COMPILING.h>
 
-class SDLTime
+class LIB_API SDLTime
 {
 public:
 	SDLTime();
