@@ -25,22 +25,22 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -64,59 +64,52 @@
     <OutDir>..\..\build\windows\x86\debug\</OutDir>
     <IntDir>..\..\build\.objs\XEngineLibrary\windows\x86\debug\</IntDir>
     <TargetName>XEngineLibrary</TargetName>
-    <TargetExt>.dll</TargetExt>
-    <ExternalIncludePath>C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_ttf\2.20.1\f63fd7a9939d4329b70919694d438fcd\include;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_ttf\2.20.1\f63fd7a9939d4329b70919694d438fcd\include\SDL2;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_image\2.6.2\efea22007feb422bb8c5719eae790ef8\include;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_image\2.6.2\efea22007feb422bb8c5719eae790ef8\include\SDL2;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl\2.24.0\f17115fa7eff44389c1adfe8a3533403\include;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl\2.24.0\f17115fa7eff44389c1adfe8a3533403\include\SDL2;;;</ExternalIncludePath>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
     <OutDir>..\..\build\windows\x64\debug\</OutDir>
     <IntDir>..\..\build\.objs\XEngineLibrary\windows\x64\debug\</IntDir>
     <TargetName>XEngineLibrary</TargetName>
-    <TargetExt>.dll</TargetExt>
-    <ExternalIncludePath>C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_ttf\2.20.1\002cab9c6cde47a4ad6d26f3d43d9957\include;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_ttf\2.20.1\002cab9c6cde47a4ad6d26f3d43d9957\include\SDL2;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_image\2.6.2\503cddcb947d463f99cb261e86c42a27\include;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_image\2.6.2\503cddcb947d463f99cb261e86c42a27\include\SDL2;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl\2.24.0\72cef56b1aef4c0dbc0fb4007bb4eb11\include;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl\2.24.0\72cef56b1aef4c0dbc0fb4007bb4eb11\include\SDL2;;;</ExternalIncludePath>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
     <OutDir>..\..\build\windows\x86\release\</OutDir>
     <IntDir>..\..\build\.objs\XEngineLibrary\windows\x86\release\</IntDir>
     <TargetName>XEngineLibrary</TargetName>
-    <TargetExt>.dll</TargetExt>
-    <ExternalIncludePath>C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_ttf\2.20.1\f63fd7a9939d4329b70919694d438fcd\include;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_ttf\2.20.1\f63fd7a9939d4329b70919694d438fcd\include\SDL2;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_image\2.6.2\efea22007feb422bb8c5719eae790ef8\include;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_image\2.6.2\efea22007feb422bb8c5719eae790ef8\include\SDL2;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl\2.24.0\f17115fa7eff44389c1adfe8a3533403\include;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl\2.24.0\f17115fa7eff44389c1adfe8a3533403\include\SDL2;;;</ExternalIncludePath>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
     <OutDir>..\..\build\windows\x64\release\</OutDir>
     <IntDir>..\..\build\.objs\XEngineLibrary\windows\x64\release\</IntDir>
     <TargetName>XEngineLibrary</TargetName>
-    <TargetExt>.dll</TargetExt>
-    <ExternalIncludePath>C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_ttf\2.20.1\002cab9c6cde47a4ad6d26f3d43d9957\include;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_ttf\2.20.1\002cab9c6cde47a4ad6d26f3d43d9957\include\SDL2;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_image\2.6.2\503cddcb947d463f99cb261e86c42a27\include;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_image\2.6.2\503cddcb947d463f99cb261e86c42a27\include\SDL2;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl\2.24.0\72cef56b1aef4c0dbc0fb4007bb4eb11\include;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl\2.24.0\72cef56b1aef4c0dbc0fb4007bb4eb11\include\SDL2;;;</ExternalIncludePath>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'" Label="Debugger">
     <LocalDebuggerWorkingDirectory>..\..\build\windows\x86\debug</LocalDebuggerWorkingDirectory>
-    <LocalDebuggerEnvironment>PATH=C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl\2.24.0\f17115fa7eff44389c1adfe8a3533403\lib;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_ttf\2.20.1\f63fd7a9939d4329b70919694d438fcd\lib;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_image\2.6.2\efea22007feb422bb8c5719eae790ef8\lib;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl\2.24.0\f17115fa7eff44389c1adfe8a3533403\bin;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_ttf\2.20.1\f63fd7a9939d4329b70919694d438fcd\bin;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_image\2.6.2\efea22007feb422bb8c5719eae790ef8\bin;$([System.Environment]::GetEnvironmentVariable('PATH'));%(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
+    <LocalDebuggerEnvironment>PATH=;$([System.Environment]::GetEnvironmentVariable('PATH'));%(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="Debugger">
     <LocalDebuggerWorkingDirectory>..\..\build\windows\x64\debug</LocalDebuggerWorkingDirectory>
-    <LocalDebuggerEnvironment>PATH=C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl\2.24.0\72cef56b1aef4c0dbc0fb4007bb4eb11\lib;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_ttf\2.20.1\002cab9c6cde47a4ad6d26f3d43d9957\lib;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_image\2.6.2\503cddcb947d463f99cb261e86c42a27\lib;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl\2.24.0\72cef56b1aef4c0dbc0fb4007bb4eb11\bin;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_ttf\2.20.1\002cab9c6cde47a4ad6d26f3d43d9957\bin;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_image\2.6.2\503cddcb947d463f99cb261e86c42a27\bin;$([System.Environment]::GetEnvironmentVariable('PATH'));%(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
+    <LocalDebuggerEnvironment>PATH=;$([System.Environment]::GetEnvironmentVariable('PATH'));%(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'" Label="Debugger">
     <LocalDebuggerWorkingDirectory>..\..\build\windows\x86\release</LocalDebuggerWorkingDirectory>
-    <LocalDebuggerEnvironment>PATH=C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl\2.24.0\f17115fa7eff44389c1adfe8a3533403\lib;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_ttf\2.20.1\f63fd7a9939d4329b70919694d438fcd\lib;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_image\2.6.2\efea22007feb422bb8c5719eae790ef8\lib;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl\2.24.0\f17115fa7eff44389c1adfe8a3533403\bin;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_ttf\2.20.1\f63fd7a9939d4329b70919694d438fcd\bin;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_image\2.6.2\efea22007feb422bb8c5719eae790ef8\bin;$([System.Environment]::GetEnvironmentVariable('PATH'));%(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
+    <LocalDebuggerEnvironment>PATH=;$([System.Environment]::GetEnvironmentVariable('PATH'));%(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'" Label="Debugger">
     <LocalDebuggerWorkingDirectory>..\..\build\windows\x64\release</LocalDebuggerWorkingDirectory>
-    <LocalDebuggerEnvironment>PATH=C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl\2.24.0\72cef56b1aef4c0dbc0fb4007bb4eb11\lib;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_ttf\2.20.1\002cab9c6cde47a4ad6d26f3d43d9957\lib;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_image\2.6.2\503cddcb947d463f99cb261e86c42a27\lib;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl\2.24.0\72cef56b1aef4c0dbc0fb4007bb4eb11\bin;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_ttf\2.20.1\002cab9c6cde47a4ad6d26f3d43d9957\bin;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_image\2.6.2\503cddcb947d463f99cb261e86c42a27\bin;$([System.Environment]::GetEnvironmentVariable('PATH'));%(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
+    <LocalDebuggerEnvironment>PATH=;$([System.Environment]::GetEnvironmentVariable('PATH'));%(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
-    <Link>
-      <AdditionalLibraryDirectories>C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_ttf\2.20.1\f63fd7a9939d4329b70919694d438fcd\lib;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_image\2.6.2\efea22007feb422bb8c5719eae790ef8\lib;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl\2.24.0\f17115fa7eff44389c1adfe8a3533403\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2_ttf.lib;SDL2_image.lib;SDL2main.lib;SDL2.lib;gdi32.lib;user32.lib;winmm.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+    <Lib>
       <TargetMachine>MachineX86</TargetMachine>
-    </Link>
+    </Lib>
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
       <ExternalTemplatesDiagnostics>false</ExternalTemplatesDiagnostics>
-      <PreprocessorDefinitions>LIB_COMPILING;SDL_MAIN_HANDLED;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MinimalRebuild>false</MinimalRebuild>
@@ -125,23 +118,20 @@
       <AdditionalOptions>/EHsc -FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>LIB_COMPILING;SDL_MAIN_HANDLED;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\XEngineLibrary\lib_include</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
-    <Link>
-      <AdditionalLibraryDirectories>C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_ttf\2.20.1\002cab9c6cde47a4ad6d26f3d43d9957\lib;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_image\2.6.2\503cddcb947d463f99cb261e86c42a27\lib;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl\2.24.0\72cef56b1aef4c0dbc0fb4007bb4eb11\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2_ttf.lib;SDL2_image.lib;SDL2main.lib;SDL2.lib;gdi32.lib;user32.lib;winmm.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+    <Lib>
       <TargetMachine>MachineX64</TargetMachine>
-    </Link>
+    </Lib>
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
       <ExternalTemplatesDiagnostics>false</ExternalTemplatesDiagnostics>
-      <PreprocessorDefinitions>LIB_COMPILING;SDL_MAIN_HANDLED;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MinimalRebuild>false</MinimalRebuild>
@@ -150,25 +140,22 @@
       <AdditionalOptions>/EHsc -FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>LIB_COMPILING;SDL_MAIN_HANDLED;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\XEngineLibrary\lib_include</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
-    <Link>
-      <AdditionalLibraryDirectories>C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_ttf\2.20.1\f63fd7a9939d4329b70919694d438fcd\lib;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_image\2.6.2\efea22007feb422bb8c5719eae790ef8\lib;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl\2.24.0\f17115fa7eff44389c1adfe8a3533403\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2_ttf.lib;SDL2_image.lib;SDL2main.lib;SDL2.lib;gdi32.lib;user32.lib;winmm.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    <Lib>
       <AdditionalOptions>/opt:ref /opt:icf %(AdditionalOptions)</AdditionalOptions>
-      <GenerateDebugInformation>false</GenerateDebugInformation>
       <TargetMachine>MachineX86</TargetMachine>
-    </Link>
+    </Lib>
     <ClCompile>
       <Optimization>Full</Optimization>
       <FloatingPointModel>Fast</FloatingPointModel>
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
       <ExternalTemplatesDiagnostics>false</ExternalTemplatesDiagnostics>
-      <PreprocessorDefinitions>LIB_COMPILING;SDL_MAIN_HANDLED;NDEBUG;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>None</DebugInformationFormat>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MinimalRebuild>false</MinimalRebuild>
@@ -177,25 +164,22 @@
       <AdditionalOptions>/EHsc %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>LIB_COMPILING;SDL_MAIN_HANDLED;NDEBUG;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\XEngineLibrary\lib_include</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
-    <Link>
-      <AdditionalLibraryDirectories>C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_ttf\2.20.1\002cab9c6cde47a4ad6d26f3d43d9957\lib;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl_image\2.6.2\503cddcb947d463f99cb261e86c42a27\lib;C:\Users\ychev\AppData\Local\.xmake\packages\l\libsdl\2.24.0\72cef56b1aef4c0dbc0fb4007bb4eb11\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2_ttf.lib;SDL2_image.lib;SDL2main.lib;SDL2.lib;gdi32.lib;user32.lib;winmm.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    <Lib>
       <AdditionalOptions>/opt:ref /opt:icf %(AdditionalOptions)</AdditionalOptions>
-      <GenerateDebugInformation>false</GenerateDebugInformation>
       <TargetMachine>MachineX64</TargetMachine>
-    </Link>
+    </Lib>
     <ClCompile>
       <Optimization>Full</Optimization>
       <FloatingPointModel>Fast</FloatingPointModel>
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
       <ExternalTemplatesDiagnostics>false</ExternalTemplatesDiagnostics>
-      <PreprocessorDefinitions>LIB_COMPILING;SDL_MAIN_HANDLED;NDEBUG;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>None</DebugInformationFormat>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MinimalRebuild>false</MinimalRebuild>
@@ -204,30 +188,29 @@
       <AdditionalOptions>/EHsc %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>LIB_COMPILING;SDL_MAIN_HANDLED;NDEBUG;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\XEngineLibrary\lib_include</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLWindow.cpp">
+    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLpp.cpp">
     </ClCompile>
-    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLEvent.cpp">
+    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLTime.cpp">
     </ClCompile>
     <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLTexture.cpp">
     </ClCompile>
-    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLpp.cpp">
+    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLEvent.cpp">
     </ClCompile>
     <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLUtility.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLWindow.cpp">
     </ClCompile>
     <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLSurface.cpp">
     </ClCompile>
     <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLRenderer.cpp">
     </ClCompile>
-    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLTime.cpp">
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\XEngineLibrary\lib_include\LibCompile.h" />
     <ClInclude Include="..\..\XEngineLibrary\lib_include\SDLEvent.h" />
     <ClInclude Include="..\..\XEngineLibrary\lib_include\SDLpp.h" />
     <ClInclude Include="..\..\XEngineLibrary\lib_include\SDLRenderer.h" />

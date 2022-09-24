@@ -62,8 +62,5 @@
     <ClInclude Include="..\..\XEngineLibrary\lib_include\SDLWindow.h">
       <Filter>XEngineLibrary\lib_include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\XEngineLibrary\lib_include\LibCompile.h">
-      <Filter>XEngineLibrary\lib_include</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

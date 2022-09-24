@@ -1,7 +1,13 @@
 add_rules("mode.debug", "mode.release")
 
 add_requires("libsdl", "libsdl_ttf", "libsdl_image")
-	
+
+target("XEngineLibrary")
+	set_kind("static")
+	add_files("XEngineLibrary/lib_src/*.cpp")
+	add_headerfiles("XEngineLibrary/src/lib_include/*.h", "XEngineLibrary/src/lib_include/*.hpp")
+	add_includedirs("XEngineLibrary/src/lib_include")
+
 target("XEngine")
 	add_deps("XEngineLibrary")
     set_kind("binary")
