@@ -1,0 +1,8 @@
+{
+    outdata = "__cpp_main.cpp.cpp\
+XEngine\\src\\main.cpp(139): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data\
+XEngine\\src\\main.cpp(139): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data\
+XEngine\\src\\main.cpp(21): warning C4100: 'argv': unreferenced formal parameter\
+XEngine\\src\\main.cpp(21): warning C4100: 'argc': unreferenced formal parameter\
+"
+}

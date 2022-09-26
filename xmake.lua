@@ -1,30 +1,68 @@
-add_rules("mode.debug", "mode.release")
+set_allowedarchs("windows|x64")
+set_warnings("allextra")
 
+add_rules("mode.debug", "mode.release")
 add_requires("libsdl", "libsdl_ttf", "libsdl_image")
 
-target("XEngineLibrary")
-	add_defines("LIB_COMPILING")
-	set_kind("shared")
-	add_files("XEngineLibrary/lib_src/*.cpp")
-	add_headerfiles("XEngineLibrary/lib_include/*.h", "XEngineLibrary/lib_include/*.hpp")
-	add_includedirs("XEngineLibrary/lib_include")
-	add_packages("libsdl", "libsdl_ttf", "libsdl_image")
-	
-	set_rundir("lib")
-	set_targetdir("lib/$(plat)_$(arch)_$(mode)/dynamic")
 
+--target("XEngineStaticLibrary")
+	--set_kind("static")
+	--add_files("XEngineStaticLibrary/lib_src/*.cpp")
+	--add_headerfiles("XEngineStaticLibrary/lib_include/*.h", "XEngineStaticLibrary/lib_include/*.hpp")
+	--add_includedirs("XEngineStaticLibrary/lib_include")
+	--add_packages("libsdl", "libsdl_ttf", "libsdl_image")
+	
+	--set_rundir("bin")
+	--set_targetdir("bin/$(plat)_$(arch)_$(mode)_$(kind)")
+	
+--target("XEngineDynamicLibrary")
+	--add_defines("LIB_COMPILING")
+	--set_kind("shared")
+	--add_files("XEngineDynamicLibrary/lib_src/*.cpp")
+	--add_headerfiles("XEngineDynamicLibrary/lib_include/*.h", "XEngineDynamicLibrary/lib_include/*.hpp")
+	--add_includedirs("XEngineDynamicLibrary/lib_include")
+	--add_packages("libsdl", "libsdl_ttf", "libsdl_image")
+	
+	--set_rundir("bin")
+	--set_targetdir("bin/$(plat)_$(arch)_$(mode)_$(kind)")
+	
+target("XEngineLibrary")
+	set_kind("$(kind)")
+	add_packages("libsdl", "libsdl_ttf", "libsdl_image")
+
+	if is_kind("shared") then
+		add_defines("LIB_COMPILING")
+		add_files("XEngineDynamicLibrary/lib_src/*.cpp")
+		add_headerfiles("XEngineDynamicLibrary/lib_include/*.h", "XEngineDynamicLibrary/lib_include/*.hpp")
+		add_includedirs("XEngineDynamicLibrary/lib_include", "XEngine/include")
+	
+	elseif is_kind("static") then
+		add_files("XEngineStaticLibrary/lib_src/*.cpp")
+		add_headerfiles("XEngineStaticLibrary/lib_include/*.h", "XEngineStaticLibrary/lib_include/*.hpp")
+		add_includedirs("XEngineStaticLibrary/lib_include", "XEngine/include")
+	end
+	
+	set_rundir("bin")
+	set_targetdir("bin/$(plat)_$(arch)_$(mode)_$(kind)")
+	
 target("XEngine")
 	add_deps("XEngineLibrary")
+	
+	if is_kind("shared") then
+		add_includedirs("XEngineDynamicLibrary/lib_include", "XEngine/include")
+	elseif is_kind("static") then
+		add_includedirs("XEngineStaticLibrary/lib_include", "XEngine/include")
+	else
+		add_includedirs("XEngine/include")
+	end
+
     set_kind("binary")
     add_files("XEngine/src/*.cpp")
     add_headerfiles("XEngine/include/*.h", "XEngine/include/*.hpp")
-    add_includedirs("XEngine/include")
-	add_includedirs("XEngineLibrary/lib_include")
     add_packages("libsdl", "libsdl_ttf", "libsdl_image")
 	
-	
     set_rundir("bin")
-    set_targetdir("bin/$(plat)_$(arch)_$(mode)")
+    set_targetdir("bin/$(plat)_$(arch)_$(mode)_$(kind)")
 	
 
 

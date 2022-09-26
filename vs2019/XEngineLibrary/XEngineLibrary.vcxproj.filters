@@ -1,69 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="XEngineLibrary\lib_src">
-      <UniqueIdentifier>{547014DA-CB93-4C20-AC27-3FC653398391}</UniqueIdentifier>
+    <Filter Include="XEngineDynamicLibrary\lib_src">
+      <UniqueIdentifier>{A1FA9DC3-3A72-475F-80DF-55282D8F7FE6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="XEngineLibrary">
-      <UniqueIdentifier>{C8F354A8-209F-4C6F-9268-BFE524B1E22F}</UniqueIdentifier>
+    <Filter Include="XEngineDynamicLibrary">
+      <UniqueIdentifier>{45F7C54E-BA9F-40B6-B320-CCA24AD9FAE9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="XEngineLibrary\lib_include">
-      <UniqueIdentifier>{BE72E982-A124-44E7-AA8D-1DA856443679}</UniqueIdentifier>
+    <Filter Include="XEngineDynamicLibrary\lib_include">
+      <UniqueIdentifier>{152ACCC7-4308-4BD9-AE72-D8E6E5397BE0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLEvent.cpp">
-      <Filter>XEngineLibrary\lib_src</Filter>
+    <ClCompile Include="..\..\XEngineDynamicLibrary\lib_src\SDLEvent.cpp">
+      <Filter>XEngineDynamicLibrary\lib_src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLpp.cpp">
-      <Filter>XEngineLibrary\lib_src</Filter>
+    <ClCompile Include="..\..\XEngineDynamicLibrary\lib_src\SDLpp.cpp">
+      <Filter>XEngineDynamicLibrary\lib_src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLRenderer.cpp">
-      <Filter>XEngineLibrary\lib_src</Filter>
+    <ClCompile Include="..\..\XEngineDynamicLibrary\lib_src\SDLRenderer.cpp">
+      <Filter>XEngineDynamicLibrary\lib_src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLSurface.cpp">
-      <Filter>XEngineLibrary\lib_src</Filter>
+    <ClCompile Include="..\..\XEngineDynamicLibrary\lib_src\SDLSurface.cpp">
+      <Filter>XEngineDynamicLibrary\lib_src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLTexture.cpp">
-      <Filter>XEngineLibrary\lib_src</Filter>
+    <ClCompile Include="..\..\XEngineDynamicLibrary\lib_src\SDLTexture.cpp">
+      <Filter>XEngineDynamicLibrary\lib_src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLTime.cpp">
-      <Filter>XEngineLibrary\lib_src</Filter>
+    <ClCompile Include="..\..\XEngineDynamicLibrary\lib_src\SDLTime.cpp">
+      <Filter>XEngineDynamicLibrary\lib_src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLUtility.cpp">
-      <Filter>XEngineLibrary\lib_src</Filter>
+    <ClCompile Include="..\..\XEngineDynamicLibrary\lib_src\SDLUtility.cpp">
+      <Filter>XEngineDynamicLibrary\lib_src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\XEngineLibrary\lib_src\SDLWindow.cpp">
-      <Filter>XEngineLibrary\lib_src</Filter>
+    <ClCompile Include="..\..\XEngineDynamicLibrary\lib_src\SDLWindow.cpp">
+      <Filter>XEngineDynamicLibrary\lib_src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\XEngineLibrary\lib_include\LIB_COMPILING.h">
-      <Filter>XEngineLibrary\lib_include</Filter>
+    <ClInclude Include="..\..\XEngineDynamicLibrary\lib_include\LIB_COMPILING.h">
+      <Filter>XEngineDynamicLibrary\lib_include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\XEngineLibrary\lib_include\SDLEvent.h">
-      <Filter>XEngineLibrary\lib_include</Filter>
+    <ClInclude Include="..\..\XEngineDynamicLibrary\lib_include\SDLEvent.h">
+      <Filter>XEngineDynamicLibrary\lib_include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\XEngineLibrary\lib_include\SDLpp.h">
-      <Filter>XEngineLibrary\lib_include</Filter>
+    <ClInclude Include="..\..\XEngineDynamicLibrary\lib_include\SDLpp.h">
+      <Filter>XEngineDynamicLibrary\lib_include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\XEngineLibrary\lib_include\SDLRenderer.h">
-      <Filter>XEngineLibrary\lib_include</Filter>
+    <ClInclude Include="..\..\XEngineDynamicLibrary\lib_include\SDLRenderer.h">
+      <Filter>XEngineDynamicLibrary\lib_include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\XEngineLibrary\lib_include\SDLSurface.h">
-      <Filter>XEngineLibrary\lib_include</Filter>
+    <ClInclude Include="..\..\XEngineDynamicLibrary\lib_include\SDLSurface.h">
+      <Filter>XEngineDynamicLibrary\lib_include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\XEngineLibrary\lib_include\SDLTexture.h">
-      <Filter>XEngineLibrary\lib_include</Filter>
+    <ClInclude Include="..\..\XEngineDynamicLibrary\lib_include\SDLTexture.h">
+      <Filter>XEngineDynamicLibrary\lib_include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\XEngineLibrary\lib_include\SDLTime.h">
-      <Filter>XEngineLibrary\lib_include</Filter>
+    <ClInclude Include="..\..\XEngineDynamicLibrary\lib_include\SDLTime.h">
+      <Filter>XEngineDynamicLibrary\lib_include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\XEngineLibrary\lib_include\SDLUtility.h">
-      <Filter>XEngineLibrary\lib_include</Filter>
+    <ClInclude Include="..\..\XEngineDynamicLibrary\lib_include\SDLUtility.h">
+      <Filter>XEngineDynamicLibrary\lib_include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\XEngineLibrary\lib_include\SDLWindow.h">
-      <Filter>XEngineLibrary\lib_include</Filter>
+    <ClInclude Include="..\..\XEngineDynamicLibrary\lib_include\SDLWindow.h">
+      <Filter>XEngineDynamicLibrary\lib_include</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,17 +1,21 @@
 #include<SDL.h>
 #include<SDL_Image.h>
 #include<memory>
+#include<iostream>
 #include<map>
 #include<string>
+#include "SDLTexture.h"
 
 class MemoryManagement 
 {
 public:
 	MemoryManagement();
+	~MemoryManagement();
 
-	std::shared_ptr<SDL_Texture> getTexture();
-	
+	static SDL_Texture& checkExistance(std::string name, SDL_Texture& texture);
+
+	std::map<std::string, SDL_Texture> textureMap;
 
 private:
-	//std::map<SDL_Texture a, std::string b>;
+	//std::map<std::string, SDL_Texture&> textureMap;
 };

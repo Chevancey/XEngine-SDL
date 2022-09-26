@@ -4,6 +4,7 @@
 #include <SDL_image.h>
 #include <memory>
 #include <list>
+#include <map>
 
 #include "SDLpp.h"
 #include "SDLWindow.h"
@@ -13,6 +14,7 @@
 #include "SDLUtility.h"
 #include "SDLTime.h"
 #include "Sprite.h"
+#include "MemoryManagement.h"
 
 
 void Animation(Sprite* sprite, int animationIndex, float timer, int frameIndex, int frameCount);
@@ -33,6 +35,8 @@ int main(int argc, char** argv)
     SDLWindow window("XEngine", 1200, 720);
 
     SDLRenderer renderer(window);
+
+    auto tryTexture = std::make_shared<SDLTexture>;
 
     SDLTexture spriteTexture = SDLTexture::LoadFromFile(renderer, "assets/Runner.png");
     SDLTexture backgroundtText = SDLTexture::LoadFromFile(renderer, "assets/Background.png");
@@ -135,6 +139,13 @@ int main(int argc, char** argv)
             background.Draw(renderer, 0, 0);
         }
 
+
+        //std::map<std::string, SDLTexture> textureMap;
+
+        //textureMap["Map"] = SDLTexture { backgroundtText };
+
+        //textureMap.insert(, SDLTexture::LoadFromFile(renderer, "assets/Background.png"));
+        
         background.Resize(window.GetWindowSizeX(), window.GetWindowSizeY());
         sprite.Draw(renderer, x, y);
         //sprite.Animate(Time.getDeltaTime());
