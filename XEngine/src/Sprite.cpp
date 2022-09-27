@@ -2,13 +2,13 @@
 #include "SDLRenderer.h"
 #include "SDLTexture.h"
 
-Sprite::Sprite(const SDLTexture& texture) :
-	Sprite(texture, texture.GetRect(), 0, 0)
+Sprite::Sprite(const std::shared_ptr<SDLTexture>& texture) :
+	Sprite(texture, texture->GetRect(), 0, 0)
 {
 }
 
-Sprite::Sprite(const SDLTexture& texture, const SDL_Rect& rect, int frameIndex, int frameCount) :
-	m_texture(texture),
+Sprite::Sprite(const std::shared_ptr<SDLTexture>& texture, const SDL_Rect& rect, int frameIndex, int frameCount) :
+	m_texture(*texture),
 	m_rect(rect),
 	m_width(rect.w),
 	m_height(rect.h),

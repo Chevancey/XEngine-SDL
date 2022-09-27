@@ -16,7 +16,6 @@
 #include "Sprite.h"
 #include "MemoryManagement.h"
 
-
 void Animation(Sprite* sprite, int animationIndex, float timer, int frameIndex, int frameCount);
 
 //Lesson 1
@@ -32,22 +31,17 @@ int main(int argc, char** argv)
         std::cout << "Error: " << TTF_GetError() << std::endl;
     }
 
-    //SDLWindow window("XEngine", 1);
     SDLWindow window("XEngine", 1200, 720);
 
     SDLRenderer renderer(window);
 
-    //auto tryTexture = std::make_shared<SDLTexture>;
-
-    auto backgroundtText = rm.getTexture(renderer, "assets/Backgrounds.png");
+    auto backgroundtText = rm.getTexture(renderer, "assets/Backgroundsapihbd.png");
     auto backgroundtText2 = rm.getTexture(renderer, "assets/Background.png");
-    auto backgroundtText3 = rm.getTexture(renderer, "assets/Basdasackground.png");
-    
-    //SDLTexture::LoadFromFile(renderer, "assets/Runner.png");
-    auto spriteTexture = rm.getTexture(renderer, "assets/Runners.png");
 
-    Sprite background(*backgroundtText);
-    Sprite sprite(*spriteTexture, { 0, 0, 32, 32 }, 5, 0);
+    auto spriteTexture = rm.getTexture(renderer, "assets/Runner.png");
+
+    Sprite background(backgroundtText);
+    Sprite sprite(spriteTexture, { 0, 0, 32, 32 }, 5, 0);
 
     sprite.Resize(704, 64);
     sprite.SetRect(SDL_Rect{ 0, 0, 64, 64 });

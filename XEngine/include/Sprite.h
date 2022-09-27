@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL.h>
+#include <memory>
 
 class SDLRenderer;
 class SDLTexture;
@@ -8,8 +9,8 @@ class SDLTexture;
 class Sprite // Une portion d'une texture
 {
 public:
-	Sprite(const SDLTexture& texture);
-	Sprite(const SDLTexture& texture, const SDL_Rect& rect, int frameIndex, int frameCount);
+	Sprite(const std::shared_ptr<SDLTexture>& texture);
+	Sprite(const std::shared_ptr<SDLTexture>& texture, const SDL_Rect& rect, int frameIndex, int frameCount);
 	
 	Sprite(const Sprite&) = default;
 	Sprite(Sprite&&) = default;

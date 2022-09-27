@@ -13,15 +13,44 @@ MemoryManagement::~MemoryManagement()
 {
 }
 
+//std::shared_ptr<SDLTexture> MemoryManagement::getTexture(SDLRenderer& renderer, std::string filePath)
+//{
+//	bool isExisting = SDLSurface::textureExisting(filePath);
+//
+//	if (isExisting && m_texturesMap.size() > 0)
+//	{
+//		for (auto iterator = m_texturesMap.begin(); iterator != m_texturesMap.end(); iterator++) 
+//		{
+//			if (iterator->first == filePath) 
+//			{
+//				std::cout << "The file already exists: " + filePath << std::endl;
+//				return iterator->second;
+//			}
+//		}
+//	}
+//	else if (!isExisting)
+//	{
+//		std::cout << "ERROR - FILE DOES NOT EXIST: " + filePath << std::endl;
+//		std::shared_ptr<SDLTexture> tempTexture = std::make_shared<SDLTexture>(SDLTexture::LoadSurface(renderer, CreateSurface()));
+//		return tempTexture;
+//	}
+//
+//	std::shared_ptr<SDLTexture> tempTexture = std::make_shared<SDLTexture>(SDLTexture::LoadFromFile(renderer, filePath));
+//	m_texturesMap.insert({ filePath, tempTexture });
+//	std::cout << "File is now added to list: " + filePath << std::endl;
+//
+//	return tempTexture;
+//}
+
 std::shared_ptr<SDLTexture> MemoryManagement::getTexture(SDLRenderer& renderer, std::string filePath)
 {
 	bool isExisting = SDLSurface::textureExisting(filePath);
 
 	if (isExisting && m_texturesMap.size() > 0)
 	{
-		for (auto iterator = m_texturesMap.begin(); iterator != m_texturesMap.end(); iterator++) 
+		for (auto iterator = m_texturesMap.begin(); iterator != m_texturesMap.end(); iterator++)
 		{
-			if (iterator->first == filePath) 
+			if (iterator->first == filePath)
 			{
 				std::cout << "The file already exists: " + filePath << std::endl;
 				return iterator->second;
@@ -35,10 +64,8 @@ std::shared_ptr<SDLTexture> MemoryManagement::getTexture(SDLRenderer& renderer, 
 		return tempTexture;
 	}
 
-
-
 	std::shared_ptr<SDLTexture> tempTexture = std::make_shared<SDLTexture>(SDLTexture::LoadFromFile(renderer, filePath));
-	m_texturesMap.insert({ filePath, tempTexture });
+	m_texturesMap.emplace(filePath, tempTexture);
 	std::cout << "File is now added to list: " + filePath << std::endl;
 
 	return tempTexture;

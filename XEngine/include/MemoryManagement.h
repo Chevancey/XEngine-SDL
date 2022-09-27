@@ -23,5 +23,6 @@ public:
 private:
 	//static MemoryManagement* m_instance;
 	SDL_Surface* CreateSurface();
+
 	std::map<std::string, std::shared_ptr<SDLTexture>> m_texturesMap;
 };
