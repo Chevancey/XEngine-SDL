@@ -28,6 +28,13 @@ std::shared_ptr<SDLTexture> MemoryManagement::getTexture(SDLRenderer& renderer, 
 			}
 		}
 	}
+	else if (!isExisting)
+	{
+		std::cout << "ERROR - FILE DOES NOT EXIST: " + filePath << std::endl;
+		std::shared_ptr<SDLTexture> tempTexture = std::make_shared<SDLTexture>(SDLTexture::LoadSurface(renderer, CreateSurface()));
+		return tempTexture;
+	}
+
 
 
 	std::shared_ptr<SDLTexture> tempTexture = std::make_shared<SDLTexture>(SDLTexture::LoadFromFile(renderer, filePath));
@@ -36,6 +43,7 @@ std::shared_ptr<SDLTexture> MemoryManagement::getTexture(SDLRenderer& renderer, 
 
 	return tempTexture;
 }
+
 
 void MemoryManagement::Purge()
 {
@@ -46,5 +54,29 @@ void MemoryManagement::Purge()
 	}
 
 	m_texturesMap.clear();
+}
+
+SDL_Surface* MemoryManagement::CreateSurface()
+{
+	int surfacesize = 100;
+	int rectSize = 100 / 10;
+	SDL_Surface* surface = SDL_CreateRGBSurface(0, surfacesize, surfacesize, 32, 0, 0, 0, 0);
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			SDL_Rect rect({ i * rectSize, j * rectSize, (i + 1) * rectSize, (j + 1) * rectSize });
+			if ((i + j + 1) % 2 == 0)
+			{
+				SDL_FillRect(surface, &rect, SDL_MapRGB(surface->format, 255, 0, 255));
+			}
+			else
+			{
+				SDL_FillRect(surface, &rect, SDL_MapRGB(surface->format, 0, 0, 0));
+			}
+		}
+	}
+
+	return surface;
 }
 
