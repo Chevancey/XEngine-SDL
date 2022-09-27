@@ -22,7 +22,16 @@ SDLSurface SDLSurface::LoadFromFile(const std::string& filepath)
 	}
 
 	return SDLSurface(IMG_Load(filepath.c_str()));
-	
+}
+
+bool SDLSurface::textureExisting(const std::string& filepath)
+{
+	if (!IMG_Load(filepath.c_str()))
+	{
+		return false;
+	}
+
+	return true;
 }
 
 SDL_Surface* SDLSurface::get()

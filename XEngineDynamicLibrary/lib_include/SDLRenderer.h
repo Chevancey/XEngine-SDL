@@ -13,7 +13,6 @@ public:
 	
 	SDLRenderer(SDLWindow& window);
 	SDLRenderer(const SDLRenderer&) = delete;
-	//SDLRenderer(const SDLRenderer&) noexcept;
 
 	~SDLRenderer();
 

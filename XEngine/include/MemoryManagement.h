@@ -4,18 +4,24 @@
 #include<iostream>
 #include<map>
 #include<string>
-#include "SDLTexture.h"
 
-class MemoryManagement 
+
+class SDLTexture;
+class SDLRenderer;
+
+class MemoryManagement
 {
 public:
+
 	MemoryManagement();
 	~MemoryManagement();
 
-	static SDL_Texture& checkExistance(std::string name, SDL_Texture& texture);
+	std::shared_ptr<SDLTexture> getTexture(SDLRenderer& renderer, std::string filePath);
 
-	std::map<std::string, SDL_Texture> textureMap;
 
+	void Purge();
 private:
-	//std::map<std::string, SDL_Texture&> textureMap;
+	//static MemoryManagement* m_instance;
+	SDL_Surface* CreateSurface();
+	std::map<std::string, std::shared_ptr<SDLTexture>> m_texturesMap;
 };

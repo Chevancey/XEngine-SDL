@@ -14,8 +14,10 @@ public:
 	~SDLSurface();
 	SDLSurface& operator=(SDLSurface&& surface) noexcept;
 
+	static bool textureExisting(const std::string& filepath);
 	SDL_Surface* get();
 	static SDLSurface LoadFromFile(const std::string& filepath);
+
 private:
 	SDLSurface(SDL_Surface* surface);
 	SDL_Surface* m_surface;

@@ -25,7 +25,8 @@ int main(int argc, char** argv)
     SDLpp sdl;
     SDLUtility sdlutility;
     SDLTime Time;
-
+    MemoryManagement rm;
+    
     if (TTF_Init() < 0) 
     {
         std::cout << "Error: " << TTF_GetError() << std::endl;
@@ -36,13 +37,17 @@ int main(int argc, char** argv)
 
     SDLRenderer renderer(window);
 
-    auto tryTexture = std::make_shared<SDLTexture>;
+    //auto tryTexture = std::make_shared<SDLTexture>;
 
-    SDLTexture spriteTexture = SDLTexture::LoadFromFile(renderer, "assets/Runner.png");
-    SDLTexture backgroundtText = SDLTexture::LoadFromFile(renderer, "assets/Background.png");
+    auto backgroundtText = rm.getTexture(renderer, "assets/Backgrounds.png");
+    auto backgroundtText2 = rm.getTexture(renderer, "assets/Background.png");
+    auto backgroundtText3 = rm.getTexture(renderer, "assets/Basdasackground.png");
+    
+    //SDLTexture::LoadFromFile(renderer, "assets/Runner.png");
+    auto spriteTexture = rm.getTexture(renderer, "assets/Runners.png");
 
-    Sprite background(backgroundtText);
-    Sprite sprite(spriteTexture, { 0, 0, 32, 32 }, 5, 0);
+    Sprite background(*backgroundtText);
+    Sprite sprite(*spriteTexture, { 0, 0, 32, 32 }, 5, 0);
 
     sprite.Resize(704, 64);
     sprite.SetRect(SDL_Rect{ 0, 0, 64, 64 });
@@ -138,13 +143,6 @@ int main(int argc, char** argv)
             renderer.Clear();
             background.Draw(renderer, 0, 0);
         }
-
-
-        //std::map<std::string, SDLTexture> textureMap;
-
-        //textureMap["Map"] = SDLTexture { backgroundtText };
-
-        //textureMap.insert(, SDLTexture::LoadFromFile(renderer, "assets/Background.png"));
         
         background.Resize(window.GetWindowSizeX(), window.GetWindowSizeY());
         sprite.Draw(renderer, x, y);
@@ -153,6 +151,7 @@ int main(int argc, char** argv)
 
         renderer.Present();
     }
+    rm.Purge();
     return 0;
 }
 

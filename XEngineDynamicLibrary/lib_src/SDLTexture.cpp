@@ -5,9 +5,9 @@
 #include "MemoryManagement.h"
 
 
-SDLTexture::SDLTexture(SDLTexture&& texture)
+SDLTexture::SDLTexture(SDLTexture&& texture) noexcept :
+	m_texture(texture.m_texture)
 {
-	m_texture = texture.m_texture;
 	texture.m_texture = nullptr;
 }
 
@@ -46,22 +46,26 @@ std::string SDLTexture::getName()
 
 SDLTexture SDLTexture::LoadFromFile(SDLRenderer& renderer, const std::string& filepath)
 {
-	//std::cout << temp << std::endl;
-	return LoadFromSurface(renderer, SDLSurface::LoadFromFile(filepath), filepath);
+	return LoadFromSurface(renderer, SDLSurface::LoadFromFile(filepath));
 }
 
-SDLTexture SDLTexture::LoadFromSurface(SDLRenderer& renderer, SDLSurface& surface, const std::string& filepath)
+SDLTexture SDLTexture::LoadFromSurface(SDLRenderer& renderer, SDLSurface& surface)
 {
-	MemoryManagement::checkExistance(SDL_CreateTextureFromSurface(renderer.get(), surface.get()),);
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer.get(), surface.get());
-	return SDLTexture(texture, filename);
+	return SDLTexture(texture);
 }
 
-SDLTexture::SDLTexture(SDL_Texture* texture, const std::string& filepath) :
+SDLTexture SDLTexture::LoadSurface(SDLRenderer& renderer, SDL_Surface* surface)
+{
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer.get(), surface);
+	return SDLTexture(texture);
+}
+
+SDLTexture::SDLTexture(SDL_Texture* texture) :
 	m_texture(texture)
 {
-	m_name = getFileName(filepath);
-	std::cout << m_name << std::endl;
+	//m_name = getFileName(filepath);
+	//std::cout << m_name << std::endl;
 }
 
 std::string SDLTexture::getFileName(const std::string& s) 

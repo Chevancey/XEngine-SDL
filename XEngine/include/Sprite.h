@@ -13,6 +13,7 @@ public:
 	
 	Sprite(const Sprite&) = default;
 	Sprite(Sprite&&) = default;
+
 	~Sprite() = default;
 
 	void Draw(SDLRenderer& renderer, int x, int y);
