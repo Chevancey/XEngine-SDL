@@ -21,12 +21,24 @@
     <ClCompile Include="..\..\XEngine\src\Sprite.cpp">
       <Filter>XEngine\src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\XEngine\src\Transform.cpp">
+      <Filter>XEngine\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XEngine\src\Vector2.cpp">
+      <Filter>XEngine\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\XEngine\include\MemoryManagement.h">
       <Filter>XEngine\include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\XEngine\include\Sprite.h">
+      <Filter>XEngine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\XEngine\include\Transform.h">
+      <Filter>XEngine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\XEngine\include\Vector2.h">
       <Filter>XEngine\include</Filter>
     </ClInclude>
   </ItemGroup>

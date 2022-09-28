@@ -1,0 +1,4 @@
+{
+    outdata = "__cpp_Vector2.cpp.cpp\
+"
+}

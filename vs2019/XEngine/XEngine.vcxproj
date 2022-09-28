@@ -116,16 +116,22 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\XEngine\src\MemoryManagement.cpp">
+    <ClCompile Include="..\..\XEngine\src\Transform.cpp">
     </ClCompile>
     <ClCompile Include="..\..\XEngine\src\main.cpp">
     </ClCompile>
+    <ClCompile Include="..\..\XEngine\src\Vector2.cpp">
+    </ClCompile>
     <ClCompile Include="..\..\XEngine\src\Sprite.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\XEngine\src\MemoryManagement.cpp">
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\XEngine\include\MemoryManagement.h" />
     <ClInclude Include="..\..\XEngine\include\Sprite.h" />
+    <ClInclude Include="..\..\XEngine\include\Transform.h" />
+    <ClInclude Include="..\..\XEngine\include\Vector2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

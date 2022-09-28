@@ -39,11 +39,6 @@ SDL_Rect SDLTexture::GetRect() const
 	return rect;
 }
 
-std::string SDLTexture::getName() 
-{
-	return m_name;
-}
-
 SDLTexture SDLTexture::LoadFromFile(SDLRenderer& renderer, const std::string& filepath)
 {
 	return LoadFromSurface(renderer, SDLSurface::LoadFromFile(filepath));
@@ -61,15 +56,7 @@ SDLTexture SDLTexture::LoadSurface(SDLRenderer& renderer, SDL_Surface* surface)
 	return SDLTexture(texture);
 }
 
-SDLTexture::SDLTexture(SDL_Texture* texture) :
+SDLTexture::SDLTexture(SDL_Texture* texture):
 	m_texture(texture)
 {
-	//m_name = getFileName(filepath);
-	//std::cout << m_name << std::endl;
-}
-
-std::string SDLTexture::getFileName(const std::string& s) 
-{
-	size_t i = s.rfind('/', s.length());
-	return(s.substr(i + 1, s.length() - i));
 }

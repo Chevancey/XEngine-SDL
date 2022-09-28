@@ -5,6 +5,7 @@
 #include <memory>
 #include <list>
 #include <map>
+#include <vector>
 
 #include "SDLpp.h"
 #include "SDLWindow.h"
@@ -15,6 +16,8 @@
 #include "SDLTime.h"
 #include "Sprite.h"
 #include "MemoryManagement.h"
+#include "Vector2.h"
+#include "Transform.h"
 
 void Animation(Sprite* sprite, int animationIndex, float timer, int frameIndex, int frameCount);
 
@@ -24,9 +27,11 @@ int main(int argc, char** argv)
     SDLpp sdl;
     SDLUtility sdlutility;
     SDLTime Time;
-    MemoryManagement rm;
-    
-    if (TTF_Init() < 0) 
+
+
+    //int a[3] = { 1,2,3 };
+
+    if (TTF_Init() < 0)
     {
         std::cout << "Error: " << TTF_GetError() << std::endl;
     }
@@ -35,13 +40,17 @@ int main(int argc, char** argv)
 
     SDLRenderer renderer(window);
 
-    auto backgroundtText = rm.getTexture(renderer, "assets/Backgroundsapihbd.png");
-    auto backgroundtText2 = rm.getTexture(renderer, "assets/Background.png");
-
-    auto spriteTexture = rm.getTexture(renderer, "assets/Runner.png");
-
+    auto backgroundtText = MemoryManagement::GetInstance()->getTexture(renderer, "assets/Background.png");
+    auto backgroundtText2 = MemoryManagement::GetInstance()->getTexture(renderer, "assets/Background.png");
+    //auto backgroundtText3 = MemoryManagement::GetInstance()->getTexture(renderer, "assets/Background.png");
+    
+    auto spriteTexture = MemoryManagement::GetInstance()->getTexture(renderer, "assets/Runner.png");
+    
     Sprite background(backgroundtText);
     Sprite sprite(spriteTexture, { 0, 0, 32, 32 }, 5, 0);
+    Sprite sprite1(spriteTexture, { 0, 0, 32, 32 }, 5, 0);
+    Sprite sprite2(spriteTexture, { 0, 0, 32, 32 }, 5, 0);
+    //Sprite sprite3(spriteTexture, { 0, 0, 32, 32 }, 5, 0);
 
     sprite.Resize(704, 64);
     sprite.SetRect(SDL_Rect{ 0, 0, 64, 64 });
@@ -60,13 +69,28 @@ int main(int argc, char** argv)
     int frameIndex = 0;
     float timer = 0;
 
+
+    Transform transform;
+
+    transform.SetPosition(Vector2(1, 0));
+    transform.SetRotation(1.5708);
+
+    Vector2(2, 2) - Vector2(2, 2);
+
     bool isOpen = true;
     while(isOpen)
     {
+        SDL_Event event;
         Time.CountDeltaTime();
         timer += Time.getDeltaTime();
 
-        //Animation(&sprite, 0, timer, frameIndex, frameCount);
+        while (SDLpp::PollEvent(&event)) {
+            if (event.type == SDL_QUIT)
+            {
+                MemoryManagement::GetInstance()->Purge();
+                isOpen = false;
+            }
+        }
 
         if (timer > 0.1f)
         {
@@ -135,17 +159,17 @@ int main(int argc, char** argv)
         if (!SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_SPACE))
         {
             renderer.Clear();
-            background.Draw(renderer, 0, 0);
+            //background.Draw(renderer, 0, 0);
         }
         
-        background.Resize(window.GetWindowSizeX(), window.GetWindowSizeY());
+        //background.Resize(window.GetWindowSizeX(), window.GetWindowSizeY());
         sprite.Draw(renderer, x, y);
         //sprite.Animate(Time.getDeltaTime());
         sprite.Resize(w, h);
 
         renderer.Present();
     }
-    rm.Purge();
+    //rm.Purge();
     return 0;
 }
 

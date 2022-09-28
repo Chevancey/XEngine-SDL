@@ -18,18 +18,15 @@ public:
 	SDLTexture& operator=(SDLTexture&& texture) noexcept;
 
 	SDL_Texture* get() const;
-	std::string getName();
 	SDL_Rect GetRect() const;
 
 	static SDLTexture LoadFromFile(SDLRenderer& renderer, const std::string& filepath);
 	static SDLTexture LoadFromSurface(SDLRenderer& renderer, SDLSurface& surface);
 	static SDLTexture LoadSurface(SDLRenderer& renderer, SDL_Surface* surface);
-
 private:
-	std::string getFileName(const std::string& s);
-	SDLTexture(SDL_Texture* texture);
 
-	std::string m_name;
+	SDLTexture(SDL_Texture* texture);
+	SDLTexture(SDL_Texture* texture, const std::string& filepath);
 
 	SDL_Texture* m_texture;
 };

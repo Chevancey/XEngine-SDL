@@ -1,6 +1,7 @@
 #include "Sprite.h"
 #include "SDLRenderer.h"
 #include "SDLTexture.h"
+#include "MemoryManagement.h"
 
 Sprite::Sprite(const std::shared_ptr<SDLTexture>& texture) :
 	Sprite(texture, texture->GetRect(), 0, 0)
@@ -8,7 +9,7 @@ Sprite::Sprite(const std::shared_ptr<SDLTexture>& texture) :
 }
 
 Sprite::Sprite(const std::shared_ptr<SDLTexture>& texture, const SDL_Rect& rect, int frameIndex, int frameCount) :
-	m_texture(*texture),
+	m_texture(texture),
 	m_rect(rect),
 	m_width(rect.w),
 	m_height(rect.h),
@@ -26,7 +27,7 @@ void Sprite::Draw(SDLRenderer& renderer, int x, int y)
 	dest.w = m_width;
 	dest.h = m_height;
 
-	renderer.RenderCopy(m_texture, m_rect, dest);
+	renderer.RenderCopy(*m_texture, m_rect, dest);
 }
 
 int Sprite::GetHeight() const

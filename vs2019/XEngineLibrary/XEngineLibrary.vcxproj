@@ -111,19 +111,19 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\XEngineDynamicLibrary\lib_src\SDLWindow.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\XEngineDynamicLibrary\lib_src\SDLRenderer.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\XEngineDynamicLibrary\lib_src\SDLTime.cpp">
+    </ClCompile>
     <ClCompile Include="..\..\XEngineDynamicLibrary\lib_src\SDLUtility.cpp">
     </ClCompile>
     <ClCompile Include="..\..\XEngineDynamicLibrary\lib_src\SDLTexture.cpp">
     </ClCompile>
-    <ClCompile Include="..\..\XEngineDynamicLibrary\lib_src\SDLWindow.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\XEngineDynamicLibrary\lib_src\SDLTime.cpp">
+    <ClCompile Include="..\..\XEngineDynamicLibrary\lib_src\SDLEvent.cpp">
     </ClCompile>
     <ClCompile Include="..\..\XEngineDynamicLibrary\lib_src\SDLpp.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\XEngineDynamicLibrary\lib_src\SDLRenderer.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\XEngineDynamicLibrary\lib_src\SDLEvent.cpp">
     </ClCompile>
     <ClCompile Include="..\..\XEngineDynamicLibrary\lib_src\SDLSurface.cpp">
     </ClCompile>
