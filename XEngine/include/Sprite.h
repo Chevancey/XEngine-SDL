@@ -33,7 +33,7 @@ public:
 
 private:
 
-	std::shared_ptr<SDLTexture> m_texture;
+	const std::shared_ptr<SDLTexture> m_texture;
 
 	SDL_Rect m_rect;
 	int m_width;

@@ -1,5 +1,5 @@
 #include "SDLSurface.h"
-#include <SDL_image.h>
+//#include <SDL_image.h>
 
 SDLSurface::SDLSurface(SDLSurface&& texture)
 {

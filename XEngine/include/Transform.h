@@ -1,25 +1,58 @@
 #pragma once
 
 #include <iostream>
+#include "Vector2.h"
 
-class Vector2;
-
-class Transform 
+template<typename T>
+class TransformSpecific
 {
 public:
 
-	Transform();
-	~Transform();
+	TransformSpecific()
+	{
+	}
 
-	void SetPosition(Vector2& vector2);
-	void SetRotation(float r);
-	void SetScale(Vector2& vector2);
+	~TransformSpecific()
+	{
+	}
 
-	void TransformPoint(Vector2& vector2);
+	void SetPosition(const Vector2<T>& vector)
+	{
+		//m_position.x = vector2.x;
+		//m_position.y = vector2.y;
+		m_position = vector;
+		std::cout << m_position.x << " | " << m_position.y << std::endl;
+	}
+	
+	void SetRotation(float r)
+	{
+		m_rotation = r;
+		float sinAngle = sin(r);
+		float cosAngle = cos(r);
+
+		float tmpX = (cosAngle * m_position.x - sinAngle * m_position.y);
+		float tmpY = (sinAngle * m_position.x + cosAngle * m_position.y);
+
+		m_position.x = tmpX;
+		m_position.y = tmpY;
+		std::cout << m_position.x << " | " << m_position.y << std::endl;
+	}
+
+	void SetScale(const Vector2<T>& vector)
+	{
+		m_scale = &vector;
+	}
+
+	void TransformPoint(const Vector2<T>& vector)
+	{
+		*m_position += vector;
+		std::cout << m_position.x << " | " << m_position.y << std::endl;
+	}
 
 private:
-
-	Vector2* m_position;
+	Vector2<T> m_position;
 	float m_rotation;
-	Vector2* m_scale;
+	Vector2<T> m_scale;
 };
+
+typedef TransformSpecific<float> Transform;

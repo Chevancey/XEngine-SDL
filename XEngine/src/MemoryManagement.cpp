@@ -18,7 +18,7 @@ MemoryManagement::~MemoryManagement()
 std::shared_ptr<SDLTexture> MemoryManagement::getTexture(SDLRenderer& renderer, std::string filePath)
 {
 	bool isExisting = SDLSurface::textureExisting(filePath);
-
+	std::cout << m_texturesMap.size() << std::endl;
 	if (isExisting && m_texturesMap.size() > 0)
 	{
 		auto iterator = m_texturesMap.find(filePath);
@@ -34,15 +34,15 @@ std::shared_ptr<SDLTexture> MemoryManagement::getTexture(SDLRenderer& renderer, 
 	else if (!isExisting)
 	{
 		std::cout << "ERROR - FILE DOES NOT EXIST: " + filePath << std::endl;
-		std::shared_ptr<SDLTexture> tempTexture = std::make_shared<SDLTexture>(SDLTexture::LoadSurface(renderer, CreateSurface()));
-		return tempTexture;
+		//std::shared_ptr<SDLTexture> tempTexture = ;
+		return std::make_shared<SDLTexture>(SDLTexture::LoadSurface(renderer, CreateSurface()));
 		//return std::make_shared<SDLTexture>(SDLTexture::LoadSurface(renderer, CreateSurface()));
 	}
 
-	std::shared_ptr<SDLTexture> tempTexture = std::make_shared<SDLTexture>(SDLTexture::LoadFromFile(renderer, filePath));
+	//std::shared_ptr<SDLTexture> tempTexture = std::make_shared<SDLTexture>(SDLTexture::LoadFromFile(renderer, filePath));
 	m_texturesMap.emplace(filePath, std::make_shared<SDLTexture>(SDLTexture::LoadFromFile(renderer, filePath)));
 	std::cout << "File is now added to list: " + filePath << std::endl;
-	return tempTexture;
+	return std::make_shared<SDLTexture>(SDLTexture::LoadFromFile(renderer, filePath));
 	//return std::make_shared<SDLTexture>(SDLTexture::LoadFromFile(renderer, filePath));
 }
 
@@ -56,8 +56,8 @@ void MemoryManagement::Purge()
 		{
 			std::cout << "Delete Map Elements: " << it->first << std::endl;
 			it = m_texturesMap.erase(it);
-			//std::cout << it->first << " use count: " << it->second.use_count() << std::endl;
 		}
+		it--;
 	}
 }
 

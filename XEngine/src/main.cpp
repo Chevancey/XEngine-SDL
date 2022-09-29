@@ -41,11 +41,12 @@ int main(int argc, char** argv)
     SDLRenderer renderer(window);
 
     auto backgroundtText = MemoryManagement::GetInstance()->getTexture(renderer, "assets/Background.png");
-    auto backgroundtText2 = MemoryManagement::GetInstance()->getTexture(renderer, "assets/Background.png");
+    //auto backgroundtText2 = MemoryManagement::GetInstance()->getTexture(renderer, "assets/Background.png");
     //auto backgroundtText3 = MemoryManagement::GetInstance()->getTexture(renderer, "assets/Background.png");
     
     auto spriteTexture = MemoryManagement::GetInstance()->getTexture(renderer, "assets/Runner.png");
-    
+    auto spriteTexture2 = MemoryManagement::GetInstance()->getTexture(renderer, "assets/kirby.png");
+
     Sprite background(backgroundtText);
     Sprite sprite(spriteTexture, { 0, 0, 32, 32 }, 5, 0);
     Sprite sprite1(spriteTexture, { 0, 0, 32, 32 }, 5, 0);
@@ -69,13 +70,35 @@ int main(int argc, char** argv)
     int frameIndex = 0;
     float timer = 0;
 
+    //translation test:
+    
+    //Transform transform;
+
+    //transform.SetPosition(Vector2(1, 0));
+    //transform.SetRotation(1.5708);
+
+    Vector2f(20.0, 10.20) + Vector2f(22, 10.40);
+    Vector2f(20.0, 10.20) += Vector2f(22, 10);
+    Vector2f(20.0, 10.20) - Vector2f(22, 10.40);
+    Vector2f(20.0, 10.20) -= Vector2f(22, 10.40);
+    Vector2f(20.0, 10.20) * 2;
+    Vector2f(20.0, 10.20) *= 2;
+    Vector2f(20.0, 10.20) / 2;
+    Vector2f(20.0, 10.20) /= 2;
+    Vector2f(20.0, 10.20) == Vector2f(20.0, 10.20);
+    Vector2f(20.0, 10.20) == Vector2f(22, 10.40);
+    Vector2f(20.0, 10.20) != Vector2f(22, 10.40);
+    Vector2f(20.0, 10.20) != Vector2f(20.0, 10.20);
+
 
     Transform transform;
+    
+    transform.SetPosition(Vector2f(22.1, 10.1));
 
-    transform.SetPosition(Vector2(1, 0));
-    transform.SetRotation(1.5708);
-
-    Vector2(2, 2) - Vector2(2, 2);
+    Transform translate;
+    
+    translate.SetPosition(Vector2i(1, 0));
+    translate.SetRotation(1.5708);
 
     bool isOpen = true;
     while(isOpen)
@@ -159,10 +182,10 @@ int main(int argc, char** argv)
         if (!SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_SPACE))
         {
             renderer.Clear();
-            //background.Draw(renderer, 0, 0);
+            background.Draw(renderer, 0, 0);
         }
         
-        //background.Resize(window.GetWindowSizeX(), window.GetWindowSizeY());
+        background.Resize(window.GetWindowSizeX(), window.GetWindowSizeY());
         sprite.Draw(renderer, x, y);
         //sprite.Animate(Time.getDeltaTime());
         sprite.Resize(w, h);
