@@ -1,0 +1,14 @@
+{
+    outdata = "__cpp_main.cpp.cpp\
+XEngine\\src\\main.cpp(101): warning C4239: nonstandard extension used: 'argument': conversion from 'Vector2f' to 'Vector2<float> &'\
+XEngine\\src\\main.cpp(101): note: A non-const reference may only be bound to an lvalue\
+XEngine\\src\\main.cpp(194): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data\
+XEngine\\src\\main.cpp(194): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data\
+XEngine\\src\\main.cpp(25): warning C4100: 'argv': unreferenced formal parameter\
+XEngine\\src\\main.cpp(25): warning C4100: 'argc': unreferenced formal parameter\
+XEngine\\include\\Transform.h(28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data\
+XEngine\\include\\Transform.h(27): note: while compiling class template member function 'void TransformSpecific<float>::SetRotation(float)'\
+XEngine\\src\\main.cpp(99): note: see reference to function template instantiation 'void TransformSpecific<float>::SetRotation(float)' being compiled\
+XEngine\\src\\main.cpp(96): note: see reference to class template instantiation 'TransformSpecific<float>' being compiled\
+"
+}

@@ -1,21 +1,21 @@
-#include "MemoryManagement.h"
+#include "MemoryManager.h"
 #include "SDLTexture.h"
 #include "SDLRenderer.h"
 #include "SDLSurface.h"
 
-MemoryManagement* MemoryManagement::m_instance = nullptr;
+MemoryManager* MemoryManager::m_instance = nullptr;
 
-MemoryManagement::MemoryManagement()
+MemoryManager::MemoryManager()
 {
 }
 
-MemoryManagement::~MemoryManagement()
+MemoryManager::~MemoryManager()
 {
 	m_texturesMap.clear();
 	std::cout << "All the map has been deleted: " << std::endl;
 }
 
-std::shared_ptr<SDLTexture> MemoryManagement::getTexture(SDLRenderer& renderer, std::string filePath)
+std::shared_ptr<SDLTexture> MemoryManager::getTexture(SDLRenderer& renderer, std::string filePath)
 {
 	bool isExisting = SDLSurface::textureExisting(filePath);
 	std::cout << m_texturesMap.size() << std::endl;
@@ -47,7 +47,7 @@ std::shared_ptr<SDLTexture> MemoryManagement::getTexture(SDLRenderer& renderer, 
 }
 
 
-void MemoryManagement::Purge()
+void MemoryManager::Purge()
 {
 	for (auto it = m_texturesMap.begin(); it != m_texturesMap.end(); it++)
 	{
@@ -56,12 +56,11 @@ void MemoryManagement::Purge()
 		{
 			std::cout << "Delete Map Elements: " << it->first << std::endl;
 			it = m_texturesMap.erase(it);
-		}
-		it--;
+		} 
 	}
 }
 
-SDL_Surface* MemoryManagement::CreateSurface()
+SDL_Surface* MemoryManager::CreateSurface()
 {
 	int surfacesize = 100;
 	int rectSize = 100 / 10;

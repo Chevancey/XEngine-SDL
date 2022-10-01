@@ -9,14 +9,14 @@
 class SDLTexture;
 class SDLRenderer;
 
-class MemoryManagement
+class MemoryManager
 {
 public:
-	~MemoryManagement();
+	~MemoryManager();
 
-	static MemoryManagement* GetInstance()
+	static MemoryManager* GetInstance()
 	{
-		return m_instance = (m_instance != nullptr) ? m_instance : new MemoryManagement;
+		return m_instance = (m_instance != nullptr) ? m_instance : new MemoryManager;
 	}
 
 	std::shared_ptr<SDLTexture> getTexture(SDLRenderer& renderer, std::string filePath);
@@ -24,8 +24,8 @@ public:
 
 	void Purge();
 private:
-	MemoryManagement();
-	static MemoryManagement* m_instance;
+	MemoryManager();
+	static MemoryManager* m_instance;
 	SDL_Surface* CreateSurface();
 
 	std::map<std::string, std::shared_ptr<SDLTexture>> m_texturesMap;

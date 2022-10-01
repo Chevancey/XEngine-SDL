@@ -1,7 +1,7 @@
 #include "Sprite.h"
 #include "SDLRenderer.h"
 #include "SDLTexture.h"
-#include "MemoryManagement.h"
+#include "MemoryManager.h"
 
 Sprite::Sprite(const std::shared_ptr<SDLTexture>& texture) :
 	Sprite(texture, texture->GetRect(), 0, 0)

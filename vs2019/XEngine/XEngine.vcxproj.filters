@@ -12,10 +12,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\XEngine\src\InputManager.cpp">
+      <Filter>XEngine\src</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\XEngine\src\main.cpp">
       <Filter>XEngine\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\XEngine\src\MemoryManagement.cpp">
+    <ClCompile Include="..\..\XEngine\src\Matrix3x3.cpp">
+      <Filter>XEngine\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XEngine\src\MemoryManager.cpp">
       <Filter>XEngine\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\XEngine\src\Sprite.cpp">
@@ -29,7 +35,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\XEngine\include\MemoryManagement.h">
+    <ClInclude Include="..\..\XEngine\include\DegRad.h">
+      <Filter>XEngine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\XEngine\include\InputManager.h">
+      <Filter>XEngine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\XEngine\include\Matrix3x3.h">
+      <Filter>XEngine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\XEngine\include\MemoryManager.h">
       <Filter>XEngine\include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\XEngine\include\Sprite.h">

@@ -1,0 +1,10 @@
+{
+    outdata = "__cpp_main.cpp.cpp\
+XEngine\\src\\main.cpp(100): warning C4239: nonstandard extension used: 'argument': conversion from 'Vector2f' to 'Vector2<float> &'\
+XEngine\\src\\main.cpp(100): note: A non-const reference may only be bound to an lvalue\
+XEngine\\src\\main.cpp(193): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data\
+XEngine\\src\\main.cpp(193): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data\
+XEngine\\src\\main.cpp(25): warning C4100: 'argv': unreferenced formal parameter\
+XEngine\\src\\main.cpp(25): warning C4100: 'argc': unreferenced formal parameter\
+"
+}

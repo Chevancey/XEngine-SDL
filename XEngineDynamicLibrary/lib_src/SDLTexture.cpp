@@ -2,8 +2,6 @@
 #include "SDLTexture.h"
 #include "SDLRenderer.h"
 #include "SDLSurface.h"
-#include "MemoryManagement.h"
-
 
 SDLTexture::SDLTexture(SDLTexture&& texture) noexcept :
 	m_texture(texture.m_texture)

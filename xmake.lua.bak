@@ -34,12 +34,12 @@ target("XEngineLibrary")
 		add_defines("LIB_COMPILING")
 		add_files("XEngineDynamicLibrary/lib_src/*.cpp")
 		add_headerfiles("XEngineDynamicLibrary/lib_include/*.h", "XEngineDynamicLibrary/lib_include/*.hpp")
-		add_includedirs("XEngineDynamicLibrary/lib_include")
+		add_includedirs("XEngineDynamicLibrary/lib_include", "XEngine/include")
 	
 	elseif is_kind("static") then
 		add_files("XEngineStaticLibrary/lib_src/*.cpp")
 		add_headerfiles("XEngineStaticLibrary/lib_include/*.h", "XEngineStaticLibrary/lib_include/*.hpp")
-		add_includedirs("XEngineStaticLibrary/lib_include")
+		add_includedirs("XEngineStaticLibrary/lib_include", "XEngine/include")
 	end
 	
 	set_rundir("bin")

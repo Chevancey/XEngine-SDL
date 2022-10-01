@@ -31,17 +31,20 @@ struct Vector2
 	operator Vector2<int>() const;
 	operator Vector2<float>() const;
 
+	void printValues();
+
 	T x;
 	T y;
 };
 
+template<typename T>
+void Vector2<T>::printValues() {}
 
 template<typename T>
 Vector2<T>::Vector2()
 {
 	x = (T)0;
 	y = (T)0;
-	std::cout << x << " | " << y << std::endl;
 }
 
 //Operator
@@ -50,7 +53,6 @@ Vector2<T>::Vector2(T inputX, T inputY)
 {
 	x = inputX;
 	y = inputY;
-	std::cout << x << " | " << y << std::endl;
 }
 
 template<typename T>
@@ -58,7 +60,6 @@ Vector2<T>::Vector2(const Vector2& vector)
 {
 	x = (T)vector.x;
 	y = (T)vector.y;
-	std::cout << x << " | " << y << std::endl;
 }
 
 template<typename T>
@@ -66,7 +67,6 @@ Vector2<T>::Vector2(T bothValues)
 {
 	x = bothValues;
 	y = bothValues;
-	std::cout << x << " | " << y << std::endl;
 }
 
 //Plus

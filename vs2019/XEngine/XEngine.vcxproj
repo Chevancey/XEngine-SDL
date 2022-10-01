@@ -116,19 +116,26 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\XEngine\src\Transform.cpp">
+    <ClCompile Include="..\..\XEngine\src\InputManager.cpp">
     </ClCompile>
-    <ClCompile Include="..\..\XEngine\src\main.cpp">
+    <ClCompile Include="..\..\XEngine\src\MemoryManager.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\XEngine\src\Matrix3x3.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\XEngine\src\Transform.cpp">
     </ClCompile>
     <ClCompile Include="..\..\XEngine\src\Vector2.cpp">
     </ClCompile>
     <ClCompile Include="..\..\XEngine\src\Sprite.cpp">
     </ClCompile>
-    <ClCompile Include="..\..\XEngine\src\MemoryManagement.cpp">
+    <ClCompile Include="..\..\XEngine\src\main.cpp">
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\XEngine\include\MemoryManagement.h" />
+    <ClInclude Include="..\..\XEngine\include\DegRad.h" />
+    <ClInclude Include="..\..\XEngine\include\InputManager.h" />
+    <ClInclude Include="..\..\XEngine\include\Matrix3x3.h" />
+    <ClInclude Include="..\..\XEngine\include\MemoryManager.h" />
     <ClInclude Include="..\..\XEngine\include\Sprite.h" />
     <ClInclude Include="..\..\XEngine\include\Transform.h" />
     <ClInclude Include="..\..\XEngine\include\Vector2.h" />
