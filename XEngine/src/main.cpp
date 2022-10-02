@@ -99,9 +99,9 @@ int main(int argc, char** argv)
 
     
 
-    InputManager::GetInstance()->BindMouseButtonPressed(LeftClick, "attack");
-    InputManager::GetInstance()->BindKeyPressed(0, "attack");
-
+    //InputManager::GetInstance()->BindMouseButtonPressed(SDLK_w, "attack");
+    InputManager::GetInstance()->BindKeyPressed(
+        SDLK_h, "attack");
 
     Transform transform;
 
@@ -118,22 +118,27 @@ int main(int argc, char** argv)
     while(isOpen)
     {
 
-        SDL_Event event;
+        SDL_Event sdlevent;
         Time.CountDeltaTime();
         timer += Time.getDeltaTime();
 
-        //while (SDLpp::PollEvent(&event)) {
-        //    if (event.type == SDL_QUIT)
-        //    {
-        //        MemoryManager::GetInstance()->Purge();
-        //        isOpen = false;
-        //    }
-        //}
+        while (SDLpp::PollEvent(&sdlevent)) {
+            if (sdlevent.type == SDL_QUIT)
+            {
+                MemoryManager::GetInstance()->Purge();
+                isOpen = false;
+            }
 
-        InputManager::GetInstance()->Listen();
+            if (sdlevent.type == SDL_MOUSEBUTTONDOWN)
+                InputManager::GetInstance()->MousePress(sdlevent);
+
+            if (sdlevent.type == SDL_KEYDOWN)
+                InputManager::GetInstance()->KeyPress(sdlevent);
+        }
+
         InputManager::GetInstance()->OnAction("attack", [&]()
             {
-                x -= Time.getDeltaTime();
+                std::cout << "Hello" << std::endl;
             }
         );
 
@@ -200,13 +205,9 @@ int main(int argc, char** argv)
         //}
 
         renderer.SDLDrawBG(color);
+        renderer.Clear();
+        background.Draw(renderer, 0, 0);
 
-        if (!SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_SPACE))
-        {
-            renderer.Clear();
-            background.Draw(renderer, 0, 0);
-        }
-        
         background.Resize(window.GetWindowSizeX(), window.GetWindowSizeY());
         sprite.Draw(renderer, x, y);
         //sprite.Animate(Time.getDeltaTime());

@@ -1,81 +1,53 @@
-#include "InputManager.h"
+#include <InputManager.h>
+#include <iostream>
 
-InputManager* InputManager::s_Instance = nullptr;
+InputManager* ::InputManager::m_instance = nullptr;
 
-void InputManager::Listen()
+void InputManager::BindKeyPressed(SDL_Keycode key, const std::string keyname)
 {
-    SDL_Event event;
-    while (SDL_PollEvent(&event))
+    m_bindSystem.emplace(key, keyname);
+}
+
+void InputManager::BindMouseButtonPressed(MouseButton id, const std::string keyname)
+{
+    m_mouseSystem.emplace(id, keyname);
+}
+
+void InputManager::OnAction(const std::string keyname, std::function<void()> func)
+{
+    auto it = m_actionSystem.find(keyname);
+
+    if (it == m_actionSystem.end())
     {
-        switch (event.type) {
-            //case SDL_QUIT: SDL_Quit();
-                //break;
-        case SDL_KEYDOWN: KeyDown();
-            break;
-        case SDL_KEYUP: KeyUp();
-            break;
-        }
+        m_actionSystem.emplace(keyname, func);
+    }
+    else
+    {
+        it->second = func;
     }
 }
 
-void InputManager::BindKeyPressed(SDL_Keycode key, const std::string& keyname)
+void InputManager::KeyPress(SDL_Event event)
 {
-    m_inputSystem.insert({keyname, key});
+    auto it = m_bindSystem.find(event.key.keysym.sym);
 
-    for (auto it = m_inputSystem.begin(); it != m_inputSystem.end(); it++)
+    if (it != m_bindSystem.end())
     {
-        std::cout << it->first << " was bound to: " << it->second << std::endl;
+        m_actionSystem[m_bindSystem[event.key.keysym.sym]]();
     }
 }
 
-void InputManager::BindMouseButtonPressed(Mouse_Button id, const std::string& keyname)
+void InputManager::MousePress(SDL_Event event)
 {
-    m_inputSystem.insert({keyname, id });
+    auto it = m_mouseSystem.find(event.button.button);
 
-    for (auto it = m_inputSystem.begin(); it != m_inputSystem.end(); it++)
+    if (it != m_mouseSystem.end())
     {
-        std::cout << it->first << " was bound to: " << it->second << std::endl;
+        m_actionSystem[m_mouseSystem[event.button.button]]();
     }
 }
 
-void InputManager::OnAction(const std::string& keyname, std::function<void()> func)
-{
-    SDL_Event event;
-    while (SDL_PollEvent(&event))
-    {
-        std::cout << keyname << " Has been Triggered" << std::endl;
-        auto actionIterator = m_actionSystem.find(keyname);
-        auto inputIterator = m_inputSystem.find(keyname);
-        if (m_actionSystem.size() > 0 && m_inputSystem.size())
-        {
-            if (actionIterator != m_actionSystem.end() && inputIterator != m_inputSystem.end())
-            {
-                if (actionIterator->first == keyname && event.type == inputIterator->second)
-                {
-                    std::cout << actionIterator->first << " Has been Triggered" << std::endl;
-                    actionIterator->second;
-                }
-            }
-        }
-        else
-        {
-            func();
-            m_actionSystem.insert({ keyname, func });
-        }
-    }
-}
-
-bool InputManager::GetKeyDown(SDL_Keycode key)
-{
-    return m_KeyStates ? m_KeyStates[key] == 1 : false;
-}
-
-void InputManager::KeyUp()
-{
-    m_KeyStates = SDL_GetKeyboardState(nullptr);
-}
-
-void InputManager::KeyDown()
-{
-    m_KeyStates = SDL_GetKeyboardState(nullptr);
-}
+//InputManager* InputManager::GetInstance()
+//{
+//    return m_instance = (m_instance != nullptr) ? m_instance : new InputManager;
+//}

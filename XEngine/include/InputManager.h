@@ -1,55 +1,43 @@
-#include <SDL.h>
-#include <SDL_image.h>
-#include <iostream>
+#pragma once
+
+#include <sdl.h>
 #include <string>
 #include <functional>
 #include <map>
 
-
-enum Mouse_Button
+enum MouseButton
 {
-    LeftClick = SDLK_0,
-    RightClick = SDLK_1,
-    Middle = SDLK_2
+    LeftClick = SDL_BUTTON_LEFT,
+    RightClick = SDL_BUTTON_RIGHT,
+    Middle = SDL_BUTTON_MIDDLE
 };
-
 
 class InputManager
 {
 public:
 
+    ~InputManager();
+
+    void BindKeyPressed(SDL_Keycode key, const std::string keyname);
+    void BindMouseButtonPressed(MouseButton, const std::string keyname);
+    void OnAction(const std::string keyname, std::function<void()> func);
+
+    void KeyPress(SDL_Event event);
+    void MousePress(SDL_Event event);
+
+    bool IsBindIsPossible(const std::string keyname);
+
     static InputManager* GetInstance()
     {
-        return s_Instance = (s_Instance != nullptr) ? s_Instance : new InputManager();
+        return m_instance = (m_instance != nullptr) ? m_instance : new InputManager;
     }
 
-    InputManager(InputManager&&) noexcept;
-
-
-    void BindKeyPressed(SDL_Keycode key, const std::string& keyname);
-    void BindMouseButtonPressed(Mouse_Button id, const std::string& keyname);
-    void OnAction(const std::string& keyname, std::function<void()> func);
-
-    InputManager& operator=(const InputManager&) = delete;
-
-    void Listen();
-    bool GetKeyDown(SDL_Keycode key);
-
-
-
-
 private:
-    InputManager() {}
-    ~InputManager() {}
+    InputManager() = default;
 
-    void KeyUp();
-    void KeyDown();
+    static InputManager* m_instance;
 
-    const Uint8* m_KeyStates;
-
-    static InputManager* s_Instance;
-    //InputManager* m_input;
-
-    std::map<std::string, SDL_Keycode> m_inputSystem;
+    std::map<int, std::string> m_mouseSystem;
+    std::map<SDL_Keycode, std::string> m_bindSystem;
     std::map<std::string, std::function<void()>> m_actionSystem;
 };

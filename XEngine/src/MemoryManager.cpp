@@ -57,11 +57,7 @@ void MemoryManager::Purge()
 		{
 			std::cout << "Delete Map Elements: " << it->first << std::endl;
 			it = m_texturesMap.erase(it);
-			
-			//for (auto it = m_texturesMap.begin(); it != m_texturesMap.end(); it++) 
-			//{
-			//	it.begin();
-			//}
+			it = m_texturesMap.begin();
 		} 
 	}
 }
