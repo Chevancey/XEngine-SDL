@@ -19,7 +19,7 @@ public:
 		return m_instance = (m_instance != nullptr) ? m_instance : new MemoryManager;
 	}
 
-	std::shared_ptr<SDLTexture> getTexture(SDLRenderer& renderer, std::string filePath);
+	std::shared_ptr<SDLTexture> getTexture(SDLRenderer& renderer, const std::string& filePath);
 
 
 	void Purge();

@@ -1,43 +1,55 @@
-//#include <SDL.h>
-//#include <SDL_image.h>
-//#include <iostream>
-//#include <string>
-//#include <functional>
-//#include <map>
-//
-//class InputManager
-//{
-//public:
-//    InputManager(const InputManager&) = delete;
-//    InputManager(InputManager&&) noexcept;
-//
-//    ~InputManager();
-//
-//    void BindKeyPressed(SDL_Keycode key, std::string& keyname);
-//    void BindMouseButtonPressed(Uint8 id, std::string& keyname);
-//    void OnAction(std::string& keyname, std::function<void()> func);
-//
-//    //void Attack();
-//    //void Jump();
-//    //void Run();
-//
-//    InputManager& operator=(const InputManager&) = delete;
-//    //InputManager& operator=(InputManager&&) noexcept;
-//
-//private:
-//    //InputManager* m_input;
-//
-//    enum MouseButton
-//    {
-//        LeftClick = SDLK_0,
-//        RightClick = SDLK_1,
-//        Middle = SDLK_2
-//    };
-//
-//    std::map<std::string, SDL_Keycode> m_inputSystem
-//    {
-//        {"attack", SDLK_0},
-//        {"jump", SDLK_SPACE},
-//        {"run", SDLK_RSHIFT}
-//    };
-//};
+#include <SDL.h>
+#include <SDL_image.h>
+#include <iostream>
+#include <string>
+#include <functional>
+#include <map>
+
+
+enum Mouse_Button
+{
+    LeftClick = SDLK_0,
+    RightClick = SDLK_1,
+    Middle = SDLK_2
+};
+
+
+class InputManager
+{
+public:
+
+    static InputManager* GetInstance()
+    {
+        return s_Instance = (s_Instance != nullptr) ? s_Instance : new InputManager();
+    }
+
+    InputManager(InputManager&&) noexcept;
+
+
+    void BindKeyPressed(SDL_Keycode key, const std::string& keyname);
+    void BindMouseButtonPressed(Mouse_Button id, const std::string& keyname);
+    void OnAction(const std::string& keyname, std::function<void()> func);
+
+    InputManager& operator=(const InputManager&) = delete;
+
+    void Listen();
+    bool GetKeyDown(SDL_Keycode key);
+
+
+
+
+private:
+    InputManager() {}
+    ~InputManager() {}
+
+    void KeyUp();
+    void KeyDown();
+
+    const Uint8* m_KeyStates;
+
+    static InputManager* s_Instance;
+    //InputManager* m_input;
+
+    std::map<std::string, SDL_Keycode> m_inputSystem;
+    std::map<std::string, std::function<void()>> m_actionSystem;
+};

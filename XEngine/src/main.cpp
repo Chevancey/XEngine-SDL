@@ -17,7 +17,9 @@
 #include "Sprite.h"
 #include "MemoryManager.h"
 #include "Vector2.h"
+#include "Matrix3x3.h"
 #include "Transform.h"
+#include "InputManager.h"
 
 void Animation(Sprite* sprite, int animationIndex, float timer, int frameIndex, int frameCount);
 
@@ -45,15 +47,17 @@ int main(int argc, char** argv)
     //auto backgroundtText3 = MemoryManagement::GetInstance()->getTexture(renderer, "assets/Background.png");
     
     auto spriteTexture = MemoryManager::GetInstance()->getTexture(renderer, "assets/Runner.png");
-    //auto spriteTexture2 = MemoryManager::GetInstance()->getTexture(renderer, "assets/kirby.png");
-    //auto spriteTexture3 = MemoryManagement::GetInstance()->getTexture(renderer, "assets/knight shovel.png");
+    auto spriteTexture2 = MemoryManager::GetInstance()->getTexture(renderer, "assets/kirby.png");
+    //auto spriteTexture3 = MemoryManager::GetInstance()->getTexture(renderer, "assets/knight shovel.png");
 
     Sprite background(backgroundtText);
     Sprite sprite(spriteTexture, { 0, 0, 32, 32 }, 5, 0);
     Sprite sprite1(spriteTexture, { 0, 0, 32, 32 }, 5, 0);
     Sprite sprite2(spriteTexture, { 0, 0, 32, 32 }, 5, 0);
     //Sprite sprite3(spriteTexture, { 0, 0, 32, 32 }, 5, 0);
-
+    
+    //Matrix3x3i(3,3);
+    
     sprite.Resize(704, 64);
     sprite.SetRect(SDL_Rect{ 0, 0, 64, 64 });
 
@@ -91,6 +95,12 @@ int main(int argc, char** argv)
     //Vector2f(20.0, 10.20) != Vector2f(22, 10.40);
     //Vector2f(20.0, 10.20) != Vector2f(20.0, 10.20);
 
+    //Matrix3x3f();
+
+    
+
+    InputManager::GetInstance()->BindMouseButtonPressed(LeftClick, "attack");
+    InputManager::GetInstance()->BindKeyPressed(0, "attack");
 
 
     Transform transform;
@@ -112,13 +122,20 @@ int main(int argc, char** argv)
         Time.CountDeltaTime();
         timer += Time.getDeltaTime();
 
-        while (SDLpp::PollEvent(&event)) {
-            if (event.type == SDL_QUIT)
+        //while (SDLpp::PollEvent(&event)) {
+        //    if (event.type == SDL_QUIT)
+        //    {
+        //        MemoryManager::GetInstance()->Purge();
+        //        isOpen = false;
+        //    }
+        //}
+
+        InputManager::GetInstance()->Listen();
+        InputManager::GetInstance()->OnAction("attack", [&]()
             {
-                MemoryManager::GetInstance()->Purge();
-                isOpen = false;
+                x -= Time.getDeltaTime();
             }
-        }
+        );
 
         if (timer > 0.1f)
         {
@@ -135,52 +152,52 @@ int main(int argc, char** argv)
             sprite.SetRect({ frameIndex * 32, 0, 32, 32 });
         }
 
-        SDLEvent::GetInstance()->Listen();
+        //SDLEvent::GetInstance()->Listen();
 
-        if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_A))
-        {
-            x -= 1000 * Time.getDeltaTime();
-        }
+        //if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_A))
+        //{
+        //    x -= 1000 * Time.getDeltaTime();
+        //}
 
-        if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_D))
-        {
-            x += 1000 * Time.getDeltaTime();
-        }
+        //if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_D))
+        //{
+        //    x += 1000 * Time.getDeltaTime();
+        //}
 
-        if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_S))
-        {
-            y += 1000 * Time.getDeltaTime();
-        }
+        //if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_S))
+        //{
+        //    y += 1000 * Time.getDeltaTime();
+        //}
 
-        if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_W))
-        {
-            y -= 1000 * Time.getDeltaTime();
-        }
+        //if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_W))
+        //{
+        //    y -= 1000 * Time.getDeltaTime();
+        //}
 
-        if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_UP))
-        {
-            h -= 1;
-        }
+        //if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_UP))
+        //{
+        //    h -= 1;
+        //}
 
-        if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_DOWN))
-        {
-            h += 1;
-        }
+        //if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_DOWN))
+        //{
+        //    h += 1;
+        //}
 
-        if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_RIGHT))
-        {
-            w += 1;
-        }
+        //if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_RIGHT))
+        //{
+        //    w += 1;
+        //}
 
-        if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_LEFT))
-        {
-            w -= 1;
-        }
+        //if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_LEFT))
+        //{
+        //    w -= 1;
+        //}
 
-        if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_ESCAPE))
-        {
-            isOpen = false;
-        }
+        //if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_ESCAPE))
+        //{
+        //    isOpen = false;
+        //}
 
         renderer.SDLDrawBG(color);
 
