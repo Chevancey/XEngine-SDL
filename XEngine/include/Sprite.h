@@ -5,19 +5,19 @@
 
 class SDLRenderer;
 class SDLTexture;
+class Transform;
 
-class Sprite // Une portion d'une texture
+class Sprite
 {
 public:
-	Sprite(const std::shared_ptr<SDLTexture>& texture);
-	Sprite(const std::shared_ptr<SDLTexture>& texture, const SDL_Rect& rect, int frameIndex, int frameCount);
-	
+	Sprite(std::shared_ptr<const SDLTexture> texture);
+	Sprite(std::shared_ptr<const SDLTexture> texture, const SDL_Rect& rect);
+
 	Sprite(const Sprite&) = default;
 	Sprite(Sprite&&) = default;
-
 	~Sprite() = default;
 
-	void Draw(SDLRenderer& renderer, int x, int y);
+	void Draw(SDLRenderer& renderer, const Transform& transform);
 	void Resize(int w, int h);
 
 	int GetWidth() const;
@@ -27,19 +27,12 @@ public:
 	void Animate(float detlaTime);
 
 	Sprite& operator=(const Sprite&) = delete;
-	Sprite& operator=(Sprite&&) = delete;
-
-	//void SetRect(, int w, int h) const;
+	Sprite& operator=(Sprite&&) = default;
 
 private:
 
-	const std::shared_ptr<SDLTexture> m_texture;
-
+	std::shared_ptr<const SDLTexture> m_texture;
 	SDL_Rect m_rect;
 	int m_width;
 	int m_height;
-	float m_timer;
-	int m_frameIndex;
-	int m_frameCount;
-	//SDL_Rect m_size;
 };

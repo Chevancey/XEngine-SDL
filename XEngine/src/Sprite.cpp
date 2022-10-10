@@ -1,33 +1,62 @@
+#include <iostream>
+
 #include "Sprite.h"
 #include "SDLRenderer.h"
 #include "SDLTexture.h"
-#include "MemoryManager.h"
+#include "Vector2.h"
+#include "Transform.h"
 
-Sprite::Sprite(const std::shared_ptr<SDLTexture>& texture) :
-	Sprite(texture, texture->GetRect(), 0, 0)
+
+
+Sprite::Sprite(std::shared_ptr<const SDLTexture> texture) :
+	Sprite(std::move(texture), texture->GetRect())
 {
 }
 
-Sprite::Sprite(const std::shared_ptr<SDLTexture>& texture, const SDL_Rect& rect, int frameIndex, int frameCount) :
+Sprite::Sprite(std::shared_ptr<const SDLTexture> texture, const SDL_Rect& rect) :
 	m_texture(texture),
 	m_rect(rect),
 	m_width(rect.w),
-	m_height(rect.h),
-	m_frameCount(frameCount),
-	m_frameIndex(frameIndex)
+	m_height(rect.h)
 {
 
 }
 
-void Sprite::Draw(SDLRenderer& renderer, int x, int y)
+void Sprite::Draw(SDLRenderer& renderer, const Transform& transform)
 {
-	SDL_Rect dest;
-	dest.x = x;
-	dest.y = y;
-	dest.w = m_width;
-	dest.h = m_height;
+	SDL_Rect texRect = m_texture->GetRect();
 
-	renderer.RenderCopy(*m_texture, m_rect, dest);
+	Vector2f topLeftCorner = transform.TransformPoint(Vector2f(0.f, 0.f));
+	Vector2f topRightCorner = transform.TransformPoint(Vector2f(m_width, 0.f));
+	Vector2f bottomLeftCorner = transform.TransformPoint(Vector2f(0.f, m_height));
+	Vector2f bottomRightCorner = transform.TransformPoint(Vector2f(m_width, m_height));
+
+	float invWidth = 1.f / texRect.w;
+	float invHeight = 1.f / texRect.h;
+
+	SDL_Vertex vertices[4];
+	vertices[0].color = SDL_Color{ 255, 255, 255, 255 };
+	vertices[0].position = SDL_FPoint{ topLeftCorner.x, topLeftCorner.y };
+	vertices[0].tex_coord = SDL_FPoint{ m_rect.x * invWidth, m_rect.y * invHeight };
+
+	vertices[1].color = SDL_Color{ 255, 255, 255, 255 };
+	vertices[1].position = SDL_FPoint{ topRightCorner.x, topRightCorner.y };
+	vertices[1].tex_coord = SDL_FPoint{ (m_rect.x + m_rect.w) * invWidth, m_rect.y * invHeight };
+
+	vertices[2].color = SDL_Color{ 255, 255, 255, 255 };
+	vertices[2].position = SDL_FPoint{ bottomLeftCorner.x, bottomLeftCorner.y };
+	vertices[2].tex_coord = SDL_FPoint{ m_rect.x * invWidth, (m_rect.y + m_rect.h) * invHeight };
+
+	vertices[3].color = SDL_Color{ 255, 255, 255, 255 };
+	vertices[3].position = SDL_FPoint{ bottomRightCorner.x, bottomRightCorner.y };
+	vertices[3].tex_coord = SDL_FPoint{ (m_rect.x + m_rect.w) * invWidth, (m_rect.y + m_rect.h) * invHeight };
+
+	int indices[6] = { 0, 1, 2, 2, 1, 3 };
+
+	SDL_RenderGeometry(renderer.get(),
+		m_texture->get(),
+		vertices, 4,
+		indices, 6);
 }
 
 int Sprite::GetHeight() const
@@ -51,22 +80,22 @@ void Sprite::SetRect(SDL_Rect rect)
 	m_rect = rect;
 }
 
-void Sprite::Animate(float detlaTime)
-{
-	m_timer += detlaTime;
-
-	if (m_timer > 0.1f)
-	{
-		m_timer -= 0.1f;
-		m_frameIndex++;
-
-		if (m_frameIndex >= m_frameCount)
-		{
-			m_frameIndex = 0;
-		}
-
-		std::cout << m_width << std::endl;
-
-		m_rect = { m_frameIndex * 64, 0, m_rect.w, m_rect.h };
-	}
-}
+//void Sprite::Animate(float detlaTime)
+//{
+//	m_timer += detlaTime;
+//
+//	if (m_timer > 0.1f)
+//	{
+//		m_timer -= 0.1f;
+//		m_frameIndex++;
+//
+//		if (m_frameIndex >= m_frameCount)
+//		{
+//			m_frameIndex = 0;
+//		}
+//
+//		std::cout << m_width << std::endl;
+//
+//		m_rect = { m_frameIndex * 64, 0, m_rect.w, m_rect.h };
+//	}
+//}

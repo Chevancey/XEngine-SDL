@@ -21,16 +21,19 @@
     <ClCompile Include="..\..\XEngine\src\Matrix3x3.cpp">
       <Filter>XEngine\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\XEngine\src\MemoryManager.cpp">
+    <ClCompile Include="..\..\XEngine\src\Model.cpp">
+      <Filter>XEngine\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XEngine\src\ResourceManager.cpp">
+      <Filter>XEngine\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XEngine\src\SDLImgui.cpp">
       <Filter>XEngine\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\XEngine\src\Sprite.cpp">
       <Filter>XEngine\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\XEngine\src\Transform.cpp">
-      <Filter>XEngine\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\XEngine\src\Vector2.cpp">
       <Filter>XEngine\src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,7 +47,13 @@
     <ClInclude Include="..\..\XEngine\include\Matrix3x3.h">
       <Filter>XEngine\include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\XEngine\include\MemoryManager.h">
+    <ClInclude Include="..\..\XEngine\include\Model.h">
+      <Filter>XEngine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\XEngine\include\ResourceManager.h">
+      <Filter>XEngine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\XEngine\include\SDLImgui.h">
       <Filter>XEngine\include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\XEngine\include\Sprite.h">
@@ -54,6 +63,9 @@
       <Filter>XEngine\include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\XEngine\include\Vector2.h">
+      <Filter>XEngine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\XEngine\include\Vector2.inl">
       <Filter>XEngine\include</Filter>
     </ClInclude>
   </ItemGroup>

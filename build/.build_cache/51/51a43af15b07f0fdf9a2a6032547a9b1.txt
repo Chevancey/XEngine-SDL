@@ -1,0 +1,9 @@
+{
+    outdata = "__cpp_main.cpp.cpp\
+XEngine\\src\\main.cpp(32): warning C4100: 'argv': unreferenced formal parameter\
+XEngine\\src\\main.cpp(32): warning C4100: 'argc': unreferenced formal parameter\
+XEngine\\src\\main.cpp(72): warning C4189: 'y': local variable is initialized but not referenced\
+XEngine\\src\\main.cpp(71): warning C4189: 'x': local variable is initialized but not referenced\
+C:\\Users\\ychev\\Desktop\\Lesson Xmake\\XEngine\\XEngine\\src\\main.cpp(109) : warning C4700: uninitialized local variable 'scale' used\
+"
+}

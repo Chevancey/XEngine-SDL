@@ -2,45 +2,38 @@ set_allowedarchs("windows|x64")
 set_warnings("allextra")
 
 add_rules("mode.debug", "mode.release")
-add_requires("libsdl", "libsdl_ttf", "libsdl_image")
-	
+add_requires("libsdl", "libsdl_ttf", "libsdl_image", "nlohmann_json")
+add_requires("fmt")
+add_requires("entt")
+add_requires("imgui", {configs = {sdl2 = true}})
+
+set_languages("c++17")
+
+set_rundir("bin")
+set_targetdir("bin/$(plat)_$(arch)_$(mode)_$(kind)")
+
 target("XEngineLibrary")
 	set_kind("$(kind)")
-	add_packages("libsdl", "libsdl_ttf", "libsdl_image")
+	add_packages("libsdl", "libsdl_ttf", "libsdl_image", "fmt", "imgui", "entt", "nlohmann_json", {public = true})
 
 	if is_kind("shared") then
 		add_defines("LIB_COMPILING")
 		add_files("XEngineDynamicLibrary/lib_src/*.cpp")
-		add_headerfiles("XEngineDynamicLibrary/lib_include/*.h", "XEngineDynamicLibrary/lib_include/*.hpp")
-		add_includedirs("XEngineDynamicLibrary/lib_include", "XEngine/include")
+		add_headerfiles("XEngineDynamicLibrary/lib_include/*.h", "XEngineDynamicLibrary/lib_include/*.hpp","XEngineDynamicLibrary/lib_include/*.inl")
+		add_includedirs("XEngineDynamicLibrary/lib_include", "XEngine/include", {public = true})
 	
 	elseif is_kind("static") then
 		add_files("XEngineStaticLibrary/lib_src/*.cpp")
-		add_headerfiles("XEngineStaticLibrary/lib_include/*.h", "XEngineStaticLibrary/lib_include/*.hpp")
-		add_includedirs("XEngineStaticLibrary/lib_include", "XEngine/include")
+		add_headerfiles("XEngineStaticLibrary/lib_include/*.h", "XEngineStaticLibrary/lib_include/*.hpp", "XEngineStaticLibrary/lib_include/*.inl")
+		add_includedirs("XEngineStaticLibrary/lib_include", "XEngine/include", {public = true})
 	end
-	
-	set_rundir("bin")
-	set_targetdir("bin/$(plat)_$(arch)_$(mode)_$(kind)")
 	
 target("XEngine")
 	add_deps("XEngineLibrary")
-	
-	if is_kind("shared") then
-		add_includedirs("XEngineDynamicLibrary/lib_include", "XEngine/include")
-	elseif is_kind("static") then
-		add_includedirs("XEngineStaticLibrary/lib_include", "XEngine/include")
-	else
-		add_includedirs("XEngine/include")
-	end
-
-    set_kind("binary")
+	set_kind("binary")
+	set_kind("binary")
     add_files("XEngine/src/*.cpp")
-    add_headerfiles("XEngine/include/*.h", "XEngine/include/*.hpp")
-    add_packages("libsdl", "libsdl_ttf", "libsdl_image")
-	
-    set_rundir("bin")
-    set_targetdir("bin/$(plat)_$(arch)_$(mode)_$(kind)")
+    add_headerfiles("XEngine/include/*.h", "XEngine/include/*.hpp","XEngine/include/*.inl")
 	
 
 

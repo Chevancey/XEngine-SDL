@@ -1,0 +1,5 @@
+{
+    outdata = "__cpp_MemoryManager.cpp.cpp\
+XEngine\\src\\MemoryManager.cpp(56): warning C4996: 'std::shared_ptr<SDLTexture>::unique': warning STL4016: std::shared_ptr::unique() is deprecated in C++17. You can define _SILENCE_CXX17_SHARED_PTR_UNIQUE_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning.\
+"
+}

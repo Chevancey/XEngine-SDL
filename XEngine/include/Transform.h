@@ -1,63 +1,48 @@
 #pragma once
-#include <iostream>
-//#include <numbers>
-#include "Vector2.h"
-#include "DegRad.h"
 
-template<typename T>
-class TransformSpecific
+#include <Vector2.h>
+#include <vector>
+
+class Transform
 {
 public:
+	Transform();
+	Transform(const Transform& transform);
+	Transform(Transform&&) noexcept;
+	~Transform();
 
-	TransformSpecific()
-	{
-	}
+	Vector2f GetGlobalPosition() const;
+	float GetGlobalRotation() const;
+	Vector2f GetGlobalScale() const;
 
-	~TransformSpecific()
-	{
-	}
+	Transform* GetParent() const;
+	const Vector2f& GetPosition() const;
+	float GetRotation() const;
+	const Vector2f& GetScale() const;
 
-	void SetPosition(const Vector2<T>& vector)
-	{
-		m_position = vector;
-		std::cout << m_position.x << " | " << m_position.y << std::endl;
-	}
-	
-	void SetRotation(float r)
-	{
-		m_rotation = Deg2Rad(r);
-		float sinAngle = sin(m_rotation);
-		float cosAngle = cos(m_rotation);
+	void Rotate(float rotation);
+	void Scale(float scale);
+	void Scale(const Vector2f& scale);
 
-		float tmpX = (cosAngle * m_position.x - sinAngle * m_position.y);
-		float tmpY = (sinAngle * m_position.x + cosAngle * m_position.y);
+	void SetParent(Transform* parent);
+	void SetPosition(const Vector2f& position);
+	void SetRotation(float rotation);
+	void SetScale(const Vector2f& scale);
 
-		m_position.x = tmpX;
-		m_position.y = tmpY;
-		std::cout << m_position.x << " | " << m_position.y << std::endl;
-	}
+	void Translate(const Vector2f& translation);
 
-	void SetScale(const Vector2<T>& vector)
-	{
-		m_scale = vector;
-		m_position.x *= m_scale.x;
+	Vector2f TransformPoint(Vector2f position) const;
 
-		m_position.y *= m_scale.y;
-		std::cout << m_position.x << " | " << m_position.y << std::endl;
-	}
-
-	void TransformPoint(Vector2<T>& vector)
-	{
-		vector.x = m_position.x;
-		vector.y = m_position.y;
-
-		std::cout << vector.x << " | " << vector.y << std::endl;
-	}
+	Transform& operator=(const Transform&);
+	Transform& operator=(Transform&&) noexcept;
 
 private:
-	Vector2<T> m_position;
-	float m_rotation;
-	Vector2<T> m_scale;
-};
+	void AttachChild(Transform* child);
+	void DetachChild(Transform* child);
 
-typedef TransformSpecific<float> Transform;
+	std::vector<Transform*> m_children;
+	Transform* m_parent;
+	Vector2f m_position;
+	float m_rotation;
+	Vector2f m_scale;
+};

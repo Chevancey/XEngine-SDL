@@ -15,13 +15,19 @@
 #include "SDLUtility.h"
 #include "SDLTime.h"
 #include "Sprite.h"
-#include "MemoryManager.h"
+#include "ResourceManager.h"
 #include "Vector2.h"
 #include "Matrix3x3.h"
 #include "Transform.h"
 #include "InputManager.h"
 
+#include  <imgui.h>
+#include  <imgui_impl_sdl.h>
+#include  <imgui_impl_sdlrenderer.h>
+#include  <entt/entt.hpp>
+
 void Animation(Sprite* sprite, int animationIndex, float timer, int frameIndex, int frameCount);
+
 
 //Lesson 1
 int main(int argc, char** argv)
@@ -29,9 +35,6 @@ int main(int argc, char** argv)
     SDLpp sdl;
     SDLUtility sdlutility;
     SDLTime Time;
-
-
-    //int a[3] = { 1,2,3 };
 
     if (TTF_Init() < 0)
     {
@@ -41,22 +44,29 @@ int main(int argc, char** argv)
     SDLWindow window("XEngine", 1200, 720);
 
     SDLRenderer renderer(window);
+    ResourceManager resourceManager(renderer);
 
-    auto backgroundtText = MemoryManager::GetInstance()->getTexture(renderer, "assets/Background.png");
-    //auto backgroundtText2 = MemoryManagement::GetInstance()->getTexture(renderer, "assets/Background.png");
-    //auto backgroundtText3 = MemoryManagement::GetInstance()->getTexture(renderer, "assets/Background.png");
+    // Setup imgui
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO();
+
+    ImGui::StyleColorsDark();
+
+    ImGui_ImplSDL2_InitForSDLRenderer(window.get(), renderer.get());
+    ImGui_ImplSDLRenderer_Init(renderer.get());
+
+    auto backgroundtText = ResourceManager::Instance().GetTexture("assets/Background.png");
     
-    auto spriteTexture = MemoryManager::GetInstance()->getTexture(renderer, "assets/Runner.png");
-    auto spriteTexture2 = MemoryManager::GetInstance()->getTexture(renderer, "assets/kirby.png");
-    //auto spriteTexture3 = MemoryManager::GetInstance()->getTexture(renderer, "assets/knight shovel.png");
+    auto spriteTexture = ResourceManager::Instance().GetTexture("assets/Runner.png");
+    auto spriteTexture2 = ResourceManager::Instance().GetTexture("assets/kirby.png");
 
     Sprite background(backgroundtText);
-    Sprite sprite(spriteTexture, { 0, 0, 32, 32 }, 5, 0);
-    Sprite sprite1(spriteTexture, { 0, 0, 32, 32 }, 5, 0);
-    Sprite sprite2(spriteTexture, { 0, 0, 32, 32 }, 5, 0);
-    //Sprite sprite3(spriteTexture, { 0, 0, 32, 32 }, 5, 0);
-    
-    //Matrix3x3i(3,3);
+    Sprite sprite(spriteTexture, { 0, 0, 32, 32 });
+
+    Transform transform;
+    Transform spriteTransform;
+    InputManager inputManager;
     
     sprite.Resize(704, 64);
     sprite.SetRect(SDL_Rect{ 0, 0, 64, 64 });
@@ -75,72 +85,35 @@ int main(int argc, char** argv)
     int frameIndex = 0;
     float timer = 0;
 
-    //translation test:
-    
-    //Transform transform;
-
-    //transform.SetPosition(Vector2(1, 0));
-    //transform.SetRotation(1.5708);
-
-    //Vector2f(20.0, 10.20) + Vector2f(22, 10.40);
-    //Vector2f(20.0, 10.20) += Vector2f(22, 10);
-    //Vector2f(20.0, 10.20) - Vector2f(22, 10.40);
-    //Vector2f(20.0, 10.20) -= Vector2f(22, 10.40);
-    //Vector2f(20.0, 10.20) * 2;
-    //Vector2f(20.0, 10.20) *= 2;
-    //Vector2f(20.0, 10.20) / 2;
-    //Vector2f(20.0, 10.20) /= 2;
-    //Vector2f(20.0, 10.20) == Vector2f(20.0, 10.20);
-    //Vector2f(20.0, 10.20) == Vector2f(22, 10.40);
-    //Vector2f(20.0, 10.20) != Vector2f(22, 10.40);
-    //Vector2f(20.0, 10.20) != Vector2f(20.0, 10.20);
-
-    //Matrix3x3f();
-
-    
-
-    //InputManager::GetInstance()->BindMouseButtonPressed(SDLK_w, "attack");
-    InputManager::GetInstance()->BindKeyPressed(
-        SDLK_h, "attack");
-
-    Transform transform;
-
-    transform.SetPosition(Vector2f(1, 0));
-    transform.SetRotation(180);
-    transform.SetScale(Vector2f(2,2));
-    transform.TransformPoint(Vector2f(22.1, 10.1));
-
-   // Transform translate;
-    //translate.SetPosition(Vector2f(1,0));
-    //translate.SetRotation(1.5708);
+    InputManager::Instance().BindKeyPressed(
+        SDLK_d, "MoveRight");
 
     bool isOpen = true;
     while(isOpen)
     {
-
-        SDL_Event sdlevent;
         Time.CountDeltaTime();
         timer += Time.getDeltaTime();
+        SDL_Event event;
 
-        while (SDLpp::PollEvent(&sdlevent)) {
-            if (sdlevent.type == SDL_QUIT)
-            {
-                MemoryManager::GetInstance()->Purge();
+        while (SDLpp::PollEvent(&event))
+        {
+            if (event.type == SDL_QUIT)
                 isOpen = false;
-            }
 
-            if (sdlevent.type == SDL_MOUSEBUTTONDOWN)
-                InputManager::GetInstance()->MousePress(sdlevent);
+            ImGui_ImplSDL2_ProcessEvent(&event);
 
-            if (sdlevent.type == SDL_KEYDOWN)
-                InputManager::GetInstance()->KeyPress(sdlevent);
+            InputManager::Instance().HandleEvent(event);
         }
 
-        InputManager::GetInstance()->OnAction("attack", [&]()
-            {
-                std::cout << "Hello" << std::endl;
-            }
-        );
+        float scale;
+        
+        if (InputManager::Instance().IsActive("MoveRight"))
+        {
+            scale += 0.1f * Time.getDeltaTime();
+            spriteTransform.SetScale(Vector2f(scale, scale));
+            //transformParent.Translate(Vector2f(500.f * deltaTime, 0.f));
+            //transformParent.Rotate(30.f * deltaTime);
+        }
 
         if (timer > 0.1f)
         {
@@ -157,65 +130,29 @@ int main(int argc, char** argv)
             sprite.SetRect({ frameIndex * 32, 0, 32, 32 });
         }
 
-        //SDLEvent::GetInstance()->Listen();
-
-        //if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_A))
-        //{
-        //    x -= 1000 * Time.getDeltaTime();
-        //}
-
-        //if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_D))
-        //{
-        //    x += 1000 * Time.getDeltaTime();
-        //}
-
-        //if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_S))
-        //{
-        //    y += 1000 * Time.getDeltaTime();
-        //}
-
-        //if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_W))
-        //{
-        //    y -= 1000 * Time.getDeltaTime();
-        //}
-
-        //if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_UP))
-        //{
-        //    h -= 1;
-        //}
-
-        //if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_DOWN))
-        //{
-        //    h += 1;
-        //}
-
-        //if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_RIGHT))
-        //{
-        //    w += 1;
-        //}
-
-        //if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_LEFT))
-        //{
-        //    w -= 1;
-        //}
-
-        //if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_ESCAPE))
-        //{
-        //    isOpen = false;
-        //}
+        ImGui_ImplSDLRenderer_NewFrame();
+        ImGui_ImplSDL2_NewFrame();
+        ImGui::NewFrame();
 
         renderer.SDLDrawBG(color);
         renderer.Clear();
-        background.Draw(renderer, 0, 0);
+        background.Draw(renderer, spriteTransform);
 
         background.Resize(window.GetWindowSizeX(), window.GetWindowSizeY());
-        sprite.Draw(renderer, x, y);
-        //sprite.Animate(Time.getDeltaTime());
+        sprite.Draw(renderer, transform);
+
+            ImGui::Render();
+            ImGui_ImplSDLRenderer_RenderDrawData(ImGui::GetDrawData());
+
         sprite.Resize(w, h);
 
         renderer.Present();
     }
-    //rm.Purge();
+
+    ImGui_ImplSDLRenderer_Shutdown();
+    ImGui_ImplSDL2_Shutdown();
+    ImGui::DestroyContext();
+
     return 0;
 }
 
@@ -236,236 +173,3 @@ void Animation(Sprite* sprite, int animationIndex, float timer, int frameIndex, 
         sprite->SetRect({ frameIndex * 32, 32 * animationIndex, 32, 32 });
     }
 }
-
-//main
-
-
-//SDLTexture cat1 = SDLTexture::LoadFromFile(renderer, "assets/Cat/1.png");
-//SDLTexture cat2 = SDLTexture::LoadFromFile(renderer, "assets/Cat/2.png");
-//SDLTexture cat3 = SDLTexture::LoadFromFile(renderer, "assets/Cat/3.png");
-//SDLTexture cat4 = SDLTexture::LoadFromFile(renderer, "assets/Cat/4.png");
-//SDLTexture cat5 = SDLTexture::LoadFromFile(renderer, "assets/Cat/5.png");
-//SDLTexture cat6 = SDLTexture::LoadFromFile(renderer, "assets/Cat/6.png");
-//SDLTexture cat7 = SDLTexture::LoadFromFile(renderer, "assets/Cat/7.png");
-//SDLTexture cat8 = SDLTexture::LoadFromFile(renderer, "assets/Cat/8.png");
-
-//Sprite spriteCat1(cat1);
-//Sprite spriteCat2(cat2);
-//Sprite spriteCat3(cat3);
-//Sprite spriteCat4(cat4);
-//Sprite spriteCat5(cat5);
-//Sprite spriteCat6(cat6);
-//Sprite spriteCat7(cat7);
-//Sprite spriteCat8(cat8);
-
-//float b = 0;
-
-// While loop
-
-
-//switch ((int)b)
-//{
-//case(0):
-//    spriteCat1.Draw(renderer, x, y);
-//    break;
-//case(1):
-//    spriteCat2.Draw(renderer, x, y);
-//    break;
-//case(2):
-//    spriteCat3.Draw(renderer, x, y);
-//    break;
-//case(3):
-//    spriteCat4.Draw(renderer, x, y);
-//    break;
-//case(4):
-//    spriteCat5.Draw(renderer, x, y);
-//    break;
-//case(5):
-//    spriteCat6.Draw(renderer, x, y);
-//    break;
-//case(6):
-//    spriteCat7.Draw(renderer, x, y);
-//    break;
-//case(7):
-//    spriteCat6.Draw(renderer, x, y);
-//    break;
-//case(8):
-//    spriteCat5.Draw(renderer, x, y);
-//    break;
-//case(9):
-//    spriteCat4.Draw(renderer, x, y);
-//    break;
-//case(10):
-//    spriteCat3.Draw(renderer, x, y);
-//    break;
-//case(11):
-//    spriteCat2.Draw(renderer, x, y);
-//    break;
-//case(12):
-//    spriteCat1.Draw(renderer, x, y);
-//    break;
-//default:
-//    b = 0;
-//    break;
-//}
-//b += 0.01;
-
-
-
-
-
-
-
-
-
-// Lesson 2 pointers and refferences
-
-//simple example
-
-//int main(int argc, char** argv)
-//{
-//    {
-//    int a = 42;
-//    int& b = a;
-//    int c = 0;
-//
-//    b = c;
-//
-//    std::cout << a << std::endl;
-//
-//    }
-//    
-//    {
-//
-//    int a = 42;
-//    int* b = &a;
-//    int c = 0;
-//
-//    *b = c;
-//    b = &c;
-//
-//    std::cout << a << std::endl;
-//    }
-//
-//    return 0;
-//}
-
-
-//struct Caracteristiques
-//{
-//    int healthMax;
-//};
-//
-//class FichePersonnage
-//{
-//public:
-//    FichePersonnage(const std::string& name, const Caracteristiques& carac) :
-//        m_caracteristiques(carac),
-//        m_name(name)
-//    {
-//        std::cout << "Constructeur FichePersonnage" << std::endl;
-//    }
-//
-//    const Caracteristiques& GetCaracteristiques() const
-//    {
-//        return m_caracteristiques;
-//    }
-//
-//    const std::string& GetName() const
-//    {
-//        return m_name;
-//    }
-//    void SetName(std::string& name)
-//    {
-//        this->m_name = name;
-//    }
-//
-//private:
-//    const Caracteristiques& m_caracteristiques;
-//    std::string m_name;
-//};
-//
-//int main()
-//{
-//    Caracteristiques carac;
-//    carac.healthMax = 100;
-//
-//    FichePersonnage personnage("SirLynix", carac);
-//    std::cout << personnage.GetCaracteristiques().healthMax << std::endl;
-//
-//    carac.healthMax = 200;
-//
-//    std::cout << personnage.GetCaracteristiques().healthMax << std::endl;
-//
-//    std::cout << personnage.GetCaracteristiques().healthMax << std::endl;
-//
-//    return 0;
-//}
-
-//int main(int argc, char** argv)
-//{
-//    SDLpp sdl;
-//
-//    const int FPS = 60;
-//    const int frameDelay = 1000 / FPS;
-//    float frameTime;
-//    Uint32 startTime;
-//
-//
-//    if (TTF_Init() < 0)
-//    {
-//        std::cout << "Error: " << TTF_GetError() << std::endl;
-//    }
-//
-//    SDLWindow appWindow("XEngine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1200, 720, false);
-//    SDLRenderer appRenderer(appWindow);
-//    bool isOpen = true;
-//
-//    SDL_Surface* screen = NULL;
-//    TTF_Font* font = TTF_OpenFont("NITEMARE.TTF", 20);
-//    SDL_Color color = { 0, 255, 0 , 255 };
-//    SDL_Surface* message = TTF_RenderText_Solid(font, "XEngine", color);
-//    SDL_Texture* text = SDL_CreateTextureFromSurface(appRenderer.get(), message);
-//
-//    SDL_Rect textRect;
-//    textRect.x = textRect.y = 0;
-//
-//    SDL_QueryTexture(text, NULL, NULL, &textRect.w, &textRect.h);
-//
-//    SDL_FreeSurface(message);
-//    message = nullptr;
-//
-//    appRenderer.SDLDrawBG(127, 0, 127, 255);
-//
-//    while (isOpen)
-//    {
-//        //frameTime = (double)(frameTime - startTime);
-//        startTime = SDL_GetTicks();
-//
-//        std::cout << frameTime << std::endl;
-//        SDLEvent::GetInstance()->Listen();
-//
-//        if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_A))
-//        {
-//            std::cout << "hello" << std::endl;
-//        }
-//
-//        if (SDLEvent::GetInstance()->GetKeyDown(SDL_SCANCODE_ESCAPE))
-//        {
-//            isOpen = false;
-//        }
-//
-//        appRenderer.Clear();
-//
-//        SDL_RenderCopy(appRenderer.get(), text, NULL, &textRect);
-//
-//        appRenderer.Present();
-//        frameTime = SDL_GetTicks() - startTime;
-//    }
-//    text = nullptr;
-//    SDL_DestroyTexture(text);
-//    TTF_CloseFont;
-//    TTF_Quit;
-//
-//    return 0;
-//}
