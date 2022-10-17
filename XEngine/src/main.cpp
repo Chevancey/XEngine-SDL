@@ -6,6 +6,7 @@
 #include <list>
 #include <map>
 #include <vector>
+#include <fstream>
 
 #include "SDLpp.h"
 #include "SDLWindow.h"
@@ -20,18 +21,77 @@
 #include "Matrix3x3.h"
 #include "Transform.h"
 #include "InputManager.h"
+#include "Model.h"
 
 #include  <imgui.h>
 #include  <imgui_impl_sdl.h>
 #include  <imgui_impl_sdlrenderer.h>
 #include  <entt/entt.hpp>
-
+#include  <chipmunk/chipmunk.h>
 void Animation(Sprite* sprite, int animationIndex, float timer, int frameIndex, int frameCount);
 
+struct Position 
+{
+    Vector2f pos;
+};
+
+struct Velocity
+{
+    Vector2f vel;
+};
 
 //Lesson 1
 int main(int argc, char** argv)
 {
+    // ENTT
+    //entt::registry registry;
+    //entt::entity entity = registry.create();
+    //
+    //Position& entityPos = registry.emplace<Position>(entity);
+    //entityPos.pos = Vector2f(0.f, 0.f);
+
+    //Velocity& entityVel = registry.emplace<Velocity>(entity);
+    //entityVel.vel = Vector2f(1.f, 0.f);
+
+    ////system
+    //for (int i = 0; i < 100; ++i)
+    //{
+    //    auto view = registry.view<Position, Velocity>();
+    //    for (entt::entity e : view)
+    //    {
+    //        auto& pos = view.get<Position>(e);
+    //        auto& vel = view.get<Velocity>(e);
+
+    //        pos.pos += vel.vel;
+
+    //        std::cout << pos.pos << std::endl;
+    //    }
+    //}
+
+    //return 0;
+
+    //PHYSICS
+    // 
+    //cpSpace* space = cpSpaceNew();
+    //cpSpaceSetGravity(space, cpVect{ 0.f, 981.f });
+    //cpSpaceSetDamping(space, 0.6f);
+
+    //cpBody* body = cpBodyNew(1.f, 1.f);
+    //cpSpaceAddBody(space, body);
+
+    //for (int i = 0; i < 100; i++)
+    //{
+    //    cpSpaceStep(space, 1.f);
+
+    //    cpVect position = cpBodyGetPosition(body);
+    //    std::cout << position.x << ", " << position.y << std::endl;
+    //}
+
+    //cpSpaceRemoveBody(space, body);
+    //cpBodyFree(body);
+    //cpSpaceFree(space);
+
+
     SDLpp sdl;
     SDLUtility sdlutility;
     SDLTime Time;
@@ -67,7 +127,15 @@ int main(int argc, char** argv)
     Transform transform;
     Transform spriteTransform;
     InputManager inputManager;
-    
+    Model model("assets/example.model");
+    model.SaveModel();
+
+    //std::ifstream f("assets/example.json");
+    //if (!f.is_open())
+    //{
+    //    std::cout << "This doesnt exist";
+    //}
+
     sprite.Resize(704, 64);
     sprite.SetRect(SDL_Rect{ 0, 0, 64, 64 });
 
@@ -140,12 +208,12 @@ int main(int argc, char** argv)
 
         background.Resize(window.GetWindowSizeX(), window.GetWindowSizeY());
         sprite.Draw(renderer, transform);
-
+        model.Draw(renderer);
             ImGui::Render();
             ImGui_ImplSDLRenderer_RenderDrawData(ImGui::GetDrawData());
 
         sprite.Resize(w, h);
-
+        
         renderer.Present();
     }
 

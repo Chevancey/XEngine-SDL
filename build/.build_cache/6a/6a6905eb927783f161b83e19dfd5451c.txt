@@ -1,0 +1,7 @@
+{
+    outdata = "__cpp_Model.cpp.cpp\
+XEngine\\include\\ResourceManager.h(8): warning C4099: 'SDL_Surface': type name first seen using 'struct' now seen using 'class'\
+C:\\Users\\ychev\\AppData\\Local\\.xmake\\packages\\l\\libsdl\\2.24.0\\72cef56b1aef4c0dbc0fb4007bb4eb11\\include\\SDL2\\SDL_surface.h(72): note: see declaration of 'SDL_Surface'\
+XEngine\\src\\Model.cpp(65): warning C4100: 'renderer': unreferenced formal parameter\
+"
+}

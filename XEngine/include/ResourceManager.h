@@ -28,7 +28,7 @@ public:
 
 private:
 	std::shared_ptr<SDLTexture> m_missingTexture;
-	std::unordered_map<std::string /*texturePath*/, std::shared_ptr<SDLTexture>> m_textureMap;
+	std::unordered_map<std::string, std::shared_ptr<SDLTexture>> m_textureMap;
 	SDLRenderer& m_renderer;
 
 	SDL_Surface* CreateSurface();

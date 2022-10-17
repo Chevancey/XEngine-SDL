@@ -39,7 +39,6 @@ const std::shared_ptr<SDLTexture>& ResourceManager::GetTexture(const std::string
 		if (!m_missingTexture)
 		{
 			m_missingTexture = std::make_shared<SDLTexture>(SDLTexture::LoadSurface(m_renderer, CreateSurface()));
-
 		}
 		m_textureMap.emplace(filePath, m_missingTexture);
 		return m_missingTexture;

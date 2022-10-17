@@ -1,0 +1,6 @@
+{
+    outdata = "__cpp_SDLTexture.cpp.cpp\
+XEngineDynamicLibrary\\lib_src\\SDLTexture.cpp(42): warning C4239: nonstandard extension used: 'argument': conversion from 'SDLSurface' to 'SDLSurface &'\
+XEngineDynamicLibrary\\lib_src\\SDLTexture.cpp(42): note: A non-const reference may only be bound to an lvalue\
+"
+}

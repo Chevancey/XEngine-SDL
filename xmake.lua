@@ -2,7 +2,7 @@ set_allowedarchs("windows|x64")
 set_warnings("allextra")
 
 add_rules("mode.debug", "mode.release")
-add_requires("libsdl", "libsdl_ttf", "libsdl_image", "nlohmann_json")
+add_requires("chipmunk2d","libsdl", "libsdl_ttf", "libsdl_image", "nlohmann_json")
 add_requires("fmt")
 add_requires("entt")
 add_requires("imgui", {configs = {sdl2 = true}})
@@ -14,7 +14,7 @@ set_targetdir("bin/$(plat)_$(arch)_$(mode)_$(kind)")
 
 target("XEngineLibrary")
 	set_kind("$(kind)")
-	add_packages("libsdl", "libsdl_ttf", "libsdl_image", "fmt", "imgui", "entt", "nlohmann_json", {public = true})
+	add_packages("libsdl", "libsdl_ttf", "libsdl_image", "fmt", "imgui", "entt", "nlohmann_json","chipmunk2d", {public = true})
 
 	if is_kind("shared") then
 		add_defines("LIB_COMPILING")

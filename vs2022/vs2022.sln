@@ -1,5 +1,5 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2019
+# Visual Studio 2022
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XEngine", "XEngine\XEngine.vcxproj", "{FB4684B3-0D09-4C6E-947D-FBA1748172B1}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C8F354A8-209F-4C6F-9268-BFE524B1E22F} = {C8F354A8-209F-4C6F-9268-BFE524B1E22F}
