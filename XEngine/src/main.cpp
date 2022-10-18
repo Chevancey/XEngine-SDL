@@ -22,6 +22,7 @@
 #include "Transform.h"
 #include "InputManager.h"
 #include "Model.h"
+#include "ECS.h"
 
 #include  <imgui.h>
 #include  <imgui_impl_sdl.h>
@@ -30,73 +31,18 @@
 #include  <chipmunk/chipmunk.h>
 void Animation(Sprite* sprite, int animationIndex, float timer, int frameIndex, int frameCount);
 
-struct Position 
-{
-    Vector2f pos;
-};
-
-struct VelocityComponent
-{
-    Vector2f vel;
-};
-
-struct SpriteRenderer
-{
-    Sprite* sprite;
-};
-
-void RendererStystem(entt::registry& registry, SDLRenderer& renderer) 
-{
-    auto view = registry.view<SpriteRenderer, Transform>();
-    for (entt::entity e : view)
-    {
-        auto& sprite = view.get<SpriteRenderer>(e);
-        auto& transform = view.get<Transform>(e);
-
-        sprite.sprite->Draw(renderer, transform);
-    }
-}
-
-void VelocitySystem(entt::registry& registry, int TimePassed)
-{
-    float factor = std::exp(-TimePassed);
-
-    auto view = registry.view<Transform, VelocityComponent>();
-    for (entt::entity e : view)
-    {
-        auto& position = view.get<Transform>(e);
-        auto& velocity = view.get<VelocityComponent>(e);
-        position.Translate(position.GetGlobalPosition() + velocity.vel * TimePassed);
-        velocity.vel *= factor;
-        std::cout << position.GetGlobalPosition().x << ", " << position.GetGlobalPosition().y << std::endl;
-    }
-}
-
-//void VelocityStystem(entt::registry& registry, int TimePassed)
-//{
-//    float factor = std::exp(-TimePassed);
-//
-//    auto view = registry.view<Transform, VelocityComponent>();
-//    for (entt::entity e : view)
-//    {
-//        auto& enitityPos = view.get<Transform>(e);
-//        auto& enitityVel = view.get<VelocityComponent>(e);
-//        enitityPos.Translate(GetGlobalPosition()) += enitityVel.vel * TimePassed;
-//        enitityVel.vel *= factor;
-//    }
-//}
-
-//Lesson 1
 int main(int argc, char** argv)
 {
     //ENTT
+    Scene scene;
+
     entt::registry registry;
     entt::entity entity = registry.create();
 
     SpriteRenderer& entitySprite = registry.emplace<SpriteRenderer>(entity);
     Transform& entityTransform = registry.emplace<Transform>(entity);
     VelocityComponent& entityVelocity = registry.emplace<VelocityComponent>(entity);
-    entityVelocity.vel = Vector2f(1.f,0.f);
+    entityVelocity.vel = Vector2f(100.0f, 0.f);
 
     SDLpp sdl;
     SDLUtility sdlutility;
@@ -157,6 +103,7 @@ int main(int argc, char** argv)
     int frameCount = 5;
     int frameIndex = 0;
     float timer = 0;
+    float timerSinceOpen = 0;
 
     InputManager::Instance().BindKeyPressed(
         SDLK_d, "MoveRight");
@@ -169,16 +116,18 @@ int main(int argc, char** argv)
 
     entitySprite.sprite = &sprite;
 
-    //float Xpos;
-    //float Ypos;
+    float Xpos;
+    float Ypos;
 
     bool isOpen = true;
     while(isOpen)
     {
-        entityTransform = transform;
-        //entityPosition.pos = transform;
         Time.CountDeltaTime();
         timer += Time.getDeltaTime();
+        timerSinceOpen += Time.getDeltaTime();
+
+        entityTransform = transform;
+
         SDL_Event event;
 
         while (SDLpp::PollEvent(&event))
@@ -192,28 +141,28 @@ int main(int argc, char** argv)
         }
 
         
-        //if (InputManager::Instance().IsActive("MoveRight"))
-        //{
-        //    Xpos += 500.f * Time.getDeltaTime();
-        //    transform.SetPosition(Vector2f(Xpos, Ypos));
-        //}
-        //if (InputManager::Instance().IsActive("MoveDown"))
-        //{
-        //    Ypos += 500.f * Time.getDeltaTime();
-        //    transform.SetPosition(Vector2f(Xpos, Ypos));
-        //}
-        //if (InputManager::Instance().IsActive("MoveLeft"))
-        //{
-        //    Xpos -= 500.f * Time.getDeltaTime();
-        //    transform.SetPosition(Vector2f(Xpos, Ypos));
-        //}
-        //if (InputManager::Instance().IsActive("MoveUp"))
-        //{
-        //    Ypos -= 500.f * Time.getDeltaTime();
-        //    transform.SetPosition(Vector2f(Xpos, Ypos));
-        //}
-
-        VelocitySystem(registry, timer);
+        if (InputManager::Instance().IsActive("MoveRight"))
+        {
+            Xpos += 500.f * Time.getDeltaTime();
+            transform.SetPosition(Vector2f(Xpos, Ypos));
+        }
+        if (InputManager::Instance().IsActive("MoveDown"))
+        {
+            Ypos += 500.f * Time.getDeltaTime();
+            transform.SetPosition(Vector2f(Xpos, Ypos));
+        }
+        if (InputManager::Instance().IsActive("MoveLeft"))
+        {
+            Xpos -= 500.f * Time.getDeltaTime();
+            transform.SetPosition(Vector2f(Xpos, Ypos));
+        }
+        if (InputManager::Instance().IsActive("MoveUp"))
+        {
+            Ypos -= 500.f * Time.getDeltaTime();
+            transform.SetPosition(Vector2f(Xpos, Ypos));
+        }
+        //std::cout << timerSinceOpen << std::endl;
+        scene.VelocitySystem(registry, timerSinceOpen);
 
         if (timer > 0.1f)
         {
@@ -236,15 +185,17 @@ int main(int argc, char** argv)
 
         renderer.SDLDrawBG(color);
         renderer.Clear();
-        background.Draw(renderer, spriteTransform);
 
+        background.Draw(renderer, spriteTransform);
         background.Resize(window.GetWindowSizeX(), window.GetWindowSizeY());
-        RendererStystem(registry, renderer);
+
+        scene.RendererStystem(registry, renderer);
 
         model.Draw(renderer);
         model2.Draw(renderer);
-            ImGui::Render();
-            ImGui_ImplSDLRenderer_RenderDrawData(ImGui::GetDrawData());
+
+        ImGui::Render();
+        ImGui_ImplSDLRenderer_RenderDrawData(ImGui::GetDrawData());
 
         sprite.Resize(w, h);
         
