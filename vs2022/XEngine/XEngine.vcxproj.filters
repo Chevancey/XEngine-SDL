@@ -12,6 +12,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\XEngine\src\ECS.cpp">
+      <Filter>XEngine\src</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\XEngine\src\InputManager.cpp">
       <Filter>XEngine\src</Filter>
     </ClCompile>
@@ -39,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\XEngine\include\DegRad.h">
+      <Filter>XEngine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\XEngine\include\ECS.h">
       <Filter>XEngine\include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\XEngine\include\InputManager.h">

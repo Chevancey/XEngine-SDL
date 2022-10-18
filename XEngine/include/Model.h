@@ -32,8 +32,17 @@ public:
 	Model& operator=(const Model&) = delete;
 	Model& operator=(Model&&) = default;
 
+	void SetModel(const std::string& filePath);
+	void SetTexture(const std::string& filePath);
+	void SetIndices(std::vector<int> indices);
+
+	void SetColor(int index, Uint8 r, Uint8 g, Uint8 b, Uint8 a);
+	void SetPostion(int index, float x, float y);
+	void SetUV(int index, float x, float y);
+
+
+
 private:
-	int fileIndex;
 
 	std::shared_ptr<const SDLTexture> m_texture;
 	std::vector<int> m_indices;

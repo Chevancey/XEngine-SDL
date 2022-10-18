@@ -118,25 +118,28 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\XEngine\src\InputManager.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\XEngine\src\ResourceManager.cpp">
-    </ClCompile>
     <ClCompile Include="..\..\XEngine\src\SDLImgui.cpp">
     </ClCompile>
-    <ClCompile Include="..\..\XEngine\src\main.cpp">
+    <ClCompile Include="..\..\XEngine\src\ECS.cpp">
     </ClCompile>
     <ClCompile Include="..\..\XEngine\src\Transform.cpp">
     </ClCompile>
-    <ClCompile Include="..\..\XEngine\src\Model.cpp">
-    </ClCompile>
     <ClCompile Include="..\..\XEngine\src\Sprite.cpp">
     </ClCompile>
+    <ClCompile Include="..\..\XEngine\src\Model.cpp">
+    </ClCompile>
     <ClCompile Include="..\..\XEngine\src\Matrix3x3.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\XEngine\src\InputManager.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\XEngine\src\main.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\XEngine\src\ResourceManager.cpp">
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\XEngine\include\DegRad.h" />
+    <ClInclude Include="..\..\XEngine\include\ECS.h" />
     <ClInclude Include="..\..\XEngine\include\InputManager.h" />
     <ClInclude Include="..\..\XEngine\include\Matrix3x3.h" />
     <ClInclude Include="..\..\XEngine\include\Model.h" />

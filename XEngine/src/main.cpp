@@ -35,62 +35,68 @@ struct Position
     Vector2f pos;
 };
 
-struct Velocity
+struct VelocityComponent
 {
     Vector2f vel;
 };
 
+struct SpriteRenderer
+{
+    Sprite* sprite;
+};
+
+void RendererStystem(entt::registry& registry, SDLRenderer& renderer) 
+{
+    auto view = registry.view<SpriteRenderer, Transform>();
+    for (entt::entity e : view)
+    {
+        auto& sprite = view.get<SpriteRenderer>(e);
+        auto& transform = view.get<Transform>(e);
+
+        sprite.sprite->Draw(renderer, transform);
+    }
+}
+
+void VelocitySystem(entt::registry& registry, int TimePassed)
+{
+    float factor = std::exp(-TimePassed);
+
+    auto view = registry.view<Transform, VelocityComponent>();
+    for (entt::entity e : view)
+    {
+        auto& position = view.get<Transform>(e);
+        auto& velocity = view.get<VelocityComponent>(e);
+        position.Translate(position.GetGlobalPosition() + velocity.vel * TimePassed);
+        velocity.vel *= factor;
+        std::cout << position.GetGlobalPosition().x << ", " << position.GetGlobalPosition().y << std::endl;
+    }
+}
+
+//void VelocityStystem(entt::registry& registry, int TimePassed)
+//{
+//    float factor = std::exp(-TimePassed);
+//
+//    auto view = registry.view<Transform, VelocityComponent>();
+//    for (entt::entity e : view)
+//    {
+//        auto& enitityPos = view.get<Transform>(e);
+//        auto& enitityVel = view.get<VelocityComponent>(e);
+//        enitityPos.Translate(GetGlobalPosition()) += enitityVel.vel * TimePassed;
+//        enitityVel.vel *= factor;
+//    }
+//}
+
 //Lesson 1
 int main(int argc, char** argv)
 {
-    // ENTT
-    //entt::registry registry;
-    //entt::entity entity = registry.create();
-    //
-    //Position& entityPos = registry.emplace<Position>(entity);
-    //entityPos.pos = Vector2f(0.f, 0.f);
+    //ENTT
+    entt::registry registry;
+    entt::entity entity = registry.create();
 
-    //Velocity& entityVel = registry.emplace<Velocity>(entity);
-    //entityVel.vel = Vector2f(1.f, 0.f);
-
-    ////system
-    //for (int i = 0; i < 100; ++i)
-    //{
-    //    auto view = registry.view<Position, Velocity>();
-    //    for (entt::entity e : view)
-    //    {
-    //        auto& pos = view.get<Position>(e);
-    //        auto& vel = view.get<Velocity>(e);
-
-    //        pos.pos += vel.vel;
-
-    //        std::cout << pos.pos << std::endl;
-    //    }
-    //}
-
-    //return 0;
-
-    //PHYSICS
-    // 
-    //cpSpace* space = cpSpaceNew();
-    //cpSpaceSetGravity(space, cpVect{ 0.f, 981.f });
-    //cpSpaceSetDamping(space, 0.6f);
-
-    //cpBody* body = cpBodyNew(1.f, 1.f);
-    //cpSpaceAddBody(space, body);
-
-    //for (int i = 0; i < 100; i++)
-    //{
-    //    cpSpaceStep(space, 1.f);
-
-    //    cpVect position = cpBodyGetPosition(body);
-    //    std::cout << position.x << ", " << position.y << std::endl;
-    //}
-
-    //cpSpaceRemoveBody(space, body);
-    //cpBodyFree(body);
-    //cpSpaceFree(space);
-
+    SpriteRenderer& entitySprite = registry.emplace<SpriteRenderer>(entity);
+    Transform& entityTransform = registry.emplace<Transform>(entity);
+    VelocityComponent& entityVelocity = registry.emplace<VelocityComponent>(entity);
+    entityVelocity.vel = Vector2f(1.f,0.f);
 
     SDLpp sdl;
     SDLUtility sdlutility;
@@ -119,7 +125,7 @@ int main(int argc, char** argv)
     auto backgroundtText = ResourceManager::Instance().GetTexture("assets/Background.png");
     
     auto spriteTexture = ResourceManager::Instance().GetTexture("assets/Runner.png");
-    auto spriteTexture2 = ResourceManager::Instance().GetTexture("assets/kirby.png");
+    //auto spriteTexture2 = ResourceManager::Instance().GetTexture("assets/kirby.png");
 
     Sprite background(backgroundtText);
     Sprite sprite(spriteTexture, { 0, 0, 32, 32 });
@@ -127,14 +133,13 @@ int main(int argc, char** argv)
     Transform transform;
     Transform spriteTransform;
     InputManager inputManager;
-    Model model("assets/example.model");
-    model.SaveModel();
 
-    //std::ifstream f("assets/example.json");
-    //if (!f.is_open())
-    //{
-    //    std::cout << "This doesnt exist";
-    //}
+    // testing both reading and writing
+    Model model("assets/example.model");
+    model.SetTexture("assets/Runner.png");
+    model.SetModel("assets/NEW_example.model");
+    model.SaveModel();
+    Model model2("assets/NEW_example.model");
 
     sprite.Resize(704, 64);
     sprite.SetRect(SDL_Rect{ 0, 0, 64, 64 });
@@ -155,10 +160,23 @@ int main(int argc, char** argv)
 
     InputManager::Instance().BindKeyPressed(
         SDLK_d, "MoveRight");
+    InputManager::Instance().BindKeyPressed(
+        SDLK_w, "MoveUp");
+    InputManager::Instance().BindKeyPressed(
+        SDLK_a, "MoveLeft");
+    InputManager::Instance().BindKeyPressed(
+        SDLK_s, "MoveDown");
+
+    entitySprite.sprite = &sprite;
+
+    //float Xpos;
+    //float Ypos;
 
     bool isOpen = true;
     while(isOpen)
     {
+        entityTransform = transform;
+        //entityPosition.pos = transform;
         Time.CountDeltaTime();
         timer += Time.getDeltaTime();
         SDL_Event event;
@@ -173,15 +191,29 @@ int main(int argc, char** argv)
             InputManager::Instance().HandleEvent(event);
         }
 
-        float scale;
         
-        if (InputManager::Instance().IsActive("MoveRight"))
-        {
-            scale += 0.1f * Time.getDeltaTime();
-            spriteTransform.SetScale(Vector2f(scale, scale));
-            //transformParent.Translate(Vector2f(500.f * deltaTime, 0.f));
-            //transformParent.Rotate(30.f * deltaTime);
-        }
+        //if (InputManager::Instance().IsActive("MoveRight"))
+        //{
+        //    Xpos += 500.f * Time.getDeltaTime();
+        //    transform.SetPosition(Vector2f(Xpos, Ypos));
+        //}
+        //if (InputManager::Instance().IsActive("MoveDown"))
+        //{
+        //    Ypos += 500.f * Time.getDeltaTime();
+        //    transform.SetPosition(Vector2f(Xpos, Ypos));
+        //}
+        //if (InputManager::Instance().IsActive("MoveLeft"))
+        //{
+        //    Xpos -= 500.f * Time.getDeltaTime();
+        //    transform.SetPosition(Vector2f(Xpos, Ypos));
+        //}
+        //if (InputManager::Instance().IsActive("MoveUp"))
+        //{
+        //    Ypos -= 500.f * Time.getDeltaTime();
+        //    transform.SetPosition(Vector2f(Xpos, Ypos));
+        //}
+
+        VelocitySystem(registry, timer);
 
         if (timer > 0.1f)
         {
@@ -207,8 +239,10 @@ int main(int argc, char** argv)
         background.Draw(renderer, spriteTransform);
 
         background.Resize(window.GetWindowSizeX(), window.GetWindowSizeY());
-        sprite.Draw(renderer, transform);
+        RendererStystem(registry, renderer);
+
         model.Draw(renderer);
+        model2.Draw(renderer);
             ImGui::Render();
             ImGui_ImplSDLRenderer_RenderDrawData(ImGui::GetDrawData());
 
