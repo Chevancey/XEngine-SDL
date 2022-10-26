@@ -2,9 +2,7 @@ set_allowedarchs("windows|x64")
 set_warnings("allextra")
 
 add_rules("mode.debug", "mode.release")
-add_requires("chipmunk2d","libsdl", "libsdl_ttf", "libsdl_image", "nlohmann_json")
-add_requires("fmt")
-add_requires("entt")
+add_requires("chipmunk2d","libsdl", "libsdl_ttf", "libsdl_image", "nlohmann_json", "fmt", "entt", "lz4")
 add_requires("imgui", {configs = {sdl2 = true}})
 
 set_languages("c++17")
@@ -14,26 +12,21 @@ set_targetdir("bin/$(plat)_$(arch)_$(mode)_$(kind)")
 
 target("XEngineLibrary")
 	set_kind("$(kind)")
-	add_packages("libsdl", "libsdl_ttf", "libsdl_image", "fmt", "imgui", "entt", "nlohmann_json","chipmunk2d", {public = true})
 
-	if is_kind("shared") then
-		add_defines("LIB_COMPILING")
-		add_files("XEngineDynamicLibrary/lib_src/*.cpp")
-		add_headerfiles("XEngineDynamicLibrary/lib_include/*.h", "XEngineDynamicLibrary/lib_include/*.hpp","XEngineDynamicLibrary/lib_include/*.inl")
-		add_includedirs("XEngineDynamicLibrary/lib_include", "XEngine/include", {public = true})
+	add_defines("LIB_COMPILING")
+	add_headerfiles("include/XEngineLibrary/*.h", "include/XEngineLibrary/*.hpp","include/XEngineLibrary/*.inl")
+	add_includedirs("include/XEngineLibrary", "include/XGame", {public = true})
+	add_files("src/XEngineLibrary/*.cpp")
+	add_packages("libsdl", "libsdl_ttf", "libsdl_image", "fmt", "imgui", "entt", "nlohmann_json","chipmunk2d", {public = true})
+	add_packages("lz4")
 	
-	elseif is_kind("static") then
-		add_files("XEngineStaticLibrary/lib_src/*.cpp")
-		add_headerfiles("XEngineStaticLibrary/lib_include/*.h", "XEngineStaticLibrary/lib_include/*.hpp", "XEngineStaticLibrary/lib_include/*.inl")
-		add_includedirs("XEngineStaticLibrary/lib_include", "XEngine/include", {public = true})
-	end
 	
-target("XEngine")
+target("XGame")
+	set_kind("binary")
 	add_deps("XEngineLibrary")
-	set_kind("binary")
-	set_kind("binary")
-    add_files("XEngine/src/*.cpp")
-    add_headerfiles("XEngine/include/*.h", "XEngine/include/*.hpp","XEngine/include/*.inl")
+	add_headerfiles("include/XGame/*.h", "include/XGame/*.hpp")
+    add_files("src/XGame/*.cpp")
+
 	
 
 

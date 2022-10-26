@@ -1,0 +1,13 @@
+{
+    outdata = "__cpp_main.cpp.cpp\
+XGame\\include\\ResourceManager.h(8): warning C4099: 'SDL_Surface': type name first seen using 'struct' now seen using 'class'\
+C:\\Users\\ychev\\AppData\\Local\\.xmake\\packages\\l\\libsdl\\2.24.0\\72cef56b1aef4c0dbc0fb4007bb4eb11\\include\\SDL2\\SDL_surface.h(72): note: see declaration of 'SDL_Surface'\
+XGame\\src\\main.cpp(34): warning C4100: 'argv': unreferenced formal parameter\
+XGame\\src\\main.cpp(34): warning C4100: 'argc': unreferenced formal parameter\
+XGame\\src\\main.cpp(64): warning C4189: 'io': local variable is initialized but not referenced\
+XGame\\src\\main.cpp(94): warning C4189: 'y': local variable is initialized but not referenced\
+XGame\\src\\main.cpp(93): warning C4189: 'x': local variable is initialized but not referenced\
+C:\\Users\\ychev\\Documents\\GitHub\\XEngine-SDL\\XGame\\src\\main.cpp(146) : warning C4701: potentially uninitialized local variable 'Xpos' used\
+C:\\Users\\ychev\\Documents\\GitHub\\XEngine-SDL\\XGame\\src\\main.cpp(147) : warning C4701: potentially uninitialized local variable 'Ypos' used\
+"
+}

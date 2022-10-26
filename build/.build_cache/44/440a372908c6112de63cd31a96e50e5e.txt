@@ -1,0 +1,5 @@
+{
+    outdata = "__cpp_Transform.cpp.cpp\
+src\\XEngineLibrary\\Transform.cpp(136): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data\
+"
+}

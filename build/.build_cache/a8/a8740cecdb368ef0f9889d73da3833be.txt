@@ -1,0 +1,23 @@
+{
+    outdata = "__cpp_Model.cpp.cpp\
+include\\XEngineLibrary\\Model.h(13): warning C4251: 'Triangle::_vertices': class 'std::vector<SDL_Vertex,std::allocator<SDL_Vertex>>' needs to have dll-interface to be used by clients of struct 'Triangle'\
+include\\XEngineLibrary\\Model.h(13): note: see declaration of 'std::vector<SDL_Vertex,std::allocator<SDL_Vertex>>'\
+include\\XEngineLibrary\\Model.h(48): warning C4251: 'Model::m_texture': class 'std::shared_ptr<const SDLTexture>' needs to have dll-interface to be used by clients of class 'Model'\
+include\\XEngineLibrary\\Model.h(48): note: see declaration of 'std::shared_ptr<const SDLTexture>'\
+include\\XEngineLibrary\\Model.h(49): warning C4251: 'Model::m_indices': class 'std::vector<int,std::allocator<int>>' needs to have dll-interface to be used by clients of class 'Model'\
+include\\XEngineLibrary\\Model.h(38): note: see declaration of 'std::vector<int,std::allocator<int>>'\
+include\\XEngineLibrary\\Model.h(50): warning C4251: 'Model::m_vertices': class 'std::vector<SDL_Vertex,std::allocator<SDL_Vertex>>' needs to have dll-interface to be used by clients of class 'Model'\
+include\\XEngineLibrary\\Model.h(13): note: see declaration of 'std::vector<SDL_Vertex,std::allocator<SDL_Vertex>>'\
+include\\XEngineLibrary\\Model.h(52): warning C4251: 'Model::m_modelFilePath': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Model'\
+C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Tools\\MSVC\\14.29.30133\\include\\xstring(4871): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'\
+include\\XEngineLibrary\\Model.h(53): warning C4251: 'Model::m_textureFilePath': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Model'\
+C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Tools\\MSVC\\14.29.30133\\include\\xstring(4871): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'\
+include\\XEngineLibrary\\ResourceManager.h(8): warning C4099: 'SDL_Surface': type name first seen using 'struct' now seen using 'class'\
+C:\\Users\\ychev\\AppData\\Local\\.xmake\\packages\\l\\libsdl\\2.24.0\\72cef56b1aef4c0dbc0fb4007bb4eb11\\include\\SDL2\\SDL_surface.h(72): note: see declaration of 'SDL_Surface'\
+include\\XEngineLibrary\\ResourceManager.h(30): warning C4251: 'ResourceManager::m_missingTexture': class 'std::shared_ptr<SDLTexture>' needs to have dll-interface to be used by clients of class 'ResourceManager'\
+include\\XEngineLibrary\\ResourceManager.h(20): note: see declaration of 'std::shared_ptr<SDLTexture>'\
+include\\XEngineLibrary\\ResourceManager.h(31): warning C4251: 'ResourceManager::m_textureMap': class 'std::unordered_map<std::string,std::shared_ptr<SDLTexture>,std::hash<std::string>,std::equal_to<std::string>,std::allocator<std::pair<const std::string,std::shared_ptr<SDLTexture>>>>' needs to have dll-interface to be used by clients of class 'ResourceManager'\
+include\\XEngineLibrary\\ResourceManager.h(31): note: see declaration of 'std::unordered_map<std::string,std::shared_ptr<SDLTexture>,std::hash<std::string>,std::equal_to<std::string>,std::allocator<std::pair<const std::string,std::shared_ptr<SDLTexture>>>>'\
+src\\XEngineLibrary\\Model.cpp(131): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data\
+"
+}

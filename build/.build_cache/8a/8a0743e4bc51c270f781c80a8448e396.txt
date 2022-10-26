@@ -1,0 +1,14 @@
+{
+    outdata = "__cpp_InputManager.cpp.cpp\
+include\\XEngineLibrary\\InputManager.h(54): warning C4251: 'InputManager::ActionData::func': class 'std::function<void (bool)>' needs to have dll-interface to be used by clients of struct 'InputManager::ActionData'\
+include\\XEngineLibrary\\InputManager.h(44): note: see declaration of 'std::function<void (bool)>'\
+include\\XEngineLibrary\\InputManager.h(62): warning C4251: 'InputManager::m_mouseButtonToAction': class 'std::unordered_map<int,std::string,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<const int,std::string>>>' needs to have dll-interface to be used by clients of class 'InputManager'\
+include\\XEngineLibrary\\InputManager.h(62): note: see declaration of 'std::unordered_map<int,std::string,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<const int,std::string>>>'\
+include\\XEngineLibrary\\InputManager.h(63): warning C4251: 'InputManager::m_controllerButtonToAction': class 'std::unordered_map<SDL_GameControllerButton,std::string,std::hash<SDL_GameControllerButton>,std::equal_to<SDL_GameControllerButton>,std::allocator<std::pair<const SDL_GameControllerButton,std::string>>>' needs to have dll-interface to be used by clients of class 'InputManager'\
+include\\XEngineLibrary\\InputManager.h(63): note: see declaration of 'std::unordered_map<SDL_GameControllerButton,std::string,std::hash<SDL_GameControllerButton>,std::equal_to<SDL_GameControllerButton>,std::allocator<std::pair<const SDL_GameControllerButton,std::string>>>'\
+include\\XEngineLibrary\\InputManager.h(64): warning C4251: 'InputManager::m_keyToAction': class 'std::unordered_map<int,std::string,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<const int,std::string>>>' needs to have dll-interface to be used by clients of class 'InputManager'\
+include\\XEngineLibrary\\InputManager.h(62): note: see declaration of 'std::unordered_map<int,std::string,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<const int,std::string>>>'\
+include\\XEngineLibrary\\InputManager.h(65): warning C4251: 'InputManager::m_actions': class 'std::unordered_map<std::string,InputManager::ActionData,std::hash<std::string>,std::equal_to<std::string>,std::allocator<std::pair<const std::string,InputManager::ActionData>>>' needs to have dll-interface to be used by clients of class 'InputManager'\
+include\\XEngineLibrary\\InputManager.h(65): note: see declaration of 'std::unordered_map<std::string,InputManager::ActionData,std::hash<std::string>,std::equal_to<std::string>,std::allocator<std::pair<const std::string,InputManager::ActionData>>>'\
+"
+}

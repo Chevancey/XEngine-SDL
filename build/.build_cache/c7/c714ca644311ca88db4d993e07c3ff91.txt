@@ -1,0 +1,11 @@
+{
+    outdata = "__cpp_Transform.cpp.cpp\
+include\\XEngineLibrary\\Transform.h(44): warning C4251: 'Transform::m_children': class 'std::vector<Transform *,std::allocator<Transform *>>' needs to have dll-interface to be used by clients of class 'Transform'\
+include\\XEngineLibrary\\Transform.h(44): note: see declaration of 'std::vector<Transform *,std::allocator<Transform *>>'\
+include\\XEngineLibrary\\Transform.h(46): warning C4251: 'Transform::m_position': struct 'Vector2<float>' needs to have dll-interface to be used by clients of class 'Transform'\
+include\\XEngineLibrary\\Vector2.h(36): note: see declaration of 'Vector2<float>'\
+include\\XEngineLibrary\\Transform.h(48): warning C4251: 'Transform::m_scale': struct 'Vector2<float>' needs to have dll-interface to be used by clients of class 'Transform'\
+include\\XEngineLibrary\\Vector2.h(36): note: see declaration of 'Vector2<float>'\
+src\\XEngineLibrary\\Transform.cpp(136): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data\
+"
+}
