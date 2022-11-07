@@ -18,28 +18,16 @@
     <ClCompile Include="..\..\src\XEngineLibrary\AnimationSystem.cpp">
       <Filter>src\XEngineLibrary</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\CameraComponent.cpp">
-      <Filter>src\XEngineLibrary</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\XEngineLibrary\Color.cpp">
       <Filter>src\XEngineLibrary</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\XEngineLibrary\ECS.cpp">
       <Filter>src\XEngineLibrary</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\GraphicsComponent.cpp">
-      <Filter>src\XEngineLibrary</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\XEngineLibrary\InputManager.cpp">
       <Filter>src\XEngineLibrary</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\Matrix3x3.cpp">
-      <Filter>src\XEngineLibrary</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\XEngineLibrary\Model.cpp">
-      <Filter>src\XEngineLibrary</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\Renderable.cpp">
       <Filter>src\XEngineLibrary</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\XEngineLibrary\RenderSystem.cpp">
@@ -85,9 +73,6 @@
       <Filter>src\XEngineLibrary</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\XEngineLibrary\Transform.cpp">
-      <Filter>src\XEngineLibrary</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\VelocityComponent.cpp">
       <Filter>src\XEngineLibrary</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\XEngineLibrary\VelocitySystem.cpp">
@@ -180,6 +165,9 @@
       <Filter>include\XEngineLibrary</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\XEngineLibrary\VelocitySystem.h">
+      <Filter>include\XEngineLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\XEngineLibrary\Matrix3x3.inl">
       <Filter>include\XEngineLibrary</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\XEngineLibrary\Vector2.inl">

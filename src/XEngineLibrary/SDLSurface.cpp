@@ -1,10 +1,20 @@
-#include "SDLSurface.h"
-//#include <SDL_image.h>
+#include <SDLSurface.h>
+#include <SDL.h>
+#include <SDL_image.h>
+#include <cassert>
+#include <memory>
+#include <iostream>
 
-SDLSurface::SDLSurface(SDLSurface&& texture)
+SDLSurface::SDLSurface(int width, int height)
 {
-	m_surface = texture.m_surface;
-	texture.m_surface = nullptr;
+	m_surface = SDL_CreateRGBSurfaceWithFormat(0, width, height, 32, SDL_PIXELFORMAT_RGBA32);
+}
+
+SDLSurface::SDLSurface(SDLSurface&& surface) noexcept :
+	m_filepath(std::move(surface.m_filepath))
+{
+	m_surface = surface.m_surface;
+	surface.m_surface = nullptr;
 }
 
 SDLSurface::~SDLSurface()
@@ -13,43 +23,63 @@ SDLSurface::~SDLSurface()
 		SDL_FreeSurface(m_surface);
 }
 
-SDLSurface SDLSurface::LoadFromFile(const std::string& filepath)
+void SDLSurface::FillRect(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
-	//SDL_Surface* surface = IMG_Load(filepath.c_str());
-	if (!IMG_Load(filepath.c_str()))
-	{
-		std::cout << IMG_GetError() << std::endl;
-	}
-
-	return SDLSurface(IMG_Load(filepath.c_str()));
+	assert(m_surface);
+	SDL_FillRect(m_surface, &rect, SDL_MapRGBA(m_surface->format, r, g, b, a));
 }
 
-bool SDLSurface::textureExisting(const std::string& filepath)
+const std::string& SDLSurface::GetFilePath() const
 {
-	if (!IMG_Load(filepath.c_str()))
-	{
-		return false;
-	}
-
-	return true;
+	return m_filepath;
 }
 
-SDL_Surface* SDLSurface::get()
+SDL_Surface* SDLSurface::get() const
 {
 	return m_surface;
 }
 
+Uint8* SDLSurface::GetPixels()
+{
+	return static_cast<Uint8*>(m_surface->pixels);
+}
+
+const Uint8* SDLSurface::GetPixels() const
+{
+	return static_cast<const Uint8*>(m_surface->pixels);
+}
+
+bool SDLSurface::IsValid() const
+{
+	return m_surface != nullptr;
+}
+
 SDLSurface& SDLSurface::operator=(SDLSurface&& surface) noexcept
 {
-	std::swap(m_surface, surface.m_surface);
+	// Les classes peuvent être move directement
+	m_filepath = std::move(surface.m_filepath);
 
+	// On possède déjà potentiellement une Surface
+	// On la donne à Surface (qui va être détruit de toute façon)
+	// tout en volant son pointeur : on échange donc les pointeurs
+	// => std::swap
+	std::swap(m_surface, surface.m_surface);
 	return *this;
 }
 
-SDLSurface::SDLSurface(SDL_Surface* texture) :
-	m_surface(texture)
+SDLSurface SDLSurface::LoadFromFile(std::string filepath)
 {
+	SDL_Surface* surface = IMG_Load(filepath.c_str());
+	if (!surface)
+		std::cerr << IMG_GetError() << std::endl;
+
+	return SDLSurface(surface, std::move(filepath));
 }
 
+SDLSurface::SDLSurface(SDL_Surface* surface, std::string filepath) :
+	m_surface(surface),
+	m_filepath(std::move(filepath))
+{
+}
 
 

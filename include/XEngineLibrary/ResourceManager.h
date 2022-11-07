@@ -6,6 +6,7 @@
 class SDLRenderer;
 class SDLTexture;
 class SDL_Surface;
+class Model;
 
 class LIB_API ResourceManager
 {
@@ -17,6 +18,7 @@ public:
 
 	void Clear();
 
+	const std::shared_ptr<Model>& GetModel(const std::string& texturePath);
 	const std::shared_ptr<SDLTexture>& GetTexture(const std::string& texturePath);
 
 	void Purge();
@@ -24,13 +26,14 @@ public:
 	static ResourceManager& Instance();
 
 	ResourceManager& operator=(const ResourceManager&) = delete;
-	ResourceManager& operator=(ResourceManager&&) = delete;
+	ResourceManager& operator=(ResourceManager&&) = delete;;
 
 private:
+	std::shared_ptr<Model> m_missingModel;
 	std::shared_ptr<SDLTexture> m_missingTexture;
-	std::unordered_map<std::string, std::shared_ptr<SDLTexture>> m_textureMap;
-	SDLRenderer& m_renderer;
+	std::unordered_map<std::string /*texturePath*/, std::shared_ptr<Model>> m_models;
+	std::unordered_map<std::string /*texturePath*/, std::shared_ptr<SDLTexture>> m_textures;
 
-	SDL_Surface* CreateSurface();
+	SDLRenderer& m_renderer;
 	static ResourceManager* s_instance;
 };

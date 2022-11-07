@@ -1,0 +1,10 @@
+{
+    outdata = "__cpp_VelocitySystem.cpp.cpp\
+include\\XEngineLibrary\\Transform.h(45): warning C4251: 'Transform::m_children': class 'std::vector<Transform *,std::allocator<Transform *>>' needs to have dll-interface to be used by clients of class 'Transform'\
+include\\XEngineLibrary\\Transform.h(45): note: see declaration of 'std::vector<Transform *,std::allocator<Transform *>>'\
+include\\XEngineLibrary\\Transform.h(47): warning C4251: 'Transform::m_position': struct 'Vector2<float>' needs to have dll-interface to be used by clients of class 'Transform'\
+include\\XEngineLibrary\\Vector2.h(38): note: see declaration of 'Vector2<float>'\
+include\\XEngineLibrary\\Transform.h(49): warning C4251: 'Transform::m_scale': struct 'Vector2<float>' needs to have dll-interface to be used by clients of class 'Transform'\
+include\\XEngineLibrary\\Vector2.h(38): note: see declaration of 'Vector2<float>'\
+"
+}

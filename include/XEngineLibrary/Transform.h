@@ -1,8 +1,8 @@
 #pragma once
 
+#include <LIB_COMPILING.h>
 #include <Vector2.h>
 #include <vector>
-#include <LIB_COMPILING.h>
 
 class LIB_API Transform
 {
@@ -33,6 +33,7 @@ public:
 	void Translate(const Vector2f& translation);
 
 	Vector2f TransformPoint(Vector2f position) const;
+	Vector2f TransformInversePoint(Vector2f position) const;
 
 	Transform& operator=(const Transform&);
 	Transform& operator=(Transform&&) noexcept;

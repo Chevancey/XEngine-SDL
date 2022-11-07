@@ -1,6 +1,6 @@
+#include <Transform.h>
+#include <algorithm>
 #include <cassert>
-#include "Transform.h"
-#include "DegRad.h"
 
 Transform::Transform() :
 	m_parent(nullptr),
@@ -20,12 +20,15 @@ Transform::Transform(const Transform& transform) :
 }
 
 Transform::Transform(Transform&& transform) noexcept :
+	m_children(std::move(transform.m_children)),
 	m_parent(nullptr),
 	m_position(transform.m_position),
 	m_rotation(transform.m_rotation),
 	m_scale(transform.m_scale)
 {
 	SetParent(transform.m_parent);
+	for (Transform* child : m_children)
+		child->m_parent = this;
 }
 
 Transform::~Transform()
@@ -34,7 +37,7 @@ Transform::~Transform()
 		m_parent->DetachChild(this);
 
 	for (Transform* child : m_children)
-		child->SetParent(nullptr);
+		child->m_parent = nullptr;
 }
 
 Transform* Transform::GetParent() const
@@ -131,22 +134,40 @@ void Transform::Translate(const Vector2f& translation)
 
 Vector2f Transform::TransformPoint(Vector2f position) const
 {
+	// L'ordre des transformations s'appelle ici le SRT et est très courant
+
+	// Scale
 	position *= GetGlobalScale();
 
-	float radRotation = Deg2Rad(GetGlobalRotation());
-	float s = std::sin(radRotation);
-	float c = std::cos(radRotation);
+	// Rotation
+	position = Vector2f::Rotate(position, GetGlobalRotation());
 
-	Vector2f rotatedVec;
-	rotatedVec.x = position.x * c - position.y * s;
-	rotatedVec.y = position.x * s + position.y * c;
-
+	// Translation
 	if (m_parent)
-		rotatedVec += m_parent->TransformPoint(m_position);
+		position += m_parent->TransformPoint(m_position);
 	else
-		rotatedVec += m_position;
+		position += m_position;
 
-	return rotatedVec;
+	return position;
+}
+
+Vector2f Transform::TransformInversePoint(Vector2f position) const
+{
+	// Lorsqu'on effectue l'inverse d'une transformation, l'ordre de celles-ci est également inversé, on fait alors du TRS
+
+	// Translation
+	if (m_parent)
+		position -= m_parent->TransformPoint(m_position);
+	else
+		position -= m_position;
+
+	// Rotation
+	position = Vector2f::Rotate(position, -GetGlobalRotation());
+
+	// Scale
+	position /= GetGlobalScale();
+
+	return position;
 }
 
 Transform& Transform::operator=(const Transform& transform)
@@ -161,10 +182,17 @@ Transform& Transform::operator=(const Transform& transform)
 
 Transform& Transform::operator=(Transform&& transform) noexcept
 {
+	for (Transform* child : m_children)
+		child->m_parent = nullptr;
+
+	m_children = std::move(transform.m_children);
 	m_position = transform.m_position;
 	m_rotation = transform.m_rotation;
 	m_scale = transform.m_scale;
 	SetParent(transform.m_parent);
+
+	for (Transform* child : m_children)
+		child->m_parent = this;
 
 	return *this;
 }

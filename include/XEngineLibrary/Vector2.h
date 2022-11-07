@@ -1,5 +1,6 @@
 #pragma once
 #include <ostream>
+//#include "LIB_COMPILING.h"
 
 // Pas de macro d'export pour les templates (leur code n'étant pas compilé dans la dll)
 template<typename T>
@@ -22,6 +23,8 @@ struct Vector2
 	Vector2& operator*=(T value);
 	Vector2& operator/=(const Vector2& vec);
 	Vector2& operator/=(T value);
+
+	static Vector2 Rotate(const Vector2& vec, float degrees);
 
 	T x, y;
 };

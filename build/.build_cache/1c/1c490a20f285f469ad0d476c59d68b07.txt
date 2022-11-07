@@ -1,0 +1,8 @@
+{
+    outdata = "__cpp_SDLTexture.cpp.cpp\
+include\\XEngineLibrary\\SDLTexture.h(31): warning C4251: 'SDLTexture::m_filepath': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'SDLTexture'\
+C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Tools\\MSVC\\14.29.30133\\include\\xstring(4871): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'\
+include\\XEngineLibrary\\SDLSurface.h(33): warning C4251: 'SDLSurface::m_filepath': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'SDLSurface'\
+C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Tools\\MSVC\\14.29.30133\\include\\xstring(4871): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'\
+"
+}

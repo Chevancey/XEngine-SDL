@@ -1,9 +1,8 @@
-#include "ResourceManager.h"
-#include "SDLTexture.h"
-#include "SDLRenderer.h"
-#include "SDLSurface.h"
+#include <ResourceManager.h>
+#include <Model.h>
+#include <SDLSurface.h>
+#include <SDLTexture.h>
 #include <stdexcept>
-
 
 ResourceManager::ResourceManager(SDLRenderer& renderer) :
 	m_renderer(renderer)
@@ -21,73 +20,103 @@ ResourceManager::~ResourceManager()
 
 void ResourceManager::Clear()
 {
+	m_missingModel.reset();
 	m_missingTexture.reset();
-	m_textureMap.clear();
+	m_models.clear();
+	m_textures.clear();
 }
 
-
-const std::shared_ptr<SDLTexture>& ResourceManager::GetTexture(const std::string& filePath)
+const std::shared_ptr<Model>& ResourceManager::GetModel(const std::string& modelPath)
 {
+	// Avons-nous déjà ce modèle en stock ?
+	auto it = m_models.find(modelPath);
+	if (it != m_models.end())
+		return it->second; // Oui, on peut le renvoyer
 
-	auto it = m_textureMap.find(filePath);
-	if (it != m_textureMap.end())
-		return it->second;
-
-	SDLSurface surface = SDLSurface::LoadFromFile(filePath);
-	if (!surface.textureExisting(filePath))
+	// Non, essayons de le charger
+	Model model = Model::LoadFromFile(modelPath);
+	if (!model.IsValid())
 	{
+		// On a pas pu charger le modèle, utilisons un modèle "manquant"
+		if (!m_missingModel)
+			m_missingModel = std::make_shared<Model>();
+
+		m_models.emplace(modelPath, m_missingModel);
+		return m_missingModel;
+	}
+
+	it = m_models.emplace(modelPath, std::make_shared<Model>(std::move(model))).first;
+	return it->second;
+}
+
+const std::shared_ptr<SDLTexture>& ResourceManager::GetTexture(const std::string& texturePath)
+{
+	// Avons-nous déjà cette texture en stock ?
+	auto it = m_textures.find(texturePath);
+	if (it != m_textures.end())
+		return it->second; // Oui, on peut la renvoyer
+
+	// Non, essayons de la charger
+	SDLSurface surface = SDLSurface::LoadFromFile(texturePath);
+	if (!surface.IsValid())
+	{
+		// On a pas pu charger la surface, utilisons une texture "manquante"
 		if (!m_missingTexture)
 		{
-			m_missingTexture = std::make_shared<SDLTexture>(SDLTexture::LoadSurface(m_renderer, CreateSurface()));
+			// On créé la texture la première fois qu'on en a besoin
+			surface = SDLSurface(64, 64);
+			surface.FillRect(SDL_Rect{ 0, 0, 16, 16 }, 255, 0, 255, 255);
+			surface.FillRect(SDL_Rect{ 16, 0, 16, 16 }, 0, 0, 0, 255);
+			surface.FillRect(SDL_Rect{ 0, 16, 16, 16 }, 0, 0, 0, 255);
+			surface.FillRect(SDL_Rect{ 16, 16, 16, 16 }, 255, 0, 255, 255);
+
+			m_missingTexture = std::make_shared<SDLTexture>(SDLTexture::LoadFromSurface(m_renderer, surface));
 		}
-		m_textureMap.emplace(filePath, m_missingTexture);
+
+		// On enregistre cette texture comme une texture manquante (pour ne pas essayer de la charger à chaque fois)
+		m_textures.emplace(texturePath, m_missingTexture);
 		return m_missingTexture;
 	}
 
+	// On a réussi à charger la surface, on la transforme en texture et on l'enregistre
 	std::shared_ptr<SDLTexture> texture = std::make_shared<SDLTexture>(SDLTexture::LoadFromSurface(m_renderer, surface));
 
-	it = m_textureMap.emplace(filePath, std::move(texture)).first;
+	// .emplace et .insert renvoient un std::pair<iterator, bool>, le booléen indiquant si la texture a été insérée dans la map (ce qu'on sait déjà ici)
+	it = m_textures.emplace(texturePath, std::move(texture)).first;
+
+	// Attention, on ne peut pas renvoyer texture directement (même sans std::move) car on renvoie une référence constante
+	// qui serait alors une référence constante sur une variable temporaire détruite à la fin de la fonction (texture)
 
 	return it->second;
 }
 
-
 void ResourceManager::Purge()
 {
-	for (auto it = m_textureMap.begin(); it != m_textureMap.end(); it++)
+	// On va itérer sur le conteneur tout en enlevant certains éléments pendant l'itération, cela demande un peu de pratique
+	for (auto it = m_textures.begin(); it != m_textures.end(); ) //< pas d'incrémentation de it
 	{
-		std::cout << it->first << " use count: " << it->second.use_count() << std::endl;
-		if (it->second.unique())
+		// On vérifie le compteur pour vérifier si la texture est utilisée ailleurs ou non
+		if (it->second.use_count() > 1)
 		{
-			std::cout << "Delete Map Elements: " << it->first << std::endl;
-			it = m_textureMap.erase(it);
-			it = m_textureMap.begin();
-		} 
-	}
-}
-
-SDL_Surface* ResourceManager::CreateSurface()
-{
-	int surfacesize = 100;
-	int rectSize = 100 / 10;
-	SDL_Surface* surface = SDL_CreateRGBSurface(0, surfacesize, surfacesize, 32, 0, 0, 0, 0);
-	for (int i = 0; i < 10; i++)
-	{
-		for (int j = 0; j < 10; j++)
+			++it; // la texture est utilisée, on la garde et on passe à la suivante
+		}
+		else
 		{
-			SDL_Rect rect({ i * rectSize, j * rectSize, (i + 1) * rectSize, (j + 1) * rectSize });
-			if ((i + j + 1) % 2 == 0)
-			{
-				SDL_FillRect(surface, &rect, SDL_MapRGB(surface->format, 255, 0, 255));
-			}
-			else
-			{
-				SDL_FillRect(surface, &rect, SDL_MapRGB(surface->format, 0, 0, 0));
-			}
+			// la texture n'est plus utilisée, on peut l'enlever avec .erase(it), qui renvoie un nouvel itérateur sur l'élément *suivant*
+			// (celui du prochain tour de boucle = pas d'incrémentation dans ce cas)
+			it = m_textures.erase(it);
 		}
 	}
 
-	return surface;
+	// Même chose pour les modèles
+	for (auto it = m_models.begin(); it != m_models.end(); )
+	{
+		if (it->second.use_count() > 1)
+			++it;
+		else
+			it = m_models.erase(it);
+	}
+
 }
 
 ResourceManager& ResourceManager::Instance()
