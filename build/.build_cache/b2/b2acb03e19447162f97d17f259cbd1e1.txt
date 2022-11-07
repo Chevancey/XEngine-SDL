@@ -1,0 +1,75 @@
+{
+    outdata = "__cpp_main.cpp.cpp\
+include\\XEngineLibrary\\SDLTexture.h(31): warning C4251: 'SDLTexture::m_filepath': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'SDLTexture'\
+C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\include\\xstring(4905): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'\
+include\\XEngineLibrary\\Sprite.h(37): warning C4251: 'Sprite::m_texture': class 'std::shared_ptr<const SDLTexture>' needs to have dll-interface to be used by clients of class 'Sprite'\
+include\\XEngineLibrary\\Sprite.h(16): note: see declaration of 'std::shared_ptr<const SDLTexture>'\
+include\\XEngineLibrary\\Sprite.h(39): warning C4251: 'Sprite::m_origin': struct 'Vector2<float>' needs to have dll-interface to be used by clients of class 'Sprite'\
+include\\XEngineLibrary\\Vector2.h(39): note: see declaration of 'Vector2<float>'\
+include\\XEngineLibrary\\ResourceManager.h(8): warning C4099: 'SDL_Surface': type name first seen using 'struct' now seen using 'class'\
+C:\\Users\\ychev\\AppData\\Local\\.xmake\\packages\\l\\libsdl\\2.24.0\\72cef56b1aef4c0dbc0fb4007bb4eb11\\include\\SDL2\\SDL_surface.h(72): note: see declaration of 'SDL_Surface'\
+include\\XEngineLibrary\\ResourceManager.h(32): warning C4251: 'ResourceManager::m_missingModel': class 'std::shared_ptr<Model>' needs to have dll-interface to be used by clients of class 'ResourceManager'\
+include\\XEngineLibrary\\ResourceManager.h(21): note: see declaration of 'std::shared_ptr<Model>'\
+include\\XEngineLibrary\\ResourceManager.h(33): warning C4251: 'ResourceManager::m_missingTexture': class 'std::shared_ptr<SDLTexture>' needs to have dll-interface to be used by clients of class 'ResourceManager'\
+include\\XEngineLibrary\\ResourceManager.h(22): note: see declaration of 'std::shared_ptr<SDLTexture>'\
+include\\XEngineLibrary\\ResourceManager.h(34): warning C4251: 'ResourceManager::m_models': class 'std::unordered_map<std::string,std::shared_ptr<Model>,std::hash<std::string>,std::equal_to<std::string>,std::allocator<std::pair<const std::string,std::shared_ptr<Model>>>>' needs to have dll-interface to be used by clients of class 'ResourceManager'\
+include\\XEngineLibrary\\ResourceManager.h(34): note: see declaration of 'std::unordered_map<std::string,std::shared_ptr<Model>,std::hash<std::string>,std::equal_to<std::string>,std::allocator<std::pair<const std::string,std::shared_ptr<Model>>>>'\
+include\\XEngineLibrary\\ResourceManager.h(35): warning C4251: 'ResourceManager::m_textures': class 'std::unordered_map<std::string,std::shared_ptr<SDLTexture>,std::hash<std::string>,std::equal_to<std::string>,std::allocator<std::pair<const std::string,std::shared_ptr<SDLTexture>>>>' needs to have dll-interface to be used by clients of class 'ResourceManager'\
+include\\XEngineLibrary\\ResourceManager.h(35): note: see declaration of 'std::unordered_map<std::string,std::shared_ptr<SDLTexture>,std::hash<std::string>,std::equal_to<std::string>,std::allocator<std::pair<const std::string,std::shared_ptr<SDLTexture>>>>'\
+include\\XEngineLibrary\\Transform.h(45): warning C4251: 'Transform::m_children': class 'std::vector<Transform *,std::allocator<Transform *>>' needs to have dll-interface to be used by clients of class 'Transform'\
+include\\XEngineLibrary\\Transform.h(45): note: see declaration of 'std::vector<Transform *,std::allocator<Transform *>>'\
+include\\XEngineLibrary\\Transform.h(47): warning C4251: 'Transform::m_position': struct 'Vector2<float>' needs to have dll-interface to be used by clients of class 'Transform'\
+include\\XEngineLibrary\\Vector2.h(39): note: see declaration of 'Vector2<float>'\
+include\\XEngineLibrary\\Transform.h(49): warning C4251: 'Transform::m_scale': struct 'Vector2<float>' needs to have dll-interface to be used by clients of class 'Transform'\
+include\\XEngineLibrary\\Vector2.h(39): note: see declaration of 'Vector2<float>'\
+include\\XEngineLibrary\\InputManager.h(62): warning C4251: 'InputManager::m_mouseButtonToAction': class 'std::unordered_map<int,std::string,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<const int,std::string>>>' needs to have dll-interface to be used by clients of class 'InputManager'\
+include\\XEngineLibrary\\InputManager.h(62): note: see declaration of 'std::unordered_map<int,std::string,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<const int,std::string>>>'\
+include\\XEngineLibrary\\InputManager.h(63): warning C4251: 'InputManager::m_controllerButtonToAction': class 'std::unordered_map<SDL_GameControllerButton,std::string,std::hash<SDL_GameControllerButton>,std::equal_to<SDL_GameControllerButton>,std::allocator<std::pair<const SDL_GameControllerButton,std::string>>>' needs to have dll-interface to be used by clients of class 'InputManager'\
+include\\XEngineLibrary\\InputManager.h(63): note: see declaration of 'std::unordered_map<SDL_GameControllerButton,std::string,std::hash<SDL_GameControllerButton>,std::equal_to<SDL_GameControllerButton>,std::allocator<std::pair<const SDL_GameControllerButton,std::string>>>'\
+include\\XEngineLibrary\\InputManager.h(64): warning C4251: 'InputManager::m_keyToAction': class 'std::unordered_map<int,std::string,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<const int,std::string>>>' needs to have dll-interface to be used by clients of class 'InputManager'\
+include\\XEngineLibrary\\InputManager.h(62): note: see declaration of 'std::unordered_map<int,std::string,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<const int,std::string>>>'\
+include\\XEngineLibrary\\InputManager.h(65): warning C4251: 'InputManager::m_actions': class 'std::unordered_map<std::string,InputManager::ActionData,std::hash<std::string>,std::equal_to<std::string>,std::allocator<std::pair<const std::string,InputManager::ActionData>>>' needs to have dll-interface to be used by clients of class 'InputManager'\
+include\\XEngineLibrary\\InputManager.h(65): note: see declaration of 'std::unordered_map<std::string,InputManager::ActionData,std::hash<std::string>,std::equal_to<std::string>,std::allocator<std::pair<const std::string,InputManager::ActionData>>>'\
+include\\XEngineLibrary\\Model.h(55): warning C4251: 'Model::m_texture': class 'std::shared_ptr<const SDLTexture>' needs to have dll-interface to be used by clients of class 'Model'\
+include\\XEngineLibrary\\Sprite.h(16): note: see declaration of 'std::shared_ptr<const SDLTexture>'\
+include\\XEngineLibrary\\Model.h(56): warning C4251: 'Model::m_vertices': class 'std::vector<ModelVertex,std::allocator<ModelVertex>>' needs to have dll-interface to be used by clients of class 'Model'\
+include\\XEngineLibrary\\Model.h(28): note: see declaration of 'std::vector<ModelVertex,std::allocator<ModelVertex>>'\
+include\\XEngineLibrary\\Model.h(57): warning C4251: 'Model::m_sdlVertices': class 'std::vector<SDL_Vertex,std::allocator<SDL_Vertex>>' needs to have dll-interface to be used by clients of class 'Model'\
+include\\XEngineLibrary\\Model.h(57): note: see declaration of 'std::vector<SDL_Vertex,std::allocator<SDL_Vertex>>'\
+include\\XEngineLibrary\\Model.h(58): warning C4251: 'Model::m_indices': class 'std::vector<int,std::allocator<int>>' needs to have dll-interface to be used by clients of class 'Model'\
+include\\XEngineLibrary\\Model.h(28): note: see declaration of 'std::vector<int,std::allocator<int>>'\
+include\\XEngineLibrary\\Spritesheet.h(27): warning C4251: 'Spritesheet::m_animationByName': class 'std::unordered_map<std::string,size_t,std::hash<std::string>,std::equal_to<std::string>,std::allocator<std::pair<const std::string,size_t>>>' needs to have dll-interface to be used by clients of class 'Spritesheet'\
+include\\XEngineLibrary\\Spritesheet.h(27): note: see declaration of 'std::unordered_map<std::string,size_t,std::hash<std::string>,std::equal_to<std::string>,std::allocator<std::pair<const std::string,size_t>>>'\
+include\\XEngineLibrary\\Spritesheet.h(28): warning C4251: 'Spritesheet::m_animations': class 'std::vector<Spritesheet::Animation,std::allocator<Spritesheet::Animation>>' needs to have dll-interface to be used by clients of class 'Spritesheet'\
+include\\XEngineLibrary\\Spritesheet.h(28): note: see declaration of 'std::vector<Spritesheet::Animation,std::allocator<Spritesheet::Animation>>'\
+include\\XEngineLibrary\\SpritesheetComponent.h(28): warning C4251: 'SpritesheetComponent::m_targetSprite': class 'std::shared_ptr<Sprite>' needs to have dll-interface to be used by clients of class 'SpritesheetComponent'\
+include\\XEngineLibrary\\SpritesheetComponent.h(19): note: see declaration of 'std::shared_ptr<Sprite>'\
+include\\XEngineLibrary\\SpritesheetComponent.h(29): warning C4251: 'SpritesheetComponent::m_spritesheet': class 'std::shared_ptr<const Spritesheet>' needs to have dll-interface to be used by clients of class 'SpritesheetComponent'\
+include\\XEngineLibrary\\SpritesheetComponent.h(19): note: see declaration of 'std::shared_ptr<const Spritesheet>'\
+include\\XEngineLibrary\\GraphicsComponent.h(10): warning C4251: 'GraphicsComponent::renderable': class 'std::shared_ptr<Renderable>' needs to have dll-interface to be used by clients of struct 'GraphicsComponent'\
+include\\XEngineLibrary\\GraphicsComponent.h(10): note: see declaration of 'std::shared_ptr<Renderable>'\
+src\\XGame\\main.cpp(101): warning C4244: 'initializing': conversion from 'cpFloat' to 'float', possible loss of data\
+src\\XGame\\main.cpp(272): warning C4244: 'initializing': conversion from 'cpFloat' to 'float', possible loss of data\
+src\\XGame\\main.cpp(274): warning C4244: 'argument': conversion from 'cpFloat' to 'T', possible loss of data\
+        with\
+        [\
+            T=float\
+        ]\
+src\\XGame\\main.cpp(274): warning C4244: 'argument': conversion from 'cpFloat' to 'T', possible loss of data\
+        with\
+        [\
+            T=float\
+        ]\
+src\\XGame\\main.cpp(279): warning C4244: 'initializing': conversion from 'cpFloat' to 'float', possible loss of data\
+src\\XGame\\main.cpp(281): warning C4244: 'argument': conversion from 'cpFloat' to 'T', possible loss of data\
+        with\
+        [\
+            T=float\
+        ]\
+src\\XGame\\main.cpp(281): warning C4244: 'argument': conversion from 'cpFloat' to 'T', possible loss of data\
+        with\
+        [\
+            T=float\
+        ]\
+"
+}

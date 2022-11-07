@@ -220,13 +220,13 @@ int main()
 
 	// testing
 
-	//float m[3][3] = { 
-	//	{1.f,3.f,3.f}, 
-	//	{1.f,3.f,3.f}, 
+	//int m[3][3] = { 
+	//	{1.f,3.f,3.f},
+	//	{1.f,3.f,3.f},
 	//	{1.f,3.f,3.f} 
 	//};
 
-	Matrix3x3f(1.f, 3.f, 3.f, 1.f, 3.f, 3.f, 1.f, 3.f, 3.f);
+	//Matrix3x3i(m);
 	//std::cout << Matrix3x3f(3, 3) << std::endl;
 
 

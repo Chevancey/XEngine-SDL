@@ -4,6 +4,7 @@ set_warnings("allextra")
 add_rules("mode.debug", "mode.release")
 add_requires("chipmunk2d","libsdl", "libsdl_ttf", "libsdl_image", "nlohmann_json", "fmt", "entt", "lz4")
 add_requires("imgui", {configs = {sdl2 = true}})
+add_requires("openal-soft", "dr_wav")
 
 set_languages("c++17")
 
@@ -17,8 +18,7 @@ target("XEngineLibrary")
 	add_headerfiles("include/XEngineLibrary/*.h", "include/XEngineLibrary/*.hpp","include/XEngineLibrary/*.inl")
 	add_includedirs("include/XEngineLibrary", "include/XGame", {public = true})
 	add_files("src/XEngineLibrary/*.cpp")
-	add_packages("libsdl", "libsdl_ttf", "libsdl_image", "fmt", "imgui", "entt", "nlohmann_json","chipmunk2d", {public = true})
-	add_packages("lz4")
+	add_packages("libsdl", "libsdl_ttf", "libsdl_image", "fmt", "imgui", "entt", "nlohmann_json","chipmunk2d", "lz4", {public = true})
 	
 	
 target("XGame")
@@ -26,6 +26,12 @@ target("XGame")
 	add_deps("XEngineLibrary")
 	add_headerfiles("include/XGame/*.h", "include/XGame/*.hpp")
     add_files("src/XGame/*.cpp")
+
+target("XTest")
+	set_kind("binary")
+	add_deps("XEngineLibrary")
+    add_files("src/XTest/*.cpp")
+	add_packages("openal-soft", "dr_wav")
 
 	
 

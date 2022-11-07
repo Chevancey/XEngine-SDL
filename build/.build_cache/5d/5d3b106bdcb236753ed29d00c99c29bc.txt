@@ -1,0 +1,11 @@
+{
+    outdata = "__cpp_main.cpp.cpp\
+src\\XTest\\main.cpp(44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data\
+src\\XTest\\main.cpp(45): warning C4244: 'argument': conversion from 'float' to '_Ty', possible loss of data\
+        with\
+        [\
+            _Ty=int16_t\
+        ]\
+src\\XTest\\main.cpp(48): warning C4267: 'argument': conversion from 'size_t' to 'ALsizei', possible loss of data\
+"
+}
