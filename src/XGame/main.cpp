@@ -275,17 +275,12 @@ int main()
 	//Matrix3x3f(m);
 
 
-	Matrix3x3f a;
-	a.MatrixReplace(m);
+	//Matrix3x3f a;
+	//a.MatrixReplace(m);
 
 	//(m);
 
-	Matrix3x3f
-	(
-		1.f, 2.f, 3.f,
-		1.f, 2.f, 3.f,
-		1.f, 2.f, 3.f
-	);
+
 
 
 	bool isOpen = true;
