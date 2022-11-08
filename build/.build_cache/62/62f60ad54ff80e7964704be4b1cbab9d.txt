@@ -1,0 +1,5 @@
+{
+    outdata = "__cpp_main.cpp.cpp\
+src\\XTest\\main.cpp(62): warning C4267: 'argument': conversion from 'size_t' to 'ALsizei', possible loss of data\
+"
+}

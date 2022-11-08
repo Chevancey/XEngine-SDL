@@ -27,7 +27,13 @@
     <ClCompile Include="..\..\src\XEngineLibrary\InputManager.cpp">
       <Filter>src\XEngineLibrary</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\XEngineLibrary\Matrix3x3.cpp">
+      <Filter>src\XEngineLibrary</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\XEngineLibrary\Model.cpp">
+      <Filter>src\XEngineLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XEngineLibrary\PhysicsSystem.cpp">
       <Filter>src\XEngineLibrary</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\XEngineLibrary\RenderSystem.cpp">
@@ -108,6 +114,9 @@
       <Filter>include\XEngineLibrary</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\XEngineLibrary\Model.h">
+      <Filter>include\XEngineLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\XEngineLibrary\PhysicsSystem.h">
       <Filter>include\XEngineLibrary</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\XEngineLibrary\Renderable.h">

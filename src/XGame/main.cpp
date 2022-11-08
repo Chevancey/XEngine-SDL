@@ -12,6 +12,8 @@
 
 //entt
 #include  <entt/entt.hpp>
+
+//Physics
 #include  <chipmunk/chipmunk.h>
 
 //ImGUI-SDL
@@ -45,6 +47,7 @@
 
 //physics
 #include "VelocitySystem.h"
+#include "PhysicsSystem.h"
 
 //animation
 #include <AnimationSystem.h>
@@ -220,15 +223,47 @@ int main()
 
 	// testing
 
-	//int m[3][3] = { 
-	//	{1.f,3.f,3.f},
-	//	{1.f,3.f,3.f},
-	//	{1.f,3.f,3.f} 
-	//};
 
-	//Matrix3x3i(m);
-	//std::cout << Matrix3x3f(3, 3) << std::endl;
 
+	//Matrix3x3f( 1.f, 3.f, 3.f,
+	//			1.f, 3.f, 3.f,
+	//			1.f, 3.f, 3.f);
+
+	float** m_Matrix;
+
+	m_Matrix = new float* [3];
+
+	for (int i = 0; i < 3; ++i)
+	{
+		m_Matrix[i] = new float[3];
+	}
+
+
+	float m[3][3] = {
+		{1.f,3.f,3.f},
+		{1.f,3.f,3.f},
+		{1.f,3.f,3.f}
+	};
+
+	//for (int x = 0; x < 3; ++x)
+	//{
+	//	for (int y = 0; y < 3; ++y)
+	//	{
+	//		m_Matrix[x][y] = m[x][y];
+	//	}
+	//}
+
+	//for (int k = 0; k < 3; ++k)
+	//{
+	//	for (int l = 0; l < 3; ++l)
+	//	{
+	//		std::cout << m_Matrix[k][l] << ",";
+	//	}
+	//	std::cout << std::endl;
+	//}
+	
+	
+	Matrix3x3(m);
 
 	bool isOpen = true;
 	while (isOpen)
@@ -237,7 +272,7 @@ int main()
 		float deltaTime = (float)(now - lastUpdate) / SDL_GetPerformanceFrequency();
 		lastUpdate = now;
 
-		fmt::print("FPS: {}\n", 1.f / deltaTime);
+		//fmt::print("FPS: {}\n", 1.f / deltaTime);
 
 		SDL_Event event;
 		while (SDLpp::PollEvent(&event))

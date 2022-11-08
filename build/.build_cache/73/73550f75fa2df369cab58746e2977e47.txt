@@ -1,0 +1,5 @@
+{
+    outdata = "__cpp_PhysicsSystem.cpp.cpp\
+src\\XEngineLibrary\\PhysicsSystem.cpp(22): warning C4100: 'entity': unreferenced formal parameter\
+"
+}

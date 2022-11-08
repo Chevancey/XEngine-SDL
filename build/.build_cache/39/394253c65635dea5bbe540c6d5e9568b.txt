@@ -1,0 +1,26 @@
+{
+    outdata = "__cpp_Sprite.cpp.cpp\
+include\\XEngineLibrary\\Sprite.h(37): warning C4251: 'Sprite::m_texture': class 'std::shared_ptr<const SDLTexture>' needs to have dll-interface to be used by clients of class 'Sprite'\
+include\\XEngineLibrary\\Sprite.h(16): note: see declaration of 'std::shared_ptr<const SDLTexture>'\
+include\\XEngineLibrary\\Sprite.h(39): warning C4251: 'Sprite::m_origin': struct 'Vector2<float>' needs to have dll-interface to be used by clients of class 'Sprite'\
+include\\XEngineLibrary\\Vector2.h(39): note: see declaration of 'Vector2<float>'\
+include\\XEngineLibrary\\SDLTexture.h(31): warning C4251: 'SDLTexture::m_filepath': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'SDLTexture'\
+C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\VC\\Tools\\MSVC\\14.29.30133\\include\\xstring(4871): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'\
+include\\XEngineLibrary\\Transform.h(45): warning C4251: 'Transform::m_children': class 'std::vector<Transform *,std::allocator<Transform *>>' needs to have dll-interface to be used by clients of class 'Transform'\
+include\\XEngineLibrary\\Transform.h(45): note: see declaration of 'std::vector<Transform *,std::allocator<Transform *>>'\
+include\\XEngineLibrary\\Transform.h(47): warning C4251: 'Transform::m_position': struct 'Vector2<float>' needs to have dll-interface to be used by clients of class 'Transform'\
+include\\XEngineLibrary\\Vector2.h(39): note: see declaration of 'Vector2<float>'\
+include\\XEngineLibrary\\Transform.h(49): warning C4251: 'Transform::m_scale': struct 'Vector2<float>' needs to have dll-interface to be used by clients of class 'Transform'\
+include\\XEngineLibrary\\Vector2.h(39): note: see declaration of 'Vector2<float>'\
+src\\XEngineLibrary\\Sprite.cpp(24): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data\
+        with\
+        [\
+            T=float\
+        ]\
+src\\XEngineLibrary\\Sprite.cpp(24): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data\
+        with\
+        [\
+            T=float\
+        ]\
+"
+}
