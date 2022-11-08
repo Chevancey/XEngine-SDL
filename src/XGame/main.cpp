@@ -83,6 +83,17 @@ struct PhysicsComponent
 	cpShape* shape;
 };
 
+template <typename A>
+void display(A n[][3]) {
+	std::cout << "Displaying Values: " << std::endl;
+	for (int i = 0; i < 3; ++i) {
+		for (int j = 0; j < 3; ++j) {
+			std::cout<< n[i][j] << ",";
+		}
+		std::cout << std::endl;
+	}
+}
+
 void PlayerControllerSystem(entt::registry& registry)
 {
 	auto view = registry.view<PhysicsComponent, InputComponent>();
@@ -261,9 +272,21 @@ int main()
 	//	}
 	//	std::cout << std::endl;
 	//}
-	
-	
-	Matrix3x3(m);
+	//Matrix3x3f(m);
+
+
+	Matrix3x3f a;
+	a.MatrixReplace(m);
+
+	//(m);
+
+	Matrix3x3f
+	(
+		1.f, 2.f, 3.f,
+		1.f, 2.f, 3.f,
+		1.f, 2.f, 3.f
+	);
+
 
 	bool isOpen = true;
 	while (isOpen)
