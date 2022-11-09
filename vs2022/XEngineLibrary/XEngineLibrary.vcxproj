@@ -113,51 +113,55 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\XEngineLibrary\SDLTexture.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\SDLSurface.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\Color.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\SDLUtility.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\Sprite.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\Model.cpp">
+    <ClCompile Include="..\..\src\XEngineLibrary\SDLTime.cpp">
     </ClCompile>
     <ClCompile Include="..\..\src\XEngineLibrary\ECS.cpp">
     </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\Matrix3x3.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\ResourceManager.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\SDLEvent.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\VelocitySystem.cpp">
+    <ClCompile Include="..\..\src\XEngineLibrary\Color.cpp">
     </ClCompile>
     <ClCompile Include="..\..\src\XEngineLibrary\SDLpp.cpp">
     </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\SDLImgui.cpp">
+    <ClCompile Include="..\..\src\XEngineLibrary\Matrix3x3.cpp">
     </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\Spritesheet.cpp">
+    <ClCompile Include="..\..\src\XEngineLibrary\SDLSurface.cpp">
     </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\SpritesheetComponent.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\Transform.cpp">
+    <ClCompile Include="..\..\src\XEngineLibrary\SDLUtility.cpp">
     </ClCompile>
     <ClCompile Include="..\..\src\XEngineLibrary\SDLWindow.cpp">
     </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\RenderSystem.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\SDLTime.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\AnimationSystem.cpp">
+    <ClCompile Include="..\..\src\XEngineLibrary\Sprite.cpp">
     </ClCompile>
     <ClCompile Include="..\..\src\XEngineLibrary\SDLRenderer.cpp">
     </ClCompile>
-    <ClCompile Include="..\..\src\XEngineLibrary\InputManager.cpp">
+    <ClCompile Include="..\..\src\XEngineLibrary\Spritesheet.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\src\XEngineLibrary\Transform.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\src\XEngineLibrary\RenderSystem.cpp">
     </ClCompile>
     <ClCompile Include="..\..\src\XEngineLibrary\PhysicsSystem.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\src\XEngineLibrary\SpritesheetComponent.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\src\XEngineLibrary\VelocitySystem.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\src\XEngineLibrary\SDLTexture.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\src\XEngineLibrary\Shape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\src\XEngineLibrary\SDLImgui.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\src\XEngineLibrary\InputManager.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\src\XEngineLibrary\AnimationSystem.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\src\XEngineLibrary\SDLEvent.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\src\XEngineLibrary\ResourceManager.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\src\XEngineLibrary\Model.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\src\XEngineLibrary\RigidBodyComponent.cpp">
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +179,7 @@
     <ClInclude Include="..\..\include\XEngineLibrary\Renderable.h" />
     <ClInclude Include="..\..\include\XEngineLibrary\RenderSystem.h" />
     <ClInclude Include="..\..\include\XEngineLibrary\ResourceManager.h" />
+    <ClInclude Include="..\..\include\XEngineLibrary\RigidBodyComponent.h" />
     <ClInclude Include="..\..\include\XEngineLibrary\SDLEvent.h" />
     <ClInclude Include="..\..\include\XEngineLibrary\SDLImGui.h" />
     <ClInclude Include="..\..\include\XEngineLibrary\SDLpp.h" />
@@ -184,6 +189,7 @@
     <ClInclude Include="..\..\include\XEngineLibrary\SDLTime.h" />
     <ClInclude Include="..\..\include\XEngineLibrary\SDLUtility.h" />
     <ClInclude Include="..\..\include\XEngineLibrary\SDLWindow.h" />
+    <ClInclude Include="..\..\include\XEngineLibrary\Shape.h" />
     <ClInclude Include="..\..\include\XEngineLibrary\Sprite.h" />
     <ClInclude Include="..\..\include\XEngineLibrary\Spritesheet.h" />
     <ClInclude Include="..\..\include\XEngineLibrary\SpritesheetComponent.h" />

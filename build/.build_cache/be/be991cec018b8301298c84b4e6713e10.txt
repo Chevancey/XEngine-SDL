@@ -1,0 +1,31 @@
+{
+    outdata = "__cpp_main.cpp.cpp\
+include\\XEngineLibrary\\GraphicsComponent.h(10): warning C4251: 'GraphicsComponent::renderable': class 'std::shared_ptr<Renderable>' needs to have dll-interface to be used by clients of struct 'GraphicsComponent'\
+include\\XEngineLibrary\\GraphicsComponent.h(10): note: see declaration of 'std::shared_ptr<Renderable>'\
+include\\XEngineLibrary\\ResourceManager.h(32): warning C4251: 'ResourceManager::m_missingModel': class 'std::shared_ptr<Model>' needs to have dll-interface to be used by clients of class 'ResourceManager'\
+include\\XEngineLibrary\\ResourceManager.h(21): note: see declaration of 'std::shared_ptr<Model>'\
+include\\XEngineLibrary\\ResourceManager.h(33): warning C4251: 'ResourceManager::m_missingTexture': class 'std::shared_ptr<SDLTexture>' needs to have dll-interface to be used by clients of class 'ResourceManager'\
+include\\XEngineLibrary\\ResourceManager.h(22): note: see declaration of 'std::shared_ptr<SDLTexture>'\
+include\\XEngineLibrary\\ResourceManager.h(34): warning C4251: 'ResourceManager::m_models': class 'std::unordered_map<std::string,std::shared_ptr<Model>,std::hash<std::string>,std::equal_to<std::string>,std::allocator<std::pair<const std::string,std::shared_ptr<Model>>>>' needs to have dll-interface to be used by clients of class 'ResourceManager'\
+include\\XEngineLibrary\\ResourceManager.h(34): note: see declaration of 'std::unordered_map<std::string,std::shared_ptr<Model>,std::hash<std::string>,std::equal_to<std::string>,std::allocator<std::pair<const std::string,std::shared_ptr<Model>>>>'\
+include\\XEngineLibrary\\ResourceManager.h(35): warning C4251: 'ResourceManager::m_textures': class 'std::unordered_map<std::string,std::shared_ptr<SDLTexture>,std::hash<std::string>,std::equal_to<std::string>,std::allocator<std::pair<const std::string,std::shared_ptr<SDLTexture>>>>' needs to have dll-interface to be used by clients of class 'ResourceManager'\
+include\\XEngineLibrary\\ResourceManager.h(35): note: see declaration of 'std::unordered_map<std::string,std::shared_ptr<SDLTexture>,std::hash<std::string>,std::equal_to<std::string>,std::allocator<std::pair<const std::string,std::shared_ptr<SDLTexture>>>>'\
+C:\\Users\\ychev\\AppData\\Local\\.xmake\\packages\\l\\libsdl\\2.24.0\\72cef56b1aef4c0dbc0fb4007bb4eb11\\include\\SDL2\\SDL_surface.h(73): warning C4099: 'SDL_Surface': type name first seen using 'class' now seen using 'struct'\
+C:\\Users\\ychev\\AppData\\Local\\.xmake\\packages\\l\\libsdl\\2.24.0\\72cef56b1aef4c0dbc0fb4007bb4eb11\\include\\SDL2\\SDL_surface.h(72): note: see declaration of 'SDL_Surface'\
+include\\XEngineLibrary\\Sprite.h(37): warning C4251: 'Sprite::m_texture': class 'std::shared_ptr<const SDLTexture>' needs to have dll-interface to be used by clients of class 'Sprite'\
+include\\XEngineLibrary\\Sprite.h(16): note: see declaration of 'std::shared_ptr<const SDLTexture>'\
+include\\XEngineLibrary\\Sprite.h(39): warning C4251: 'Sprite::m_origin': struct 'Vector2<float>' needs to have dll-interface to be used by clients of class 'Sprite'\
+include\\XEngineLibrary\\Vector2.h(39): note: see declaration of 'Vector2<float>'\
+include\\XEngineLibrary\\Transform.h(45): warning C4251: 'Transform::m_children': class 'std::vector<Transform *,std::allocator<Transform *>>' needs to have dll-interface to be used by clients of class 'Transform'\
+include\\XEngineLibrary\\Transform.h(45): note: see declaration of 'std::vector<Transform *,std::allocator<Transform *>>'\
+include\\XEngineLibrary\\Transform.h(47): warning C4251: 'Transform::m_position': struct 'Vector2<float>' needs to have dll-interface to be used by clients of class 'Transform'\
+include\\XEngineLibrary\\Vector2.h(39): note: see declaration of 'Vector2<float>'\
+include\\XEngineLibrary\\Transform.h(49): warning C4251: 'Transform::m_scale': struct 'Vector2<float>' needs to have dll-interface to be used by clients of class 'Transform'\
+include\\XEngineLibrary\\Vector2.h(39): note: see declaration of 'Vector2<float>'\
+src\\XTest\\main.cpp(76): warning C4267: 'argument': conversion from 'size_t' to 'ALsizei', possible loss of data\
+src\\XTest\\main.cpp(99): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data\
+src\\XTest\\main.cpp(99): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data\
+src\\XTest\\main.cpp(112): warning C4189: 'deltaTime': local variable is initialized but not referenced\
+C:\\Users\\ychev\\Desktop\\Lesson Xmake\\XEngine\\include\\XEngineLibrary\\Matrix3x3.inl(345) : warning C4172: returning address of local variable or temporary: result\
+"
+}

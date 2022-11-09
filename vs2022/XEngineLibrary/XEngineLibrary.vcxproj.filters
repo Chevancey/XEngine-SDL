@@ -42,6 +42,9 @@
     <ClCompile Include="..\..\src\XEngineLibrary\ResourceManager.cpp">
       <Filter>src\XEngineLibrary</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\XEngineLibrary\RigidBodyComponent.cpp">
+      <Filter>src\XEngineLibrary</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\XEngineLibrary\SDLEvent.cpp">
       <Filter>src\XEngineLibrary</Filter>
     </ClCompile>
@@ -67,6 +70,9 @@
       <Filter>src\XEngineLibrary</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\XEngineLibrary\SDLWindow.cpp">
+      <Filter>src\XEngineLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XEngineLibrary\Shape.cpp">
       <Filter>src\XEngineLibrary</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\XEngineLibrary\Sprite.cpp">
@@ -128,6 +134,9 @@
     <ClInclude Include="..\..\include\XEngineLibrary\ResourceManager.h">
       <Filter>include\XEngineLibrary</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\XEngineLibrary\RigidBodyComponent.h">
+      <Filter>include\XEngineLibrary</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\XEngineLibrary\SDLEvent.h">
       <Filter>include\XEngineLibrary</Filter>
     </ClInclude>
@@ -153,6 +162,9 @@
       <Filter>include\XEngineLibrary</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\XEngineLibrary\SDLWindow.h">
+      <Filter>include\XEngineLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\XEngineLibrary\Shape.h">
       <Filter>include\XEngineLibrary</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\XEngineLibrary\Sprite.h">
