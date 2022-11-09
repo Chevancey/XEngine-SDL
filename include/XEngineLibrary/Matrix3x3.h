@@ -56,22 +56,28 @@ struct Matrix3x3
 	// Inverse of a matrix
 	Matrix3x3 Inverse() const;
 
+	//
 	Matrix3x3 Adjugate() const;
 
 	// the bomber man of matrices
 	Matrix3x3 CofactorMatrix() const;
 
-	float Cofactor(int row, int col) const;
-	float GetMinor(int row, int col) const;
+	R Cofactor(int row, int col) const;
+	R GetMinor(int row, int col) const;
 	
+	// all Transform functions
 	static Matrix3x3 Translate(Vector2<R> position);
 	static Matrix3x3 Rotate(R angle);
 	static Matrix3x3 Scale(Vector2<R> scale);
 
-	static float Determinant(std::vector<std::vector<R>> matrix);
-	static std::vector<std::vector<R>>
-	std::vector<std::vector<R>> SubMatrix(const std::vector<std::vector<R>>& matrix, int row, int col);
+	
+	static R Determinant(std::vector<std::vector<R>> matrix);
 
+	// sub matrix, kinf of the opposite of an augmented matrix
+	static std::vector<std::vector<R>> SubMatrix(const std::vector<std::vector<R>>& matrix, int row, int col);
+
+	Matrix3x3 SRT(Vector2<R> scale, R angle, Vector2<R> position);
+	Matrix3x3 TRS(Vector2<R> position, R angle, Vector2<R> scale);
 private:
 	std::array<std::array<R, 3>, 3> m_Matrix;
 
