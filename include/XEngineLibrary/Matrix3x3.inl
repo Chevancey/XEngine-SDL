@@ -47,6 +47,30 @@ R& Matrix3x3<R>::operator()(int rows, int cols)
 	return m_Matrix[rows][cols];
 }
 
+// DATA GETTERS
+template<typename R>
+std::vector<std::vector<R>>& Matrix3x3<R>::GetDataAsUnsized() const
+{
+	std::vector<std::vector<R>> result(m_Matrix.size(), std::vector<R>(m_Matrix.size(), 0));
+
+	for (auto i = 0; i < m_Matrix.size(); i++)
+	{
+		for (auto j = 0; j < m_Matrix[0].size(); j++)
+		{
+			result[i][j] = m_Matrix[i][j];
+		}
+	}
+
+	return result;
+}
+
+template<typename R>
+const std::array<std::array<R, 3>, 3>& Matrix3x3<R>::GetData() const
+{
+	return m_Matrix;
+}
+
+
 // ADDITIONS AND SUBSTRACTIONS
 // ===================================================================================
 template<typename R>
@@ -405,34 +429,78 @@ Matrix3x3<R>& Matrix3x3<R>::operator/=(const Matrix3x3& matrix)
 
 	return result;
 }
+template<typename R>
+static Matrix3x3<R> Matrix3x3<R>::Identity() {}
+
 
 template<typename R>
-std::vector<std::vector<R>>& Matrix3x3<R>::GetDataAsUnsized() const
-{
-	std::vector<std::vector<float>> result(m_Matrix.size(), std::vector<R>(m_Matrix.size(), 0));
+Matrix3x3<R> Matrix3x3<R>::Transpose() const {}
 
-	for (auto i = 0; i < m_Matrix.size(); i++)
-	{
-		for (auto j = 0; j < m_Matrix[0].size(); j++) 
-		{
-			result[i][j] = m_Matrix[i][j];
-		}
-	}
-	return result;
+template<typename R>
+Matrix3x3<R> Matrix3x3<R>::Inverse() const {}
+
+template<typename R>
+Matrix3x3<R> Matrix3x3<R>::Adjugate() const {}
+
+template<typename R>
+Matrix3x3<R> Matrix3x3<R>::CofactorMatrix() const {}
+
+template<typename R>
+float Matrix3x3<R>::Cofactor(int row, int col) const {}
+
+template<typename R>
+float Matrix3x3<R>::GetMinor(int row, int col) const {}
+
+template<typename R>
+static float Matrix3x3<R>::Determinant(std::vector<std::vector<R>> matrix) {}
+
+template<typename R>
+std::vector<std::vector<R>> Matrix3x3<R>::SubMatrix(const std::vector<std::vector<R>>& matrix, int row, int col) {}
+
+template<typename R>
+Matrix3x3<R> Matrix3x3<R>::Translate(Vector2<R> position)
+{
+	return Matrix3({ {
+	  { 1, 0, position.x },
+	  { 0, 1, position.y },
+	  { 0, 0, 1			 },
+	} });
 }
 
 template<typename R>
-const std::array<std::array<R, 3>, 3>& Matrix3x3<R>::GetData() const 
+Matrix3x3<R> Matrix3x3<R>::Rotate(R angle)
 {
-	std::array<std::array<R, 3>, 3> result();
+	auto a = Deg2Rad(angle);
+	auto cos = std::cos(a);
+	auto sin = std::sin(a);
 
-	for (auto i = 0; i < m_Matrix.size(); i++)
-	{
-		for (auto j = 0; j < m_Matrix[0].size(); j++)
-		{
-			result[i][j] = m_Matrix[i][j];
-		}
-	}
+	return Matrix3x3<R>({ {
+	  { cos, -sin, 0 },
+	  { sin, cos,  0 },
+	  { 0,    0,   1 },
+	} });
+}
 
-	return result;
+template<typename R>
+Matrix3x3<R> Matrix3x3<R>::Scale(Vector2<R> scale)
+{
+	return Matrix3({ {
+	  { scale.x, 0, 0 },
+	  { 0, scale.y, 0 },
+	  { 0, 0, 1 },
+	} });
+}
+
+template<typename R>
+Matrix3x3<R> Matrix3x3<R>::SRT(Vector2<R> scale, float angle, Vector2<R> position)
+{
+	return Matrix3::Scale(scale) * Matrix3::Rotate(angle) *
+		Matrix3::Translate(position);
+}
+
+template<typename R>
+Matrix3x3<R> Matrix3x3<R>::TRS(Vector2<R> position, float angle, Vector2<R> scale)
+{
+	return Matrix3::Translate(position) * Matrix3::Rotate(angle) *
+		Matrix3::Scale(scale);
 }
