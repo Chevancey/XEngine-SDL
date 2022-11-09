@@ -321,16 +321,118 @@ Matrix3x3<R>& Matrix3x3<R>::operator*=(const Matrix3x3& matrix)
 	return result;
 }
 
+template<typename R>
+Matrix3x3<R>& Matrix3x3<R>::operator/=(R value)
+{
+	Matrix3x3<R> result(m_Matrix);
 
+	for (int x = 0; x < m_rows; ++x)
+	{
+		for (int y = 0; y < m_columns; ++y)
+		{
+			result(x, y) /= value;
+		}
+	}
+
+	for (int x = 0; x < m_rows; ++x)
+	{
+		for (int y = 0; y < m_columns; ++y)
+		{
+			std::cout << result.m_Matrix[x][y] << ",";
+		}
+		std::cout << " " << std::endl;
+	}
+
+	return result;
+}
 
 template<typename R>
 Matrix3x3<R>& Matrix3x3<R>::operator/=(const Matrix3x3& matrix)
 {
+	Matrix3x3<R> result(m_Matrix);
 
+	for (auto i = 0; i < result.m_rows; i++)
+	{
+		for (auto j = 0; j < result.m_columns; j++)
+		{
+			R tmp = 0.f;
+			for (auto k = 0; k < m_columns; k++)
+			{
+				tmp += operator()(i, k) / matrix(k, j);
+			}
+			result(i, j) = tmp;
+		}
+	}
+
+	for (int x = 0; x < m_rows; ++x)
+	{
+		for (int y = 0; y < m_columns; ++y)
+		{
+			std::cout << result.m_Matrix[x][y] << ",";
+		}
+		std::cout << " " << std::endl;
+	}
+
+	return result;
 }
 
 template<typename R>
-Matrix3x3<R>& Matrix3x3<R>::operator/=(R value)
+Matrix3x3<R>& Matrix3x3<R>::operator/=(const Matrix3x3& matrix)
 {
+	Matrix3x3<R> result(m_Matrix);
 
+	for (auto i = 0; i < result.m_rows; i++)
+	{
+		for (auto j = 0; j < result.m_columns; j++)
+		{
+			R tmp = 0.f;
+			for (auto k = 0; k < m_columns; k++)
+			{
+				tmp += operator()(i, k) / matrix(k, j);
+			}
+			result(i, j) = tmp;
+		}
+	}
+
+	for (int x = 0; x < m_rows; ++x)
+	{
+		for (int y = 0; y < m_columns; ++y)
+		{
+			std::cout << result.m_Matrix[x][y] << ",";
+		}
+		std::cout << " " << std::endl;
+	}
+
+	return result;
+}
+
+template<typename R>
+std::vector<std::vector<R>>& Matrix3x3<R>::GetDataAsUnsized() const
+{
+	std::vector<std::vector<float>> result(m_Matrix.size(), std::vector<R>(m_Matrix.size(), 0));
+
+	for (auto i = 0; i < m_Matrix.size(); i++)
+	{
+		for (auto j = 0; j < m_Matrix[0].size(); j++) 
+		{
+			result[i][j] = m_Matrix[i][j];
+		}
+	}
+	return result;
+}
+
+template<typename R>
+const std::array<std::array<R, 3>, 3>& Matrix3x3<R>::GetData() const 
+{
+	std::array<std::array<R, 3>, 3> result();
+
+	for (auto i = 0; i < m_Matrix.size(); i++)
+	{
+		for (auto j = 0; j < m_Matrix[0].size(); j++)
+		{
+			result[i][j] = m_Matrix[i][j];
+		}
+	}
+
+	return result;
 }

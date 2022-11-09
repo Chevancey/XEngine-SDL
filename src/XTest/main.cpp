@@ -23,7 +23,12 @@ int main()
 		1.f, 2.f, 3.f,
 		1.f, 2.f, 3.f,
 		1.f, 2.f, 3.f
-	) *= 2.f;/*Matrix3x3f
+	) *= Matrix3x3f
+	(
+		1.f, 2.f, 3.f,
+		1.f, 2.f, 3.f,
+		1.f, 2.f, 3.f
+	);/*Matrix3x3f
 	(
 		1.f, 2.f, 3.f,
 		1.f, 2.f, 3.f,
