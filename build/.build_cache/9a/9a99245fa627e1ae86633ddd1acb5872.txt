@@ -1,4 +1,0 @@
-{
-    outdata = "__cpp__E7F7BBBF89EA40708C8409F4537E00A0.c\
-"
-}

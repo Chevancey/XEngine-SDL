@@ -1,5 +1,0 @@
-{
-    outdata = "cl : Command line warning D9002 : ignoring unknown option '-std:c++11'\
-__cpp__55C0A33300EF4F208AD2FD9906907580.cpp\
-"
-}

@@ -1,6 +1,0 @@
-{
-    outdata = "__cpp_VelocitySystem.cpp.cpp\
-include\\XEngineLibrary\\Transform.h(45): warning C4251: 'Transform::m_children': class 'std::vector<Transform *,std::allocator<Transform *>>' needs to have dll-interface to be used by clients of class 'Transform'\
-include\\XEngineLibrary\\Transform.h(45): note: see declaration of 'std::vector<Transform *,std::allocator<Transform *>>'\
-"
-}
